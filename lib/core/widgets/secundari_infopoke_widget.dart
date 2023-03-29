@@ -58,7 +58,7 @@ class _SecundariinfopokeWidgetState extends State<SecundariinfopokeWidget> {
                 children: [
                   Text(widget.localization,
                       style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width * 0.06,
+                          fontSize: MediaQuery.of(context).size.width * 0.05,
                           fontWeight: FontWeight.w900,
                           color: Backgroud().getBackgroudType(
                               type: widget.type[0].toString()),

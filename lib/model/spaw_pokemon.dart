@@ -47,9 +47,8 @@ class LocationArea {
   String? url;
 
   factory LocationArea.fromJson(Map<String, dynamic> json) => LocationArea(
-        name: json["name"],
-        url: json["url"],
-      );
+      name: json["name"] == '' ? 'Misterio' : json["name"],
+      url: json["url"] == '' ? '' : json["url"]);
 
   Map<String, dynamic> toJson() => {
         "name": name,

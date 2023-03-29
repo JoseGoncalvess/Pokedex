@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/widgets/pokecardgrid.dart';
 import 'package:pokedexx/model/pokemon_model_v2.dart';
-import 'package:pokedexx/pages/detailpoker.dart';
-import 'package:pokedexx/pages/page.dart';
 import '../core/widgets/pokemoncard.dart';
 import '../model/pokeModel.dart';
+import '../model/spaw_pokemon.dart';
 import '../services/pokemon_services.dart';
+import 'detailpoker.dart';
 import 'details_page.dart';
 
 class Homepage extends StatefulWidget {
@@ -47,6 +47,7 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     getpoke();
+
     super.initState();
   }
 
@@ -153,13 +154,7 @@ class _HomepageState extends State<Homepage> {
                                               name: allPoker[index].name,
                                               types: allPoker[index].type,
                                               candy: allPoker[index].candy,
-                                            )
-                                        // Detailpoker(
-                                        //     name: allPoker[index].name,
-                                        //     type: allPoker[index].type,
-                                        //     id: allPoker[index].id.toString(),
-                                        //     img: allPoker[index].img),
-                                        ),
+                                            )),
                                   );
                                 },
                                 name: allPoker[index].name,
@@ -172,9 +167,11 @@ class _HomepageState extends State<Homepage> {
                 ],
               ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        PokemonServices().gettypepokelocalizatio(1);
-      }),
+      // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   // PokemonServices().gettypepokelocalizatio(1);
+      //   Navigator.of(context)
+      //       .push(MaterialPageRoute(builder: (context) => pagetest()));
+      // }),
     );
   }
 }

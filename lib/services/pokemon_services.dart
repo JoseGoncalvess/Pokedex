@@ -56,19 +56,21 @@ class PokemonServices extends PokedexInterface {
   @override
   Future<ReturnApiList> gettypepokelocalizatio(int id) async {
     final dio = Dio();
-    List<dynamic> localization = [];
+    List<LocationArea> localization = [];
 
     String baseUrl = 'https://pokeapi.co/api/v2/pokemon/$id/encounters';
     var response = await dio.get(baseUrl);
 
     if (response.statusCode == 200) {
-      var local = response.data;
-      List<LocationArea> localization =
-          LocationArea.fromJson(local) as List<LocationArea>;
+      var lista = response.data;
 
-      log(localization.length.toString());
+      for (var element in lista) {
+        var item = LocationArea.fromJson(element['location_area']);
+
+        localization.add(item);
+      }
     }
 
-    return ReturnApiList(list: [], msg: '');
+    return ReturnApiList(list: localization, msg: 'ops');
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedexx/core/theme/localepokemon.dart';
 
 import '../model/spaw_pokemon.dart';
 import '../services/pokemon_services.dart';
@@ -7,17 +8,16 @@ class pagetest extends StatefulWidget {
   const pagetest({super.key});
 
   @override
-  State<pagetest> createState() => _pagetestState();
+  State<pagetest> createState() => pagetestState();
 }
 
-class _pagetestState extends State<pagetest> {
-  List<EncounterDetail> localization = [];
+class pagetestState extends State<pagetest> {
+  List<LocationArea> localization = [];
   String msg = '';
   getpoke() {
-    ;
     PokemonServices().gettypepokelocalizatio(1).then((value) {
       setState(() {
-        localization = value.list as List<EncounterDetail>;
+        localization = value.list as List<LocationArea>;
       });
     }).catchError((onError) {
       setState(() {
@@ -41,7 +41,8 @@ class _pagetestState extends State<pagetest> {
       ),
       body: Container(
         child: Center(
-          child: Text(localization.toString()),
+          child: Text(Localepokemon()
+              .localpokemon(city: localization[0].name.toString())),
         ),
       ),
     );
