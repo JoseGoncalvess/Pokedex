@@ -6,6 +6,7 @@ abstract class PokedexInterface {
   Future<ReturnApiList> getpokemon();
   Future<ReturnApiList> gettypepokemoninfo(int id);
   Future<ReturnApiList> gettypepokelocalizatio(int id);
+  Future<ReturnApiList> gettypepokeevolution(int id);
 }
 
 class ReturnApiList {

@@ -154,35 +154,72 @@ class _DetailsPageState extends State<DetailsPage> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.33,
                     ),
-                    SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.06,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: widget.types
-                                  .map((e) => TypelistDetails(pokemon: e))
-                                  .toList(),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height * 0.06,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: widget.types
+                                    .map((e) => TypelistDetails(pokemon: e))
+                                    .toList(),
+                              ),
                             ),
-                          ),
-                          InfopokeWidget(
-                            height: widget.height,
-                            name: widget.name,
-                            types: widget.types,
-                            width: widget.width,
-                          ),
-                          SecundariinfopokeWidget(
-                            candy: widget.candy,
-                            type: widget.types,
-                            localization: localization.isEmpty
-                                ? 'Evolução'
-                                : Localepokemon().localpokemon(
-                                    city: localization[0].name.toString()),
-                          )
-                        ],
+                            InfopokeWidget(
+                              height: widget.height,
+                              name: widget.name,
+                              types: widget.types,
+                              width: widget.width,
+                            ),
+                            SecundariinfopokeWidget(
+                              candy: widget.candy,
+                              type: widget.types,
+                              localization: localization.isEmpty
+                                  ? 'Evolução'
+                                  : Localepokemon().localpokemon(
+                                      city: localization[0].name.toString()),
+                            ),
+                            Container(
+                              color: Colors.redAccent,
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('Evoluções'.toUpperCase(),
+                                          style: TextStyle(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.03,
+                                              fontWeight: FontWeight.w900,
+                                              color:
+                                                  Colors.grey.withOpacity(0.5),
+                                              fontFamily: 'Nunito'))
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Image.network(
+                                        widget.img,
+                                        scale: 1.5,
+                                      ),
+                                      Text('25')
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     )
                   ],

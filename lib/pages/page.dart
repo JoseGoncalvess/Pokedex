@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/localepokemon.dart';
 
+import '../model/evolutionmodel.dart';
 import '../model/spaw_pokemon.dart';
 import '../services/pokemon_services.dart';
 
@@ -12,12 +13,12 @@ class pagetest extends StatefulWidget {
 }
 
 class pagetestState extends State<pagetest> {
-  List<LocationArea> localization = [];
+  List<EvolutionDetail> list = [];
   String msg = '';
   getpoke() {
-    PokemonServices().gettypepokelocalizatio(1).then((value) {
+    PokemonServices().gettypepokeevolution(1).then((value) {
       setState(() {
-        localization = value.list as List<LocationArea>;
+        list = value.list as List<EvolutionDetail>;
       });
     }).catchError((onError) {
       setState(() {
@@ -41,8 +42,7 @@ class pagetestState extends State<pagetest> {
       ),
       body: Container(
         child: Center(
-          child: Text(Localepokemon()
-              .localpokemon(city: localization[0].name.toString())),
+          child: Text(list.length.toString()),
         ),
       ),
     );

@@ -9,6 +9,8 @@ import 'package:pokedexx/model/pokemon_model_v2.dart';
 import 'package:pokedexx/model/spaw_pokemon.dart';
 import 'package:pokedexx/services/pokedex_interface.dart.dart';
 
+import '../model/evolutionmodel.dart';
+
 class PokemonServices extends PokedexInterface {
   @override
   Future<ReturnApiList> getpokemon() async {
@@ -72,5 +74,23 @@ class PokemonServices extends PokedexInterface {
     }
 
     return ReturnApiList(list: localization, msg: 'ops');
+  }
+
+  @override
+  Future<ReturnApiList> gettypepokeevolution(int id) async {
+    final dio = Dio();
+    List<EvolutionDetail> evoluction = [];
+    String evolut = 'https://pokeapi.co/api/v2/evolution-chain/$id/';
+    var response = await dio.get(evolut);
+
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.data['chain']) as Map<String, dynamic>;
+      final info = json as List<dynamic>;
+      evoluction = info.map((e) => EvolutionDetail.fromJson(e)).toList();
+
+      log(evoluction[0].minLevel.toString());
+    }
+
+    return ReturnApiList(list: [], msg: 'erro ao buscar detalhes de evolução');
   }
 }
