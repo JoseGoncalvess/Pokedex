@@ -168,11 +168,12 @@ class _HomepageState extends State<Homepage> {
                 ],
               ),
       ),
-      // floatingActionButton: FloatingActionButton(onPressed: () {
-      //   PokemonServices().gettypepokeevolution(1);
-      //   // Navigator.of(context)
-      //   //     .push(MaterialPageRoute(builder: (context) => pagetest()));
-      // }),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        // PokemonServices().gettypepokeevolution(24);
+        // PokemonServices().gettypepokelocalizatio(1);
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => pagetest()));
+      }),
     );
   }
 }

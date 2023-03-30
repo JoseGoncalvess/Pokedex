@@ -71,6 +71,7 @@ class PokemonServices extends PokedexInterface {
 
         localization.add(item);
       }
+      log(lista.toString());
     }
 
     return ReturnApiList(list: localization, msg: 'ops');
@@ -84,13 +85,19 @@ class PokemonServices extends PokedexInterface {
     var response = await dio.get(evolut);
 
     if (response.statusCode == 200) {
-      var json = jsonDecode(response.data['chain']) as Map<String, dynamic>;
-      final info = json as List<dynamic>;
-      evoluction = info.map((e) => EvolutionDetail.fromJson(e)).toList();
+      var corpo = response.data['chain']['evolves_to'];
 
-      log(evoluction[0].minLevel.toString());
+      for (var element in corpo) {
+        for (var e in element['evolution_details']) {
+          var item = EvolutionDetail.fromJson(e);
+          evoluction.add(item);
+        }
+        // log(element['evolution_details'].toString());
+      }
+      // log(corpo.toString());
     }
 
-    return ReturnApiList(list: [], msg: 'erro ao buscar detalhes de evolução');
+    return ReturnApiList(
+        list: evoluction, msg: 'erro ao buscar detalhes de evolução');
   }
 }

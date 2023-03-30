@@ -16,7 +16,7 @@ class pagetestState extends State<pagetest> {
   List<EvolutionDetail> list = [];
   String msg = '';
   getpoke() {
-    PokemonServices().gettypepokeevolution(1).then((value) {
+    PokemonServices().gettypepokeevolution(24).then((value) {
       setState(() {
         list = value.list as List<EvolutionDetail>;
       });
@@ -42,7 +42,7 @@ class pagetestState extends State<pagetest> {
       ),
       body: Container(
         child: Center(
-          child: Text(list.length.toString()),
+          child: Text(list[0].minLevel.toString()),
         ),
       ),
     );
