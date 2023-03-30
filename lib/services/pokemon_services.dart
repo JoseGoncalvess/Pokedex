@@ -1,14 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
-import 'package:pokedexx/core/widgets/pokemoncard.dart';
 import 'package:pokedexx/model/pokeModel.dart';
 import 'package:pokedexx/model/pokemon_model_v2.dart';
 import 'package:pokedexx/model/spaw_pokemon.dart';
 import 'package:pokedexx/services/pokedex_interface.dart.dart';
-
 import '../model/evolutionmodel.dart';
 
 class PokemonServices extends PokedexInterface {
@@ -33,6 +29,9 @@ class PokemonServices extends PokedexInterface {
     return ReturnApiList(list: list, msg: 'Não obtive os dados dos pokemons');
   }
 
+//
+//
+//
   @override
   Future<ReturnApiList> gettypepokemoninfo(int id) async {
     final dio = Dio();
@@ -55,6 +54,9 @@ class PokemonServices extends PokedexInterface {
         list: listinfo, msg: 'Erro ao buscar informações na api');
   }
 
+//
+//
+//
   @override
   Future<ReturnApiList> gettypepokelocalizatio(int id) async {
     final dio = Dio();
@@ -71,12 +73,15 @@ class PokemonServices extends PokedexInterface {
 
         localization.add(item);
       }
-      log(lista.toString());
+      // log(lista.toString());
     }
 
     return ReturnApiList(list: localization, msg: 'ops');
   }
 
+//
+//
+//
   @override
   Future<ReturnApiList> gettypepokeevolution(int id) async {
     final dio = Dio();

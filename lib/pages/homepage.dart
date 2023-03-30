@@ -113,11 +113,27 @@ class _HomepageState extends State<Homepage> {
                                 onPressed: () {
                                   // log(allPoker[e.id - 1].id.toString());
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => Detailpoker(
-                                          name: allPoker[e.id - 1].name,
-                                          type: allPoker[e.id - 1].type,
-                                          id: allPoker[e.id - 1].id.toString(),
-                                          img: allPoker[e.id - 1].img)));
+                                      builder: (context) => DetailsPage(
+                                            nextEvolution: allPoker[e.id - 1]
+                                                .nextEvolution as List,
+                                            prevEvolution: allPoker[e.id - 1]
+                                                .prevEvolution as List,
+                                            height: allPoker[e.id - 1].height,
+                                            width: allPoker[e.id - 1].weight,
+                                            img: allPoker[e.id - 1].img,
+                                            id: allPoker[e.id - 1].id,
+                                            name: allPoker[e.id - 1].name,
+                                            types: allPoker[e.id - 1].type,
+                                            candy: allPoker[e.id - 1].candy,
+                                          )
+
+                                      // Detailpoker(
+                                      //     name: allPoker[e.id - 1].name,
+                                      //     type: allPoker[e.id - 1].type,
+                                      //     id: allPoker[e.id - 1].id.toString(),
+                                      //     img: allPoker[e.id - 1].img)
+
+                                      ));
                                 },
                               ))
                           .toList(),
@@ -148,6 +164,10 @@ class _HomepageState extends State<Homepage> {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                         builder: (context) => DetailsPage(
+                                              nextEvolution: allPoker[index]
+                                                  .nextEvolution as List,
+                                              prevEvolution: allPoker[index]
+                                                  .prevEvolution as List,
                                               height: allPoker[index].height,
                                               width: allPoker[index].weight,
                                               img: allPoker[index].img,
@@ -169,10 +189,10 @@ class _HomepageState extends State<Homepage> {
               ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {
-        // PokemonServices().gettypepokeevolution(24);
+        PokemonServices().gettypepokeevolution(1);
         // PokemonServices().gettypepokelocalizatio(1);
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => pagetest()));
+        // Navigator.of(context)
+        //     .push(MaterialPageRoute(builder: (context) => pagetest()));
       }),
     );
   }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/infopoke_widget.dart';
+import 'package:pokedexx/model/pokemodel.dart';
 import 'package:pokedexx/pages/details_page/detailstype_poker.dart';
 import '../core/helpers/clip_container.dart';
 import '../core/theme/localepokemon.dart';
+import '../core/widgets/evolution_pokemon_widget.dart';
 import '../core/widgets/secundari_infopoke_widget.dart';
 import '../model/spaw_pokemon.dart';
 import '../services/pokemon_services.dart';
@@ -18,6 +20,8 @@ class DetailsPage extends StatefulWidget {
     required this.width,
     required this.height,
     required this.candy,
+    required this.nextEvolution,
+    required this.prevEvolution,
   }) : super(key: key);
 
   final String name;
@@ -27,6 +31,8 @@ class DetailsPage extends StatefulWidget {
   final String width;
   final String height;
   final String candy;
+  final List nextEvolution;
+  final List prevEvolution;
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -34,6 +40,7 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   bool leading = true;
+  List<dynamic> evolutions = [];
   List<LocationArea> localization = [];
   String msg = '';
 
@@ -50,18 +57,39 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   transition() {
-    Future.delayed(const Duration(seconds: 1)).then((value) => {
+    Future.delayed(const Duration(seconds: 2)).then((value) => {
           setState(() {
             leading = false;
-          })
+          }),
         });
   }
 
   @override
   void initState() {
+    validatelist(widget.nextEvolution, widget.prevEvolution);
     getlocalpoke(widget.id);
     transition();
+
     super.initState();
+  }
+
+//
+//
+//
+
+  validatelist(
+    List next,
+    List prev,
+  ) {
+    if (prev.isEmpty) {
+      setState(() {
+        evolutions = next;
+      });
+    } else {
+      setState(() {
+        evolutions = prev;
+      });
+    }
   }
 
   @override
@@ -183,40 +211,10 @@ class _DetailsPageState extends State<DetailsPage> {
                                   : Localepokemon().localpokemon(
                                       city: localization[0].name.toString()),
                             ),
-                            Container(
-                              color: Colors.redAccent,
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.3,
-                              child: Column(
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text('Evoluções'.toUpperCase(),
-                                          style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.03,
-                                              fontWeight: FontWeight.w900,
-                                              color:
-                                                  Colors.grey.withOpacity(0.5),
-                                              fontFamily: 'Nunito'))
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Image.network(
-                                        widget.img,
-                                        scale: 1.5,
-                                      ),
-                                      Text('25')
-                                    ],
-                                  )
-                                ],
-                              ),
+                            EvolutionPokemonWidget(
+                              evolutions: evolutions,
+                              id: widget.id,
+                              types: widget.types,
                             )
                           ],
                         ),
