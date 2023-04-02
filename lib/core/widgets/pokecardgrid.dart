@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/listtype.dart';
 
+import '../theme/gifimage_pokemon.dart';
+
 class Pokecardgrid extends StatefulWidget {
   const Pokecardgrid({
     super.key,
@@ -100,16 +102,22 @@ class _PokecardgridState extends State<Pokecardgrid> {
                 ),
               ),
               Positioned(
-                left: 28,
+                left: 18,
                 top: 70,
                 child: widget.img == ''
                     ? Image.asset(
                         'assets/img/pokeLoad.gif',
                         scale: 0.5,
                       )
-                    : Image.network(
-                        widget.img,
-                        scale: 1.0,
+                    : Container(
+                        width: MediaQuery.of(context).size.width * 0.29,
+                        height: MediaQuery.of(context).size.height * 0.13,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.contain,
+                                image: NetworkImage(
+                                  GifimagePokemon().getimag(widget.name),
+                                ))),
                       ),
               ),
             ],

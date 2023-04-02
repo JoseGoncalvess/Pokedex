@@ -1,14 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:pokedexx/core/theme/gifimage_pokemon.dart';
 import 'package:pokedexx/core/widgets/pokecardgrid.dart';
 import 'package:pokedexx/model/pokemon_model_v2.dart';
-import 'package:pokedexx/pages/page.dart';
 import '../core/widgets/pokemoncard.dart';
 import '../model/pokeModel.dart';
-import '../model/spaw_pokemon.dart';
 import '../services/pokemon_services.dart';
-import 'detailpoker.dart';
 import 'details_page.dart';
 
 class Homepage extends StatefulWidget {
@@ -189,7 +187,7 @@ class _HomepageState extends State<Homepage> {
               ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {
-        PokemonServices().gettypepokeevolution(1);
+        GifimagePokemon().getimag('Nidoran ♂ (Male)');
         // PokemonServices().gettypepokelocalizatio(1);
         // Navigator.of(context)
         //     .push(MaterialPageRoute(builder: (context) => pagetest()));

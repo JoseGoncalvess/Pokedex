@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/listtype.dart';
 
+import '../theme/gifimage_pokemon.dart';
+
 class Pokemoncard extends StatefulWidget {
   const Pokemoncard({
     Key? key,
@@ -124,7 +126,7 @@ class _PokemoncardState extends State<Pokemoncard> {
               ),
             ),
             Positioned(
-              left: 185,
+              left: 180,
               bottom: 25,
               child: widget.img == ''
                   ? Image.asset(
@@ -136,7 +138,9 @@ class _PokemoncardState extends State<Pokemoncard> {
                       width: MediaQuery.of(context).size.width * 0.45,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(widget.img, scale: 0.8)),
+                            image: NetworkImage(
+                                GifimagePokemon().getimag(widget.name),
+                                scale: 0.5)),
                       ),
                     ),
             ),
