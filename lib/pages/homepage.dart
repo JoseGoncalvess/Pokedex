@@ -54,15 +54,16 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red[700],
-        title: const Center(
-            child: Text(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        title: Text(
           'Pokedex',
           style: TextStyle(
+              color: Colors.grey.withOpacity(0.8),
               fontSize: 40,
               fontWeight: FontWeight.bold,
               fontFamily: 'BebasNEue'),
-        )),
+        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -71,13 +72,15 @@ class _HomepageState extends State<Homepage> {
                 });
               },
               icon: layout
-                  ? const Icon(
+                  ? Icon(
                       Icons.grid_view_sharp,
+                      color: Colors.grey.withOpacity(0.8),
                       size: 30,
                     )
-                  : const Icon(
+                  : Icon(
                       Icons.list_rounded,
-                      size: 40,
+                      color: Colors.grey.withOpacity(0.8),
+                      size: 30,
                     ))
         ],
       ),
@@ -186,12 +189,12 @@ class _HomepageState extends State<Homepage> {
                 ],
               ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        GifimagePokemon().getimag('Nidoran ♂ (Male)');
-        // PokemonServices().gettypepokelocalizatio(1);
-        // Navigator.of(context)
-        //     .push(MaterialPageRoute(builder: (context) => pagetest()));
-      }),
+      // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   // GifimagePokemon().getimag('Nidoran ♂ (Male)');
+      //   // PokemonServices().gettypepokelocalizatio(1);
+      //   // Navigator.of(context)
+      //   //     .push(MaterialPageRoute(builder: (context) => pagetest()));
+      // }),
     );
   }
 }
