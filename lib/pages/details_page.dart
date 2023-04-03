@@ -4,6 +4,7 @@ import 'package:pokedexx/core/widgets/infopoke_widget.dart';
 import 'package:pokedexx/model/pokemodel.dart';
 import 'package:pokedexx/pages/details_page/detailstype_poker.dart';
 import '../core/helpers/clip_container.dart';
+import '../core/theme/gifimage_pokemon.dart';
 import '../core/theme/localepokemon.dart';
 import '../core/widgets/evolution_pokemon_widget.dart';
 import '../core/widgets/poke_stats.dart';
@@ -228,52 +229,38 @@ class _DetailsPageState extends State<DetailsPage> {
                                   : Localepokemon().localpokemon(
                                       city: localization[0].name.toString()),
                             ),
-                            Container(
+                            EvolutionPokemonWidget(
+                              evolutions: evolutions,
+                              id: widget.id,
+                              types: widget.types,
+                            ),
+                            SizedBox(
                               width: MediaQuery.of(context).size.width,
                               height:
-                                  MediaQuery.of(context).size.height * 0.251,
-                              child: PageView(
-                                scrollDirection: Axis.horizontal,
+                                  MediaQuery.of(context).size.height * 0.428,
+                              child: Column(
                                 children: [
-                                  EvolutionPokemonWidget(
-                                    evolutions: evolutions,
-                                    id: widget.id,
-                                    types: widget.types,
-                                  ),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.5,
-                                    child: Column(
-                                      children: [
-                                        Text('Status'.toUpperCase(),
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05,
-                                                fontWeight: FontWeight.w900,
-                                                color: Backgroud()
-                                                    .getBackgroudType(
-                                                        type: widget.types[0]),
-                                                fontFamily: 'Nunito')),
-                                        Expanded(
-                                          child: ListView.builder(
-                                              itemCount: pokemonstat.length,
-                                              itemBuilder: (context, index) {
-                                                return PokeStats(
-                                                    types: widget.types,
-                                                    nameStats:
-                                                        pokemonstat[index]
-                                                            .stat
-                                                            .name,
-                                                    statsPower:
-                                                        pokemonstat[index]
-                                                            .baseStat);
-                                              }),
-                                        )
-                                      ],
-                                    ),
+                                  Text('Status Base'.toUpperCase(),
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.05,
+                                          fontWeight: FontWeight.w900,
+                                          color: Backgroud().getBackgroudType(
+                                              type: widget.types[0]),
+                                          fontFamily: 'Nunito')),
+                                  Expanded(
+                                    child: ListView.builder(
+                                        itemCount: pokemonstat.length,
+                                        itemBuilder: (context, index) {
+                                          return PokeStats(
+                                              types: widget.types,
+                                              nameStats:
+                                                  pokemonstat[index].stat.name,
+                                              statsPower:
+                                                  pokemonstat[index].baseStat);
+                                        }),
                                   )
                                 ],
                               ),
@@ -293,7 +280,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Opacity(
-                          opacity: 0.08,
+                          opacity: 0.2,
                           child: Text(
                             widget.name.toUpperCase(),
                             style: TextStyle(
@@ -317,7 +304,9 @@ class _DetailsPageState extends State<DetailsPage> {
                     width: MediaQuery.of(context).size.width * 0.3,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(widget.img), scale: 0.5)),
+                            image: NetworkImage(
+                                GifimagePokemon().getimag(widget.name)),
+                            scale: 0.5)),
                   ),
                 )
               ],

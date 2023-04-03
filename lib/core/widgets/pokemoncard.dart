@@ -42,7 +42,7 @@ class _PokemoncardState extends State<Pokemoncard> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              color: Backgroud().getBackgroudColor(
+                              color: Backgroud().getBackgroudType(
                                   type: widget.type[0].toString()),
                               borderRadius: BorderRadius.circular(10)),
                           height: MediaQuery.of(context).size.height * 0.22,

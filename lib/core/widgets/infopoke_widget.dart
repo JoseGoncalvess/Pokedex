@@ -90,14 +90,14 @@ class _InfopokeWidgetState extends State<InfopokeWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(widget.height,
+                Text(widget.width,
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.04,
                         fontWeight: FontWeight.w900,
                         color: Backgroud()
                             .getBackgroudType(type: widget.types[0].toString()),
                         fontFamily: 'Nunito')),
-                Text('altura'.toUpperCase(),
+                Text('Peso'.toUpperCase(),
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.03,
                         fontWeight: FontWeight.w900,

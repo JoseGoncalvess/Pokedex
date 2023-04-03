@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../theme/backgroud_color.dart';
+import '../theme/gifimage_pokemon.dart';
 
 class EvolutionPokemonWidget extends StatefulWidget {
   const EvolutionPokemonWidget(
@@ -22,7 +23,7 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.2,
+      height: MediaQuery.of(context).size.height * 0.17,
       child: Column(
         children: [
           Text('Evoluções'.toUpperCase(),
@@ -45,9 +46,14 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
                       SizedBox(
                         child: Column(
                           children: [
-                            Image.network(
-                              'http://www.serebii.net/pokemongo/pokemon/${widget.evolutions[index].num}.png',
-                              scale: 1.6,
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.1,
+                              height: MediaQuery.of(context).size.height * 0.1,
+                              child: Image.network(
+                                GifimagePokemon()
+                                    .getimag(widget.evolutions[index].name),
+                                fit: BoxFit.contain,
+                              ),
                             ),
                             Text(widget.evolutions[index].name,
                                 style: TextStyle(

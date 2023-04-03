@@ -41,7 +41,7 @@ class _PokecardgridState extends State<Pokecardgrid> {
                     spreadRadius: 1)
               ],
               color: Backgroud()
-                  .getBackgroudColor(type: widget.type[0].toString())),
+                  .getBackgroudType(type: widget.type[0].toString())),
           height: MediaQuery.of(context).size.height * 0.35,
           width: MediaQuery.of(context).size.width * 0.5,
           child: Stack(
