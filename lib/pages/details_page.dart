@@ -6,7 +6,9 @@ import 'package:pokedexx/pages/details_page/detailstype_poker.dart';
 import '../core/helpers/clip_container.dart';
 import '../core/theme/localepokemon.dart';
 import '../core/widgets/evolution_pokemon_widget.dart';
+import '../core/widgets/poke_stats.dart';
 import '../core/widgets/secundari_infopoke_widget.dart';
+import '../model/pokemon_model_v2.dart';
 import '../model/spaw_pokemon.dart';
 import '../services/pokemon_services.dart';
 
@@ -39,10 +41,24 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  List<Stat> pokemonstat = [];
+  String erroMensseger = '';
   bool leading = true;
   List<dynamic> evolutions = [];
   List<LocationArea> localization = [];
   String msg = '';
+
+  getpokeinfo({required int index}) {
+    PokemonServices().gettypepokemoninfo(index).then((value) {
+      setState(() {
+        pokemonstat = value.list as List<Stat>;
+      });
+    }).catchError((onError) {
+      setState(() {
+        erroMensseger = 'Deu erro aqui $onError';
+      });
+    });
+  }
 
   getlocalpoke(id) {
     PokemonServices().gettypepokelocalizatio(id).then((value) {
@@ -66,6 +82,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
   @override
   void initState() {
+    getpokeinfo(index: widget.id);
     validatelist(widget.nextEvolution, widget.prevEvolution);
     getlocalpoke(widget.id);
     transition();
@@ -211,10 +228,55 @@ class _DetailsPageState extends State<DetailsPage> {
                                   : Localepokemon().localpokemon(
                                       city: localization[0].name.toString()),
                             ),
-                            EvolutionPokemonWidget(
-                              evolutions: evolutions,
-                              id: widget.id,
-                              types: widget.types,
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height:
+                                  MediaQuery.of(context).size.height * 0.251,
+                              child: PageView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  EvolutionPokemonWidget(
+                                    evolutions: evolutions,
+                                    id: widget.id,
+                                    types: widget.types,
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.5,
+                                    child: Column(
+                                      children: [
+                                        Text('Status'.toUpperCase(),
+                                            style: TextStyle(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.05,
+                                                fontWeight: FontWeight.w900,
+                                                color: Backgroud()
+                                                    .getBackgroudType(
+                                                        type: widget.types[0]),
+                                                fontFamily: 'Nunito')),
+                                        Expanded(
+                                          child: ListView.builder(
+                                              itemCount: pokemonstat.length,
+                                              itemBuilder: (context, index) {
+                                                return PokeStats(
+                                                    types: widget.types,
+                                                    nameStats:
+                                                        pokemonstat[index]
+                                                            .stat
+                                                            .name,
+                                                    statsPower:
+                                                        pokemonstat[index]
+                                                            .baseStat);
+                                              }),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),

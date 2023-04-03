@@ -27,13 +27,13 @@ class _PokeStatsState extends State<PokeStats> {
       child: SizedBox(
         // color: Colors.grey,
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.07,
+        height: MediaQuery.of(context).size.height * 0.05,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.03,
+              width: MediaQuery.of(context).size.width * 0.01,
             ),
             Container(
                 alignment: Alignment.centerLeft,
@@ -65,7 +65,7 @@ class _PokeStatsState extends State<PokeStats> {
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(5)),
                 child: LinearProgressIndicator(
-                    backgroundColor: const Color.fromARGB(209, 150, 148, 148),
+                    backgroundColor: Color.fromARGB(155, 150, 148, 148),
                     color: Backgroud()
                         .getBackgroudColor(type: widget.types[0].toString()),
                     value: widget.statsPower / 100),
