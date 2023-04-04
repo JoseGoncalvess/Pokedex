@@ -23,12 +23,12 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.17,
+      height: MediaQuery.of(context).size.height * 0.25,
       child: Column(
         children: [
           Text('Evoluções'.toUpperCase(),
               style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width * 0.05,
+                  fontSize: MediaQuery.of(context).size.width * 0.06,
                   fontWeight: FontWeight.w900,
                   color: Backgroud().getBackgroudType(type: widget.types[0]),
                   fontFamily: 'Nunito')),
@@ -37,18 +37,20 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
               scrollDirection: Axis.horizontal,
               itemCount: widget.evolutions.length,
               itemBuilder: (context, index) {
-                return SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.5,
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.4,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.1,
-                              height: MediaQuery.of(context).size.height * 0.1,
+                              width: MediaQuery.of(context).size.width * 0.18,
+                              height: MediaQuery.of(context).size.height * 0.15,
                               child: Image.network(
                                 GifimagePokemon()
                                     .getimag(widget.evolutions[index].name),
@@ -59,13 +61,18 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
                                 style: TextStyle(
                                     fontSize:
                                         MediaQuery.of(context).size.width *
-                                            0.03,
+                                            0.04,
                                     fontWeight: FontWeight.w900,
                                     color: Colors.grey.withOpacity(0.8),
                                     fontFamily: 'Nunito')),
                           ],
                         ),
                       ),
+                      // Icon(
+                      //   Icons.arrow_right_alt_rounded,
+                      //   color:
+                      //       Backgroud().getBackgroudType(type: widget.types[0]),
+                      // )
                     ],
                   ),
                 );

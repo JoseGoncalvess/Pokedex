@@ -215,53 +215,68 @@ class _DetailsPageState extends State<DetailsPage> {
                                     .toList(),
                               ),
                             ),
-                            InfopokeWidget(
-                              height: widget.height,
-                              name: widget.name,
-                              types: widget.types,
-                              width: widget.width,
-                            ),
-                            SecundariinfopokeWidget(
-                              candy: widget.candy,
-                              type: widget.types,
-                              localization: localization.isEmpty
-                                  ? 'Evolução'
-                                  : Localepokemon().localpokemon(
-                                      city: localization[0].name.toString()),
-                            ),
-                            EvolutionPokemonWidget(
-                              evolutions: evolutions,
-                              id: widget.id,
-                              types: widget.types,
-                            ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width,
                               height:
-                                  MediaQuery.of(context).size.height * 0.428,
-                              child: Column(
+                                  MediaQuery.of(context).size.height * 0.441,
+                              child: PageView(
+                                scrollDirection: Axis.horizontal,
                                 children: [
-                                  Text('Status Base'.toUpperCase(),
-                                      style: TextStyle(
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.05,
-                                          fontWeight: FontWeight.w900,
-                                          color: Backgroud().getBackgroudType(
-                                              type: widget.types[0]),
-                                          fontFamily: 'Nunito')),
-                                  Expanded(
-                                    child: ListView.builder(
-                                        itemCount: pokemonstat.length,
-                                        itemBuilder: (context, index) {
-                                          return PokeStats(
-                                              types: widget.types,
-                                              nameStats:
-                                                  pokemonstat[index].stat.name,
-                                              statsPower:
-                                                  pokemonstat[index].baseStat);
-                                        }),
-                                  )
+                                  SizedBox(
+                                    child: Column(
+                                      children: [
+                                        InfopokeWidget(
+                                          height: widget.height,
+                                          name: widget.name,
+                                          types: widget.types,
+                                          width: widget.width,
+                                        ),
+                                        SecundariinfopokeWidget(
+                                          candy: widget.candy,
+                                          type: widget.types,
+                                          localization: localization.isEmpty
+                                              ? 'Evolução'
+                                              : Localepokemon().localpokemon(
+                                                  city: localization[0]
+                                                      .name
+                                                      .toString()),
+                                        ),
+                                        EvolutionPokemonWidget(
+                                          evolutions: evolutions,
+                                          id: widget.id,
+                                          types: widget.types,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text('Status Base'.toUpperCase(),
+                                          style: TextStyle(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.05,
+                                              fontWeight: FontWeight.w900,
+                                              color: Backgroud()
+                                                  .getBackgroudType(
+                                                      type: widget.types[0]),
+                                              fontFamily: 'Nunito')),
+                                      Expanded(
+                                        child: ListView.builder(
+                                            itemCount: pokemonstat.length,
+                                            itemBuilder: (context, index) {
+                                              return PokeStats(
+                                                  types: widget.types,
+                                                  nameStats: pokemonstat[index]
+                                                      .stat
+                                                      .name,
+                                                  statsPower: pokemonstat[index]
+                                                      .baseStat);
+                                            }),
+                                      )
+                                    ],
+                                  ),
                                 ],
                               ),
                             )

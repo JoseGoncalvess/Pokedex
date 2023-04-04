@@ -97,8 +97,9 @@ class PokemonServices extends PokedexInterface {
           var item = EvolutionDetail.fromJson(e);
           evoluction.add(item);
         }
-        // log(element['evolution_details'].toString());
+        // log(element['evolves_to'].toString());
       }
+      // log(evoluction[0].minLevel.toString());
       // log(corpo.toString());
     }
 

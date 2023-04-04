@@ -190,6 +190,7 @@ class _HomepageState extends State<Homepage> {
               ),
       ),
       // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   PokemonServices().gettypepokeevolution(3);
       //   // GifimagePokemon().getimag('Nidoran ♂ (Male)');
       //   // PokemonServices().gettypepokelocalizatio(1);
       //   // Navigator.of(context)
