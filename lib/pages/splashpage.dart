@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedexx/pages/homepage.dart';
+import 'package:pokedexx/pages/pokemonpage.dart';
 
 import '../services/pokemon_services.dart';
 
@@ -20,7 +20,7 @@ class _SplashpageState extends State<Splashpage> {
     PokemonServices().getpokemon().then((value) => {
           Future.delayed(const Duration(seconds: 3)).then((value) => {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const Homepage(),
+                  builder: (context) => const Pagepokemon(),
                 ))
               })
         });
