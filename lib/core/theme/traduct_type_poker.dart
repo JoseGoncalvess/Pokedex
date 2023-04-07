@@ -36,6 +36,6 @@ class TraductTypePoker {
     } else if (typepoke == 'Fairy') {
       pokemontype = 'Fada';
     }
-    return pokemontype;
+    return pokemontype.toUpperCase();
   }
 }

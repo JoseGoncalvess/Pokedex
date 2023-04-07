@@ -26,12 +26,14 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
       height: MediaQuery.of(context).size.height * 0.25,
       child: Column(
         children: [
-          Text('Evoluções'.toUpperCase(),
-              style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width * 0.06,
-                  fontWeight: FontWeight.w900,
-                  color: Backgroud().getBackgroudType(type: widget.types[0]),
-                  fontFamily: 'Nunito')),
+          Text(
+            'Evoluções'.toUpperCase(),
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width * 0.06,
+                fontWeight: FontWeight.w900,
+                color: Backgroud().getBackgroudType(type: widget.types[0]),
+                fontFamily: 'Nunito'),
+          ),
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,

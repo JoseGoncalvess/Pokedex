@@ -1,16 +1,26 @@
-# pokedexx
+# Pokedex Flutter
+<div aligne="center">
+Uma pokédex criada para efetuar consultas sobre novas criaturinhas que vão cruzar seu caminho em sua nova jornada nesse vasto mudo Pokémon.
+</div>
 
-A new Flutter project.
+# Disposições e Funcionalidades
+----
+-> Layout [Listiner] e [Grid] dos pokemons.
 
-## Getting Started
+-> Tela de detalhes por pokémon, com os principais Infomações.
 
-This project is a starting point for a Flutter application.
+-> Infomrações atualzadas de acordo com o Mundo Pokémon (Pokeapiv2).
 
-A few resources to get you started if this is your first Flutter project:
+----
+# ScreenShot
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
+# Agradecimentos
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Informações dos Pokémons - PokeAPIV2- 
+* ideia de designer - Espirações-
+* Spites dos pokemons - site-  
+
+# Licensa
+* MIT license
+* Direitos reservados a [José Gonçalves]

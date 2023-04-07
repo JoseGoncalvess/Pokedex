@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
+import 'package:pokedexx/core/theme/traduct_type_poker.dart';
 import 'package:pokedexx/model/pokemodel.dart';
 import '../../services/pokemon_services.dart';
 
@@ -40,13 +41,16 @@ class _TypelistDetailsState extends State<TypelistDetails> {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Container(
+        alignment: Alignment.center,
+        width: MediaQuery.of(context).size.width * 0.3,
+        height: MediaQuery.of(context).size.height * 0.04,
         decoration: BoxDecoration(
             color: Backgroud().getBackgroudType(type: widget.pokemon),
             borderRadius: BorderRadius.circular(5)),
         child: Padding(
             padding: const EdgeInsets.only(left: 4.0),
             child: Text(
-              widget.pokemon,
+              TraductTypePoker().traducttype(typepoke: widget.pokemon),
               style: TextStyle(
                   fontSize: MediaQuery.of(context).size.width * 0.05,
                   fontWeight: FontWeight.w900,

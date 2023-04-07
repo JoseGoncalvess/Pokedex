@@ -206,10 +206,11 @@ class _DetailsPageState extends State<DetailsPage> {
                           children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.06,
+                              height: MediaQuery.of(context).size.height * 0.05,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: widget.types
                                     .map((e) => TypelistDetails(pokemon: e))
                                     .toList(),
