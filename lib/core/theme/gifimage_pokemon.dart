@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 class GifimagePokemon {
   getimag(String name) {
     if (name == 'Nidoran ♂ (Male)') {

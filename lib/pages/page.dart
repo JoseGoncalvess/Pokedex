@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:pokedexx/core/theme/localepokemon.dart';
-
 import '../model/evolutionmodel.dart';
-import '../model/spaw_pokemon.dart';
 import '../services/pokemon_services.dart';
 
-class pagetest extends StatefulWidget {
-  const pagetest({super.key});
+class PAgetest extends StatefulWidget {
+  const PAgetest({super.key});
 
   @override
-  State<pagetest> createState() => pagetestState();
+  State<PAgetest> createState() => PAgetestState();
 }
 
-class pagetestState extends State<pagetest> {
+class PAgetestState extends State<PAgetest> {
   List<EvolutionDetail> list = [];
   String msg = '';
   getpoke() {
@@ -30,7 +27,7 @@ class pagetestState extends State<pagetest> {
   @override
   void initState() {
     getpoke();
-    // TODO: implement initState
+
     super.initState();
   }
 
@@ -40,10 +37,8 @@ class pagetestState extends State<pagetest> {
       appBar: AppBar(
         title: const Text(''),
       ),
-      body: Container(
-        child: Center(
-          child: Text(list[0].minLevel.toString()),
-        ),
+      body: Center(
+        child: Text(list[0].minLevel.toString()),
       ),
     );
   }

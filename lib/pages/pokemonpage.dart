@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:pokedexx/core/theme/gifimage_pokemon.dart';
 import 'package:pokedexx/core/widgets/pokecardgrid.dart';
 import 'package:pokedexx/model/pokemon_model_v2.dart';
 import '../core/widgets/pokemoncard.dart';
+import '../model/geration_poke_wisget.dart';
 import '../model/pokeModel.dart';
 import '../services/pokemon_services.dart';
 import 'details_page.dart';
@@ -194,8 +194,9 @@ class _PagepokemonState extends State<Pagepokemon> {
         // PokemonServices().gettypepokeevolution(3);
         // GifimagePokemon().getimag('Nidoran ♂ (Male)');
         // PokemonServices().gettypepokelocalizatio(1);
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const Homepage()));
+        // GerationPokeWisget().getgerationwidget(9);
+        // Navigator.of(context)
+        //     .push(MaterialPageRoute(builder: (context) => const Homepage()));
       }),
     );
   }

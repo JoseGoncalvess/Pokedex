@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../core/widgets/pokemon_geration_widget.dart';
 import '../core/widgets/seach_pokemon_widget.dart';
+import '../model/geration_poke_wisget.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+  const Homepage({super.key, required this.pokegeration});
+
+  final List<Itemgertion> pokegeration;
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -55,32 +59,20 @@ class _HomepageState extends State<Homepage> {
                     ),
                     const SeachPokemonWidget(),
                     Container(
-                      color: Colors.brown,
+                      // color: Colors.brown,
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.67,
                       child: GridView.count(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
-                        children: [
-                          Container(
-                            color: Colors.red,
-                          ),
-                          Container(
-                            color: Colors.red,
-                            child: Column(children: [
-                              Text('geração 1'),
-                              Image.asset('assets/img/pokeBall.png'),
-                              Text('Região: katon')
-                            ]),
-                          ),
-                          Container(
-                            color: Colors.red,
-                          ),
-                          Container(
-                            color: Colors.red,
-                          )
-                        ],
+                        children: widget.pokegeration
+                            .map((e) => PokemonGerationWidget(
+                                  geration: e.geration,
+                                  img: e.img,
+                                  region: e.region,
+                                ))
+                            .toList(),
                       ),
                     )
                   ],

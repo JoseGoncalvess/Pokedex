@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:pokedexx/pages/pokemonpage.dart';
+import 'dart:developer';
 
+import 'package:flutter/material.dart';
+import '../model/geration_poke_wisget.dart';
 import '../services/pokemon_services.dart';
+import 'homepage.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 class Splashpage extends StatefulWidget {
   const Splashpage({super.key});
@@ -12,15 +15,24 @@ class Splashpage extends StatefulWidget {
 
 class _SplashpageState extends State<Splashpage> {
   String msg = '';
+  List<Itemgertion> list = [];
 
   @override
   void initState() {
     super.initState();
+
+    GerationPokeWisget().getgerationwidget(9).then((value) => {
+          setState(() {
+            list = value.geration;
+          }),
+          log(list.length.toString())
+        });
+
     Future.delayed(const Duration(seconds: 3));
     PokemonServices().getpokemon().then((value) => {
           Future.delayed(const Duration(seconds: 3)).then((value) => {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const Pagepokemon(),
+                  builder: (context) => Homepage(pokegeration: list),
                 ))
               })
         });

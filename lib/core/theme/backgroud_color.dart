@@ -1,9 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class Backgroud {
   getBackgroudColor({required String type}) {
     var color;
-    Color backgroud = Color.fromARGB(255, 110, 109, 109);
+    Color backgroud = const Color.fromARGB(255, 110, 109, 109);
     if (type == 'Flying') {
       backgroud = const Color(0xff9EB1D8);
     } else if (type == 'Poison') {
@@ -81,3 +82,77 @@ class Backgroud {
     return color = backgroud;
   }
 }
+
+
+
+// .bug {
+//     background: #92BC2C;
+// }
+
+// .dark {
+//     background: #595761;
+// }
+
+// .dragon {
+//     background: #0C69C8;
+// }
+
+// .electric {
+//     background: #F2D94E;
+// }
+
+// .fire {
+//     background: #FBA54C;
+// }
+
+// .fairy {
+//     background: #EE90E6;
+// }
+
+// .fighting {
+//     background: #D3425F;
+// }
+
+// .flying {
+//     background: #A1BBEC;
+// }
+
+// .ghost {
+//     background: #5F6DBC;
+// }
+
+// .grass {
+//     background: #5FBD58;
+// }
+
+// .ground {
+//     background: #DA7C4D;
+// }
+
+// .ice {
+//     background: #75D0C1;
+// }
+
+// .normal {
+//     background: #A0A29F;
+// }
+
+// .poison {
+//     background: #B763CF;
+// }
+
+// .psychic {
+//     background: #FA8581;
+// }
+
+// .rock {
+//     background: #C9BB8A;
+// }
+
+// .steel {
+//     background: #5695A3;
+// }
+
+// .water {
+//     background: #539DDF;
+// }

@@ -39,7 +39,7 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
               scrollDirection: Axis.horizontal,
               itemCount: widget.evolutions.length,
               itemBuilder: (context, index) {
-                return Container(
+                return SizedBox(
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
