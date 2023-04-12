@@ -1,18 +1,22 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+import '../../model/pokeModel.dart';
 import '../widgets/pokemoncard.dart';
 
 class Custonseachdelegate extends SearchDelegate {
-  List searchtermrd = [
-    'pikachu',
-    'mew',
-    'chikorita',
-    'venonat',
-    'alakazan',
-    'kakuna',
-    'porygon',
-    'abra'
-  ];
+  // final List type;
+  final List<Pokemon> poemons;
+  final List<String> searchtermrd;
+
+  final Function() onPressed;
+  Custonseachdelegate({
+    required this.poemons,
+    required this.searchtermrd,
+    required this.onPressed,
+  });
+
+  // List<String> searchtermrd = terme.isEmpty?['pikachu', 'alakazan','abra','kakuna']:terme;
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -45,15 +49,12 @@ class Custonseachdelegate extends SearchDelegate {
 
     return ListView.builder(
         itemCount: matchQuery.length,
-        itemBuilder: (context, index) => Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.3,
-              color: Colors.amber,
-              child: Text(matchQuery[index].toString()),
+        itemBuilder: (context, index) => Pokemoncard(
+              id: poemons[index].id.toString(),
+              name: poemons[index].name,
+              onPressed: onPressed,
+              type: poemons[index].type,
             ));
-
-    // Pokemoncard(
-    //       id: '1', img: '', name: 'pokmon', onPressed: () {}, type: []),
   }
 
   @override
@@ -66,15 +67,13 @@ class Custonseachdelegate extends SearchDelegate {
     }
 
     return ListView.builder(
-        itemCount: matchQuery.length,
-        itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.1,
-                color: Colors.amber,
-                child: Text(matchQuery[index].toString()),
-              ),
-            ));
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) => Pokemoncard(
+        id: poemons[index].id.toString(),
+        name: poemons[index].name,
+        onPressed: onPressed,
+        type: poemons[index].type,
+      ),
+    );
   }
 }

@@ -11,7 +11,6 @@ class Pokemoncard extends StatefulWidget {
     required this.name,
     required this.type,
     required this.id,
-    required this.img,
     required this.onPressed(),
   }) : super(key: key);
 
@@ -20,7 +19,6 @@ class Pokemoncard extends StatefulWidget {
   final String name;
   final List type;
   final String id;
-  final String img;
   final Function() onPressed;
 }
 
@@ -128,7 +126,7 @@ class _PokemoncardState extends State<Pokemoncard> {
             Positioned(
               left: 180,
               bottom: 25,
-              child: widget.img == ''
+              child: GifimagePokemon().getimag(widget.name) == ''
                   ? Image.asset(
                       'assets/img/pokeLoad.gif',
                       scale: 0.3,
@@ -150,42 +148,3 @@ class _PokemoncardState extends State<Pokemoncard> {
     );
   }
 }
-
-//==cpntainer d ecor do pokemon
-// Container(
-//                   decoration: BoxDecoration(
-//                       color: Backgroud()
-//                           .GetBackgroudColor(type: widget.type[0].toString()),
-//                       borderRadius: BorderRadius.circular(10)),
-//                   height: MediaQuery.of(context).size.height * 0.20,
-//                   width: MediaQuery.of(context).size.width * 0.95,
-//                   child: Stack(children: []),
-//                 )
-
-//pokemon
-
-
-
-//===================poke type============
-// Container(
-//                                     alignment: Alignment.centerLeft,
-//                                     child: Container(
-//                                       width: 50,
-//                                       decoration: BoxDecoration(
-//                                           borderRadius:
-//                                               BorderRadius.circular(5),
-//                                           color: Colors.grey[700]!
-//                                               .withOpacity(0.6)),
-//                                       alignment: Alignment.center,
-//                                       child: Text(
-//                                         widget.type[0].toString(),
-//                                         style: TextStyle(
-//                                             fontSize: MediaQuery.of(context)
-//                                                     .size
-//                                                     .width *
-//                                                 0.03,
-//                                             fontWeight: FontWeight.w400,
-//                                             color: Colors.white),
-//                                       ),
-//                                     ),
-                                  

@@ -182,8 +182,7 @@ class _PagepokemonState extends State<Pagepokemon> {
                                 },
                                 name: allPoker[index].name,
                                 type: allPoker[index].type,
-                                id: allPoker[index].id.toString(),
-                                img: allPoker[index].img);
+                                id: allPoker[index].id.toString());
                       },
                     ),
                   )
