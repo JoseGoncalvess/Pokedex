@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 class PokemonGerationWidget extends StatefulWidget {
   const PokemonGerationWidget(
       {Key? key,
       required this.region,
       required this.geration,
-      required this.img})
+      required this.img,
+      required this.index})
       : super(key: key);
 
   final String region;
   final String geration;
   final String img;
+  final int index;
 
   @override
   State<PokemonGerationWidget> createState() => _PokemonGerationWidgetState();
@@ -45,7 +48,11 @@ class _PokemonGerationWidgetState extends State<PokemonGerationWidget> {
                   fontSize: MediaQuery.of(context).size.height * 0.02),
             ),
           ),
-          Image.asset(widget.img),
+          InkWell(
+              onTap: () {
+                log('Funcional ${widget.index}');
+              },
+              child: Image.asset(widget.img)),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

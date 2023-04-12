@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../custons/custonseachdelegate.dart';
+
 class SeachPokemonWidget extends StatefulWidget {
   const SeachPokemonWidget({super.key});
 
@@ -27,7 +29,9 @@ class _SeachPokemonWidgetState extends State<SeachPokemonWidget> {
                 size: 30,
               ),
               color: Colors.grey.withOpacity(0.6),
-              onPressed: () {},
+              onPressed: () {
+                showSearch(context: context, delegate: Custonseachdelegate());
+              },
             ),
             filled: true,
             fillColor: Colors.white,

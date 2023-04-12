@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../core/custons/custonseachdelegate.dart';
 import '../core/widgets/pokemon_geration_widget.dart';
 import '../core/widgets/seach_pokemon_widget.dart';
 import '../model/geration_poke_wisget.dart';
@@ -68,6 +69,7 @@ class _HomepageState extends State<Homepage> {
                         mainAxisSpacing: 10,
                         children: widget.pokegeration
                             .map((e) => PokemonGerationWidget(
+                                  index: 1,
                                   geration: e.geration,
                                   img: e.img,
                                   region: e.region,
