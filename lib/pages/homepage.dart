@@ -30,7 +30,7 @@ class _HomepageState extends State<Homepage> {
       });
       setState(() {
         for (var i = 0; i < value.list.length; i++) {
-          pokenames.add(value.list[i].name);
+          pokenames.add(value.list[i].name.toString().toLowerCase());
           log(pokenames.first.toString());
         }
       });

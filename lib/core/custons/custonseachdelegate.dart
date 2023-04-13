@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../model/pokeModel.dart';
@@ -8,6 +10,7 @@ class Custonseachdelegate extends SearchDelegate {
   // final List type;
   final List<Pokemon> poemons;
   final List<String> searchtermrd;
+  String msg = '';
 
   final Function() onPressed;
   Custonseachdelegate({
@@ -15,8 +18,6 @@ class Custonseachdelegate extends SearchDelegate {
     required this.searchtermrd,
     required this.onPressed,
   });
-
-  // List<String> searchtermrd = terme.isEmpty?['pikachu', 'alakazan','abra','kakuna']:terme;
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -40,39 +41,55 @@ class Custonseachdelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var poke in searchtermrd) {
-      if (poke.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(poke);
+    List<Pokemon> matchQuery = [];
+
+    for (var i = 0; i < poemons.length; i++) {
+      for (var poke in searchtermrd) {
+        if (poke.toLowerCase() == query.toLowerCase()) {
+          if (poke == poemons[i].name.toLowerCase()) {
+            // log('$poke == ${poemons[i].name.toLowerCase()}');
+            matchQuery.add(poemons[i]);
+            log(matchQuery.length.toString());
+          }
+        } else {
+          msg = 'Pokemon Não Encontrado';
+        }
       }
     }
 
     return ListView.builder(
         itemCount: matchQuery.length,
         itemBuilder: (context, index) => Pokemoncard(
-              id: poemons[index].id.toString(),
-              name: poemons[index].name,
+              id: matchQuery[index].id.toString(),
+              name: matchQuery[index].name,
               onPressed: onPressed,
-              type: poemons[index].type,
+              type: matchQuery[index].type,
             ));
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var poke in searchtermrd) {
-      if (poke.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(poke);
+    List<Pokemon> matchQuerysug = [];
+
+    for (var i = 0; i < poemons.length; i++) {
+      for (var poke in searchtermrd) {
+        if (poke.toLowerCase().contains(query.toLowerCase())) {
+          if (poke == poemons[i].name.toLowerCase()) {
+            matchQuerysug.add(poemons[i]);
+          }
+        } else {
+          msg = 'Pokemon Não Encontrado';
+        }
       }
     }
 
     return ListView.builder(
-      itemCount: matchQuery.length,
+      itemCount: matchQuerysug.length,
       itemBuilder: (context, index) => Pokemoncard(
-        id: poemons[index].id.toString(),
-        name: poemons[index].name,
+        id: matchQuerysug[index].id.toString(),
+        name: matchQuerysug[index].name,
         onPressed: onPressed,
-        type: poemons[index].type,
+        type: matchQuerysug[index].type,
       ),
     );
   }
