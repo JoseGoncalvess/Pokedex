@@ -1,13 +1,10 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-
 import '../../model/pokeModel.dart';
-import '../../services/pokemon_services.dart';
 import '../custons/custonseachdelegate.dart';
 
 class SeachPokemonWidget extends StatefulWidget {
-  SeachPokemonWidget(
+  const SeachPokemonWidget(
       {super.key, required this.allPoker, required this.pokenames});
   final List<Pokemon> allPoker;
   final List<String> pokenames;
@@ -54,49 +51,18 @@ class _SeachPokemonWidgetState extends State<SeachPokemonWidget> {
                         ));
                   },
                 ),
+                Flexible(
+                    child: Text(
+                  'Digite o nome do Pokémon',
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.height * 0.023,
+                      color: Colors.black.withOpacity(0.5),
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w700),
+                ))
               ],
             ),
           )),
     );
   }
 }
-
-
-
-
-
-
-
-
-        //     TextField(
-        //   keyboardType: TextInputType.name,
-        //   maxLines: 2,
-        //   textAlign: TextAlign.justify,
-        //   decoration: InputDecoration(
-        //     // prefixIcon:
-        //     filled: true,
-        //     fillColor: Colors.white,
-        //     hintText: 'Digite aqui o nome do Pokémon',
-        //     hintStyle: TextStyle(
-        //       color: Colors.grey.withOpacity(0.6),
-        //       fontSize: MediaQuery.of(context).size.height * 0.02,
-        //       fontWeight: FontWeight.w800,
-        //       fontFamily: 'Nunito',
-        //     ),
-        //     border: const OutlineInputBorder(
-        //       borderSide: BorderSide(
-        //         color: Color.fromARGB(173, 158, 158, 158),
-        //       ),
-        //       borderRadius: BorderRadius.all(
-        //         Radius.circular(22),
-        //       ),
-        //     ),
-        //     focusedBorder: const OutlineInputBorder(
-        //         borderRadius: BorderRadius.all(
-        //           Radius.circular(22),
-        //         ),
-        //         borderSide: BorderSide(
-        //           color: Color.fromARGB(173, 158, 158, 158),
-        //         )),
-        //   ),
-        // ),
