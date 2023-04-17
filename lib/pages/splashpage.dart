@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import '../model/geration_poke_wisget.dart';
+import 'package:pokedexx/model/gerationpomeon_model.dart';
+import '../core/theme/geration_poke_wisget.dart';
 import '../services/pokemon_services.dart';
 import 'homepage.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -16,10 +17,16 @@ class Splashpage extends StatefulWidget {
 class _SplashpageState extends State<Splashpage> {
   String msg = '';
   List<Itemgertion> list = [];
+  List<Result> geraton = [];
 
   @override
   void initState() {
     super.initState();
+    PokemonServices().getpokegeration(1).then((value) => {
+          setState(() {
+            geraton = value.list as List<Result>;
+          }),
+        });
 
     GerationPokeWisget().getgerationwidget(9).then((value) => {
           setState(() {
@@ -32,7 +39,10 @@ class _SplashpageState extends State<Splashpage> {
     PokemonServices().getpokemon().then((value) => {
           Future.delayed(const Duration(seconds: 3)).then((value) => {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => Homepage(pokegeration: list),
+                  builder: (context) => Homepage(
+                    pokegeration: list,
+                    geratio: geraton,
+                  ),
                 ))
               })
         });

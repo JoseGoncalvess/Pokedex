@@ -1,20 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-
-import '../../model/pokeModel.dart';
-import '../../pages/details_page.dart';
+import 'package:pokedexx/model/pokev2model.dart';
 import '../widgets/pokemoncard.dart';
 
 class Custonseachdelegate extends SearchDelegate {
   // final List type;
   final List<Pokemon> pokemons;
   final List<String> searchtermrd;
+  final List<Species> tipyes;
   String msg = '';
 
   final Function() onPressed;
   Custonseachdelegate({
+    required this.tipyes,
     required this.pokemons,
     required this.searchtermrd,
     required this.onPressed,
@@ -47,7 +46,7 @@ class Custonseachdelegate extends SearchDelegate {
     for (var i = 0; i < pokemons.length; i++) {
       for (var poke in searchtermrd) {
         if (poke.toLowerCase() == query.toLowerCase()) {
-          if (poke == pokemons[i].name.toLowerCase()) {
+          if (poke == pokemons[i].name!.toLowerCase()) {
             // log('$poke == ${pokemons[i].name.toLowerCase()}');
             matchQuery.add(pokemons[i]);
             log(matchQuery.length.toString());
@@ -62,9 +61,9 @@ class Custonseachdelegate extends SearchDelegate {
         itemCount: matchQuery.length,
         itemBuilder: (context, index) => Pokemoncard(
               id: matchQuery[index].id.toString(),
-              name: matchQuery[index].name,
+              name: matchQuery[index].name!,
               onPressed: onPressed,
-              type: matchQuery[index].type,
+              type: tipyes,
             ));
   }
 
@@ -75,7 +74,7 @@ class Custonseachdelegate extends SearchDelegate {
     for (var i = 0; i < pokemons.length; i++) {
       for (var poke in searchtermrd) {
         if (poke.toLowerCase().contains(query.toLowerCase())) {
-          if (poke == pokemons[i].name.toLowerCase()) {
+          if (poke == pokemons[i].name!.toLowerCase()) {
             matchQuerysug.add(pokemons[i]);
           }
         } else {
@@ -88,24 +87,24 @@ class Custonseachdelegate extends SearchDelegate {
       itemCount: matchQuerysug.length,
       itemBuilder: (context, index) => Pokemoncard(
         id: matchQuerysug[index].id.toString(),
-        name: matchQuerysug[index].name,
+        name: matchQuerysug[index].name!,
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (context) => DetailsPage(
-                      nextEvolution: pokemons[index].nextEvolution as List,
-                      prevEvolution: pokemons[index].prevEvolution as List,
-                      height: pokemons[index].height,
-                      width: pokemons[index].weight,
-                      img: pokemons[index].img,
-                      id: pokemons[index].id,
-                      name: pokemons[index].name,
-                      types: pokemons[index].type,
-                      candy: pokemons[index].candy,
-                    )),
-          );
+          // Navigator.of(context).push(
+          //     // MaterialPageRoute(
+          //     //     builder: (context) => DetailsPage(
+          //     //           nextEvolution: pokemons[index].nextEvolution as List,
+          //     //           prevEvolution: pokemons[index].prevEvolution as List,
+          //     //           height: pokemons[index].height,
+          //     //           width: pokemons[index].weight,
+          //     //           img: pokemons[index].img,
+          //     //           id: pokemons[index].id,
+          //     //           name: pokemons[index].name,
+          //     //           types: pokemons[index].type,
+          //     //           candy: pokemons[index].candy,
+          //     //         )),
+          //     );
         },
-        type: matchQuerysug[index].type,
+        type: tipyes,
       ),
     );
   }

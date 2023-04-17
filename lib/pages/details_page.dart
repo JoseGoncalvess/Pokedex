@@ -9,7 +9,7 @@ import '../core/theme/localepokemon.dart';
 import '../core/widgets/evolution_pokemon_widget.dart';
 import '../core/widgets/poke_stats.dart';
 import '../core/widgets/secundari_infopoke_widget.dart';
-import '../model/pokemon_model_v2.dart';
+import '../model/pokev2model.dart';
 import '../model/spaw_pokemon.dart';
 import '../services/pokemon_services.dart';
 
@@ -270,10 +270,11 @@ class _DetailsPageState extends State<DetailsPage> {
                                               return PokeStats(
                                                   types: widget.types,
                                                   nameStats: pokemonstat[index]
-                                                      .stat
-                                                      .name,
+                                                      .stat!
+                                                      .name
+                                                      .toString(),
                                                   statsPower: pokemonstat[index]
-                                                      .baseStat);
+                                                      .baseStat!);
                                             }),
                                       )
                                     ],

@@ -1,35 +1,35 @@
-import 'dart:convert';
 import 'dart:developer';
+
 import 'package:dio/dio.dart';
-import 'package:pokedexx/model/pokeModel.dart';
-import 'package:pokedexx/model/pokemon_model_v2.dart';
+import 'package:pokedexx/model/evolutionmodel.dart';
+import 'package:pokedexx/model/pokev2model.dart';
 import 'package:pokedexx/model/spaw_pokemon.dart';
 import 'package:pokedexx/services/pokedex_interface.dart.dart';
-import '../model/evolutionmodel.dart';
+import '../core/theme/links_base.dart';
+import '../model/gerationpomeon_model.dart';
 
 class PokemonServices extends PokedexInterface {
   @override
   Future<ReturnApiList> getpokemon() async {
     final dio = Dio();
-    List<Pokemon> list = [];
+    // List<Pokemon> list = [];
 
-    String pokeUrl =
-        'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json';
+    // String pokeUrl =
+    //     'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json';
 
-    var response = await dio.get(pokeUrl);
+    // var response = await dio.get(pokeUrl);
 
-    if (response.statusCode == 200) {
-      //transformo o json que retonrou da api em um formato json que é um map 'as"
-      final json = jsonDecode(response.data) as Map<String, dynamic>;
-      //passo para aminha lista esse json passando a chave 'pokemon' pra ter acesso a lista
-      final listpoke = json['pokemon'] as List<dynamic>;
-      list = listpoke.map((e) => Pokemon.fromJson(e)).toList();
-    }
+    // if (response.statusCode == 200) {
+    //   //transformo o json que retonrou da api em um formato json que é um map 'as"
+    //   final json = jsonDecode(response.data) as Map<String, dynamic>;
+    //   //passo para aminha lista esse json passando a chave 'pokemon' pra ter acesso a lista
+    //   final listpoke = json['pokemon'] as List<dynamic>;
+    //   list = listpoke.map((e) => Pokemon.fromJson(e)).toList();
+    // }
 
-    return ReturnApiList(list: list, msg: 'Não obtive os dados dos pokemons');
+    return ReturnApiList(list: [], msg: 'Não obtive os dados dos pokemons');
   }
 
-//
 //
 //
   @override
@@ -43,11 +43,6 @@ class PokemonServices extends PokedexInterface {
     if (response.statusCode == 200) {
       List liststatus = response.data['stats'];
       listinfo = liststatus.map((e) => Stat.fromJson(e)).toList();
-      log(listinfo.toString());
-
-      // listinfo = listAll.map((e) => PokemonV2.fromJson(e)).toList();
-
-      log(listinfo[0].stat.name.toString());
     }
 
     return ReturnApiList(
@@ -73,7 +68,6 @@ class PokemonServices extends PokedexInterface {
 
         localization.add(item);
       }
-      // log(lista.toString());
     }
 
     return ReturnApiList(list: localization, msg: 'ops');
@@ -97,23 +91,96 @@ class PokemonServices extends PokedexInterface {
           var item = EvolutionDetail.fromJson(e);
           evoluction.add(item);
         }
-        // log(element['evolves_to'].toString());
       }
-      // log(evoluction[0].minLevel.toString());
-      // log(corpo.toString());
     }
 
     return ReturnApiList(
         list: evoluction, msg: 'erro ao buscar detalhes de evolução');
   }
+
+  @override
+  Future<ReturnApiList> getpokegeration(int index) async {
+    final dio = Dio();
+    List<Result> geration = [];
+
+    var response = await dio.get(LinksBase().linkbasegeration(index));
+    if (response.statusCode == 200) {
+      var corpo = response.data['results'];
+      for (var poke in corpo) {
+        var item = Result.fromJson(poke);
+        geration.add(item);
+      }
+    }
+    return ReturnApiList(list: geration, msg: 'Erro ao buscar geratio');
+  }
+  //
+//
+//
+
+  @override
+  Future<PokemonreturnV2> getpokemons(String url) async {
+    final dio = Dio();
+    dynamic pokemon;
+    var response = await dio.get(url);
+    var p = response.data as Map<String, dynamic>;
+
+    if (response.statusCode == 200) {
+      var poke = Pokemon.fromJson(p);
+      pokemon = poke;
+    }
+
+    return PokemonreturnV2(
+        types: [], erro: 'Erro ao buscar  pokemon v2', pokemon: pokemon);
+  }
+  //
+  //
+  //
+
+  @override
+  Future<PokemonreturnV2> getpokemonforgeration(List geration) async {
+    List<String> pokemonsurl = [];
+    List<Pokemon> pokev2 = [];
+
+    for (var e in geration.getRange(0, 10)) {
+      var poke = e.url;
+      pokemonsurl.add(poke);
+    }
+
+    for (var e in pokemonsurl) {
+      var poke = await getpokemons(e);
+      pokev2.add(poke.pokemon);
+    }
+
+    return PokemonreturnV2(
+        pokemon: pokev2, types: [], erro: 'Não foi possivel listar pokémons');
+  }
+
+  @override
+  Future<List> getpokemonlisttype(List geration) async {
+    List<Type> tipos = [];
+    var isso;
+    final dio = Dio();
+    for (var s in geration) {
+      var item = s.url;
+      var response = await dio.get(item);
+      var p = response.data;
+      var typos = p['types'];
+      for (var e in typos) {
+        var element = Type.fromJson(e);
+        tipos.add(element);
+      }
+      // print(tipos.toString());
+      // print(tipos.length.toString());
+      // print(tipos[0].toString());
+    }
+
+    // log(isso.toString());
+
+    //  var item = Type.fromJson(e);
+    //  for (var e in types) {
+    //   tipos.add(item.type);
+    // }
+
+    return tipos as List<Type>;
+  }
 }
-
-
-//geracão: 1 Kanton = 0 a 151
-//geracão: 2 Johto  = 151 a 251 = + 100
-//geracão: 3 Hoenn  = 252 a 386 = + 135
-//geracão: 4 Sinnoh = 387 a 493 = + 106
-//geracão: 5 Unova  = 494 a 649 = + 155
-//geracão: 6 kalos  = 650 a 721 = + 71
-//geracão: 7 Alola  = 722 a 809 = + 87
-//geracão: 8 Galar/Hisui = 810 a 905 = + 95

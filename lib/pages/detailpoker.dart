@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/listtype.dart';
 import '../core/widgets/poke_stats.dart';
-import '../model/pokemon_model_v2.dart';
+import '../model/pokev2model.dart';
 import '../services/pokemon_services.dart';
 
 class Detailpoker extends StatefulWidget {
@@ -218,8 +218,9 @@ class _DetailpokerState extends State<Detailpoker> {
                           itemBuilder: (context, index) {
                             return PokeStats(
                                 types: widget.type,
-                                nameStats: pokemonstat[index].stat.name,
-                                statsPower: pokemonstat[index].baseStat);
+                                nameStats:
+                                    pokemonstat[index].stat!.name.toString(),
+                                statsPower: pokemonstat[index].baseStat!);
                           }),
                     )
                   ],

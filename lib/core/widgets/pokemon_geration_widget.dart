@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pokedexx/model/pokev2model.dart';
 import 'dart:developer';
+
+import 'package:pokedexx/services/pokemon_services.dart';
+
+import '../../pages/pokemonpage.dart';
 
 class PokemonGerationWidget extends StatefulWidget {
   const PokemonGerationWidget(
@@ -20,6 +25,22 @@ class PokemonGerationWidget extends StatefulWidget {
 }
 
 class _PokemonGerationWidgetState extends State<PokemonGerationWidget> {
+  List geration = [];
+  String erro = '';
+  Future getpokemons() async {
+    await PokemonServices()
+        .getpokegeration(widget.index)
+        .then((value) => setState(() {
+              geration = value.list;
+            }))
+        .catchError((onError) {
+      setState(() {
+        erro = erro;
+      });
+    });
+    log(geration.length.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,7 +71,15 @@ class _PokemonGerationWidgetState extends State<PokemonGerationWidget> {
           ),
           InkWell(
               onTap: () {
-                log('Funcional ${widget.index}');
+                getpokemons().then((value) {
+                  log(value.toString());
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => Pagepokemon(
+                              geration: geration,
+                            )),
+                  );
+                });
               },
               child: Image.asset(widget.img)),
           Row(

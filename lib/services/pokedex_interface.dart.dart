@@ -1,11 +1,15 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import '../model/pokev2model.dart';
 
 abstract class PokedexInterface {
   //metodo que pegar todos os pokemon
-  Future<ReturnApiList> getpokemon();
+  // Future<ReturnApiList> getpokemon();
   Future<ReturnApiList> gettypepokemoninfo(int id);
   Future<ReturnApiList> gettypepokelocalizatio(int id);
   Future<ReturnApiList> gettypepokeevolution(int id);
+  Future<ReturnApiList> getpokegeration(int index);
+  Future<PokemonreturnV2> getpokemons(String url);
+  Future<PokemonreturnV2> getpokemonforgeration(List geration);
+  Future<List> getpokemonlisttype(List geration);
 }
 
 class ReturnApiList {
@@ -18,4 +22,13 @@ class ReturnApiList {
     required this.list,
     required this.msg,
   });
+}
+
+class PokemonreturnV2 {
+  final dynamic pokemon;
+  final String erro;
+  final List<Species> types;
+
+  PokemonreturnV2(
+      {required this.types, required this.pokemon, required this.erro});
 }

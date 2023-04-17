@@ -1,17 +1,17 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-
-import '../core/custons/custonseachdelegate.dart';
+import 'package:pokedexx/model/pokev2model.dart';
+import '../core/theme/geration_poke_wisget.dart';
 import '../core/widgets/pokemon_geration_widget.dart';
 import '../core/widgets/seach_pokemon_widget.dart';
-import '../model/geration_poke_wisget.dart';
-import '../model/pokeModel.dart';
+import '../model/gerationpomeon_model.dart';
 import '../services/pokemon_services.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({super.key, required this.pokegeration});
+  const Homepage(
+      {super.key, required this.geratio, required this.pokegeration});
 
+  final List<Result> geratio;
   final List<Itemgertion> pokegeration;
 
   @override
@@ -20,30 +20,24 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   List<Pokemon> allPoker = [];
+  List<Species> types = [];
   List<String> pokenames = [];
   String msg = '';
+
   getpoke() {
-    PokemonServices().getpokemon().then((value) {
-      setState(() {
-        allPoker = value.list as List<Pokemon>;
-        msg = value.msg;
-      });
-      setState(() {
-        for (var i = 0; i < value.list.length; i++) {
-          pokenames.add(value.list[i].name.toString().toLowerCase());
-          log(pokenames.first.toString());
-        }
-      });
-    }).catchError((onError) {
-      setState(() {
-        msg = "DEU ERRO E FOI ISSO>>> $onError";
-      });
-    });
+    PokemonServices().getpokemonforgeration(widget.geratio).then((value) => {
+          setState(() {
+            allPoker = value.pokemon;
+            types = value.types;
+            msg = value.erro;
+          }),
+          log(allPoker.length.toString())
+        });
   }
 
   @override
   void initState() {
-    getpoke();
+    // getpoke();
 
     super.initState();
   }
@@ -51,6 +45,15 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        // PokemonServices().getpokemonv2('https://pokeapi.co/api/v2/pokemon/1/');
+        PokemonServices().getpokemonlisttype(widget.geratio).then((value) => {
+              setState(() {
+                List<Type> b = value as List<Type>;
+                log(b.toString());
+              }),
+            });
+      }),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -92,7 +95,7 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                     SeachPokemonWidget(
-                        allPoker: allPoker, pokenames: pokenames),
+                        tipos: types, allPoker: allPoker, pokenames: pokenames),
                     Container(
                       // color: Colors.brown,
                       width: MediaQuery.of(context).size.width,
@@ -103,7 +106,7 @@ class _HomepageState extends State<Homepage> {
                         mainAxisSpacing: 10,
                         children: widget.pokegeration
                             .map((e) => PokemonGerationWidget(
-                                  index: 1,
+                                  index: e.index,
                                   geration: e.geration,
                                   img: e.img,
                                   region: e.region,

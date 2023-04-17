@@ -1,13 +1,18 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import '../../model/pokeModel.dart';
+import 'package:pokedexx/model/pokev2model.dart';
+import 'package:pokedexx/model/pokev2model.dart';
 import '../custons/custonseachdelegate.dart';
 
 class SeachPokemonWidget extends StatefulWidget {
   const SeachPokemonWidget(
-      {super.key, required this.allPoker, required this.pokenames});
+      {super.key,
+      required this.allPoker,
+      required this.pokenames,
+      required this.tipos});
   final List<Pokemon> allPoker;
   final List<String> pokenames;
+  final List<Species> tipos;
 
   @override
   State<SeachPokemonWidget> createState() => _SeachPokemonWidgetState();
@@ -26,6 +31,7 @@ class _SeachPokemonWidgetState extends State<SeachPokemonWidget> {
             onTap: () => showSearch(
                 context: context,
                 delegate: Custonseachdelegate(
+                  tipyes: widget.tipos,
                   searchtermrd: widget.pokenames,
                   pokemons: widget.allPoker,
                   onPressed: () {
@@ -53,6 +59,7 @@ class _SeachPokemonWidgetState extends State<SeachPokemonWidget> {
                       showSearch(
                           context: context,
                           delegate: Custonseachdelegate(
+                            tipyes: widget.tipos,
                             searchtermrd: widget.pokenames,
                             pokemons: widget.allPoker,
                             onPressed: () {

@@ -38,13 +38,13 @@ class Chain {
     this.evolutionDetails,
     this.evolvesTo,
     this.isBaby,
-    this.species,
+    this.speciess,
   });
 
   List<EvolutionDetail>? evolutionDetails;
   List<Chain>? evolvesTo;
   bool? isBaby;
-  Species? species;
+  Speciess? speciess;
 
   factory Chain.fromJson(Map<String, dynamic> json) => Chain(
         evolutionDetails: json["evolution_details"] == null
@@ -56,8 +56,8 @@ class Chain {
             : List<Chain>.from(
                 json["evolves_to"]!.map((x) => Chain.fromJson(x))),
         isBaby: json["is_baby"],
-        species:
-            json["species"] == null ? null : Species.fromJson(json["species"]),
+        speciess:
+            json["species"] == null ? null : Speciess.fromJson(json["species"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -68,7 +68,7 @@ class Chain {
             ? []
             : List<dynamic>.from(evolvesTo!.map((x) => x.toJson())),
         "is_baby": isBaby,
-        "species": species?.toJson(),
+        "species": speciess?.toJson(),
       };
 }
 
@@ -110,7 +110,7 @@ class EvolutionDetail {
   dynamic relativePhysicalStats;
   String? timeOfDay;
   dynamic tradeSpecies;
-  Species? trigger;
+  Speciess? trigger;
   bool? turnUpsideDown;
 
   factory EvolutionDetail.fromJson(Map<String, dynamic> json) =>
@@ -132,7 +132,7 @@ class EvolutionDetail {
         timeOfDay: json["time_of_day"],
         tradeSpecies: json["trade_species"],
         trigger:
-            json["trigger"] == null ? null : Species.fromJson(json["trigger"]),
+            json["trigger"] == null ? null : Speciess.fromJson(json["trigger"]),
         turnUpsideDown: json["turn_upside_down"],
       );
 
@@ -158,8 +158,8 @@ class EvolutionDetail {
       };
 }
 
-class Species {
-  Species({
+class Speciess {
+  Speciess({
     this.name,
     this.url,
   });
@@ -167,7 +167,7 @@ class Species {
   String? name;
   String? url;
 
-  factory Species.fromJson(Map<String, dynamic> json) => Species(
+  factory Speciess.fromJson(Map<String, dynamic> json) => Speciess(
         name: json["name"],
         url: json["url"],
       );

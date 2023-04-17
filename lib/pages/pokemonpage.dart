@@ -2,50 +2,59 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/widgets/pokecardgrid.dart';
-import 'package:pokedexx/model/pokemon_model_v2.dart';
+import 'package:pokedexx/model/pokev2model.dart';
 import '../core/widgets/pokemoncard.dart';
-import '../model/geration_poke_wisget.dart';
-import '../model/pokeModel.dart';
+
 import '../services/pokemon_services.dart';
 import 'details_page.dart';
 import 'homepage.dart';
 
 class Pagepokemon extends StatefulWidget {
-  const Pagepokemon({super.key});
+  const Pagepokemon({super.key, required this.geration});
+  final List geration;
 
   @override
   State<Pagepokemon> createState() => _PagepokemonState();
 }
 
 class _PagepokemonState extends State<Pagepokemon> {
-  List<Pokemon> allPoker = [];
-  List<PokemonV2> pokemonv2 = [];
+  List<dynamic> allPoker = [];
+  List<Pokemon> pokemonv2 = [];
+  List<Species> tipos = [
+    Species(name: 'Poison', url: ''),
+    Species(name: 'Flying', url: 'url')
+  ];
   String msg = 'VAi aparecer aqui ';
-  bool leading = true;
+  bool loading = true;
   bool layout = true;
 
   getpoke() {
     setState(() {
-      leading = false;
+      loading = false;
+      log(loading.toString());
     });
-    PokemonServices().getpokemon().then((value) {
-      setState(() {
-        allPoker = value.list as List<Pokemon>;
-        msg = value.msg;
+    PokemonServices()
+        .getpokemonforgeration(widget.geration)
+        .then((value) => {
+              setState(() {
+                pokemonv2 = value.pokemon;
+                // tipos = value.types;
+                msg = value.erro;
+              }),
+              log(pokemonv2.length.toString())
+            })
+        .catchError((onError) {
+      msg = onError.toString();
+    });
 
-        setState(() {
-          leading = true;
-        });
-      });
-    }).catchError((onError) {
-      setState(() {
-        msg = "DEU ERRO E FOI ISSO>>> $onError";
-      });
+    setState(() {
+      loading = true;
     });
   }
 
   @override
   void initState() {
+    log(loading.toString());
     getpoke();
 
     super.initState();
@@ -57,13 +66,18 @@ class _PagepokemonState extends State<Pagepokemon> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        title: Text(
-          'Pokedex',
-          style: TextStyle(
-              color: Colors.grey.withOpacity(0.8),
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'BebasNEue'),
+        title: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Text(
+            'Pokedex',
+            style: TextStyle(
+                color: Colors.grey.withOpacity(0.8),
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'BebasNEue'),
+          ),
         ),
         actions: [
           IconButton(
@@ -127,15 +141,7 @@ class _PagepokemonState extends State<Pagepokemon> {
                                             name: allPoker[e.id - 1].name,
                                             types: allPoker[e.id - 1].type,
                                             candy: allPoker[e.id - 1].candy,
-                                          )
-
-                                      // Detailpoker(
-                                      //     name: allPoker[e.id - 1].name,
-                                      //     type: allPoker[e.id - 1].type,
-                                      //     id: allPoker[e.id - 1].id.toString(),
-                                      //     img: allPoker[e.id - 1].img)
-
-                                      ));
+                                          )));
                                 },
                               ))
                           .toList(),
@@ -148,15 +154,18 @@ class _PagepokemonState extends State<Pagepokemon> {
                 children: <Widget>[
                   Expanded(
                     child: ListView.builder(
-                      itemCount: !leading ? 1 : allPoker.length,
+                      itemCount: !loading ? 1 : pokemonv2.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return !leading
-                            ? SizedBox(
-                                height: MediaQuery.of(context).size.height,
-                                width: MediaQuery.of(context).size.width,
+                        return !loading
+                            ? Container(
                                 child: Center(
-                                  child: CircularProgressIndicator(
-                                    color: Colors.red[700],
+                                  // color: Colors.white,
+                                  // height: MediaQuery.of(context).size.height,
+                                  // width: MediaQuery.of(context).size.width,
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      color: Colors.red[700],
+                                    ),
                                   ),
                                 ),
                               )
@@ -180,9 +189,9 @@ class _PagepokemonState extends State<Pagepokemon> {
                                             )),
                                   );
                                 },
-                                name: allPoker[index].name,
-                                type: allPoker[index].type,
-                                id: allPoker[index].id.toString());
+                                name: pokemonv2[index].name!,
+                                type: tipos,
+                                id: pokemonv2[index].id.toString());
                       },
                     ),
                   )
@@ -190,12 +199,7 @@ class _PagepokemonState extends State<Pagepokemon> {
               ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {
-        // PokemonServices().gettypepokeevolution(3);
-        // GifimagePokemon().getimag('Nidoran ♂ (Male)');
-        // PokemonServices().gettypepokelocalizatio(1);
-        // GerationPokeWisget().getgerationwidget(9);
-        // Navigator.of(context)
-        //     .push(MaterialPageRoute(builder: (context) => const Homepage()));
+        getpoke();
       }),
     );
   }

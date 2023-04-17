@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/listtype.dart';
+import 'package:pokedexx/model/pokev2model.dart';
 
 import '../theme/gifimage_pokemon.dart';
 
@@ -17,7 +18,7 @@ class Pokemoncard extends StatefulWidget {
   @override
   State<Pokemoncard> createState() => _PokemoncardState();
   final String name;
-  final List type;
+  final List<dynamic> type;
   final String id;
   final Function() onPressed;
 }
@@ -40,8 +41,10 @@ class _PokemoncardState extends State<Pokemoncard> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              color: Backgroud().getBackgroudType(
-                                  type: widget.type[0].toString()),
+                              color: Backgroud()
+                                  .getBackgroudType(type: widget.type[0].name
+                                      //  widget.type[0]['type'].name
+                                      ),
                               borderRadius: BorderRadius.circular(10)),
                           height: MediaQuery.of(context).size.height * 0.22,
                           width: MediaQuery.of(context).size.width * 0.90,
@@ -107,7 +110,8 @@ class _PokemoncardState extends State<Pokemoncard> {
                                       alignment: Alignment.centerLeft,
                                       child: Row(
                                         children: widget.type
-                                            .map((e) => Listtype(pokemon: e))
+                                            .map((e) =>
+                                                Listtype(pokemon: e.name))
                                             .toList(),
                                       ),
                                     ),
