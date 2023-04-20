@@ -1,39 +1,39 @@
 class TraductTypePoker {
   traducttype({required String typepoke}) {
-    String pokemontype = '';
-    if (typepoke == 'Flying') {
+    String pokemontype = 'ERRO';
+    if (typepoke == 'flying') {
       pokemontype = 'Voador';
-    } else if (typepoke == 'Normal') {
+    } else if (typepoke == 'normal') {
       pokemontype = 'Normal';
-    } else if (typepoke == 'Poison') {
+    } else if (typepoke == 'poison') {
       pokemontype = 'Venenoso';
-    } else if (typepoke == 'Ground') {
+    } else if (typepoke == 'ground') {
       pokemontype = 'Terra';
-    } else if (typepoke == 'Rock') {
+    } else if (typepoke == 'rock') {
       pokemontype = 'Pedra';
-    } else if (typepoke == 'Bug') {
+    } else if (typepoke == 'bug') {
       pokemontype = 'Inseto';
-    } else if (typepoke == 'Ghost') {
+    } else if (typepoke == 'ghost') {
       pokemontype = 'Fantasma';
-    } else if (typepoke == 'Steel') {
+    } else if (typepoke == 'steel') {
       pokemontype = 'Aço';
-    } else if (typepoke == 'Fire') {
+    } else if (typepoke == 'fire') {
       pokemontype = 'Fogo';
-    } else if (typepoke == 'Water') {
+    } else if (typepoke == 'water') {
       pokemontype = 'Água';
-    } else if (typepoke == 'Grass') {
+    } else if (typepoke == 'grass') {
       pokemontype = 'Grama';
-    } else if (typepoke == 'Electric') {
+    } else if (typepoke == 'electric') {
       pokemontype = 'Elétrico';
-    } else if (typepoke == 'Ice') {
+    } else if (typepoke == 'ice') {
       pokemontype = 'Gelo';
-    } else if (typepoke == 'Dragon') {
+    } else if (typepoke == 'dragon') {
       pokemontype = 'Drgão';
-    } else if (typepoke == 'Psychic') {
+    } else if (typepoke == 'psychic') {
       pokemontype = 'Psíquico';
-    } else if (typepoke == 'Dark') {
+    } else if (typepoke == 'dark') {
       pokemontype = 'Sombrio';
-    } else if (typepoke == 'Fairy') {
+    } else if (typepoke == 'fairy') {
       pokemontype = 'Fada';
     }
     return pokemontype.toUpperCase();

@@ -18,7 +18,7 @@ class Pokemoncard extends StatefulWidget {
   @override
   State<Pokemoncard> createState() => _PokemoncardState();
   final String name;
-  final List<dynamic> type;
+  final List<Type> type;
   final String id;
   final Function() onPressed;
 }
@@ -41,10 +41,10 @@ class _PokemoncardState extends State<Pokemoncard> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              color: Backgroud()
-                                  .getBackgroudType(type: widget.type[0].name
-                                      //  widget.type[0]['type'].name
-                                      ),
+                              color: Backgroud().getBackgroudType(
+                                  type: widget.type[0].type.name.toLowerCase()
+                                  //  widget.type[0]['type'].name
+                                  ),
                               borderRadius: BorderRadius.circular(10)),
                           height: MediaQuery.of(context).size.height * 0.22,
                           width: MediaQuery.of(context).size.width * 0.90,
@@ -111,7 +111,7 @@ class _PokemoncardState extends State<Pokemoncard> {
                                       child: Row(
                                         children: widget.type
                                             .map((e) =>
-                                                Listtype(pokemon: e.name))
+                                                Listtype(pokemon: e.type.name))
                                             .toList(),
                                       ),
                                     ),
@@ -129,20 +129,20 @@ class _PokemoncardState extends State<Pokemoncard> {
             ),
             Positioned(
               left: 180,
-              bottom: 25,
+              bottom: 20,
               child: GifimagePokemon().getimag(widget.name) == ''
                   ? Image.asset(
                       'assets/img/pokeLoad.gif',
                       scale: 0.3,
                     )
                   : Container(
-                      height: MediaQuery.of(context).size.height * 0.24,
+                      height: MediaQuery.of(context).size.height * 0.26,
                       width: MediaQuery.of(context).size.width * 0.45,
                       decoration: BoxDecoration(
                         image: DecorationImage(
                             image: NetworkImage(
                                 GifimagePokemon().getimag(widget.name),
-                                scale: 0.5)),
+                                scale: 0.55)),
                       ),
                     ),
             ),

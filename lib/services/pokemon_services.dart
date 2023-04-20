@@ -154,33 +154,4 @@ class PokemonServices extends PokedexInterface {
     return PokemonreturnV2(
         pokemon: pokev2, types: [], erro: 'Não foi possivel listar pokémons');
   }
-
-  @override
-  Future<List> getpokemonlisttype(List geration) async {
-    List<Type> tipos = [];
-    var isso;
-    final dio = Dio();
-    for (var s in geration) {
-      var item = s.url;
-      var response = await dio.get(item);
-      var p = response.data;
-      var typos = p['types'];
-      for (var e in typos) {
-        var element = Type.fromJson(e);
-        tipos.add(element);
-      }
-      // print(tipos.toString());
-      // print(tipos.length.toString());
-      // print(tipos[0].toString());
-    }
-
-    // log(isso.toString());
-
-    //  var item = Type.fromJson(e);
-    //  for (var e in types) {
-    //   tipos.add(item.type);
-    // }
-
-    return tipos as List<Type>;
-  }
 }

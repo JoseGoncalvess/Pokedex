@@ -8,12 +8,11 @@ class Custonseachdelegate extends SearchDelegate {
   // final List type;
   final List<Pokemon> pokemons;
   final List<String> searchtermrd;
-  final List<Species> tipyes;
+
   String msg = '';
 
   final Function() onPressed;
   Custonseachdelegate({
-    required this.tipyes,
     required this.pokemons,
     required this.searchtermrd,
     required this.onPressed,
@@ -63,7 +62,7 @@ class Custonseachdelegate extends SearchDelegate {
               id: matchQuery[index].id.toString(),
               name: matchQuery[index].name!,
               onPressed: onPressed,
-              type: tipyes,
+              type: pokemons[index].types!,
             ));
   }
 
@@ -104,7 +103,7 @@ class Custonseachdelegate extends SearchDelegate {
           //     //         )),
           //     );
         },
-        type: tipyes,
+        type: pokemons[index].types!,
       ),
     );
   }

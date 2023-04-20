@@ -20,7 +20,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   List<Pokemon> allPoker = [];
-  List<Species> types = [];
+
   List<String> pokenames = [];
   String msg = '';
 
@@ -28,7 +28,6 @@ class _HomepageState extends State<Homepage> {
     PokemonServices().getpokemonforgeration(widget.geratio).then((value) => {
           setState(() {
             allPoker = value.pokemon;
-            types = value.types;
             msg = value.erro;
           }),
           log(allPoker.length.toString())
@@ -47,12 +46,6 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: () {
         // PokemonServices().getpokemonv2('https://pokeapi.co/api/v2/pokemon/1/');
-        PokemonServices().getpokemonlisttype(widget.geratio).then((value) => {
-              setState(() {
-                List<Type> b = value as List<Type>;
-                log(b.toString());
-              }),
-            });
       }),
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -95,7 +88,7 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                     SeachPokemonWidget(
-                        tipos: types, allPoker: allPoker, pokenames: pokenames),
+                        allPoker: allPoker, pokenames: pokenames),
                     Container(
                       // color: Colors.brown,
                       width: MediaQuery.of(context).size.width,

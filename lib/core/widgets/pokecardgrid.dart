@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/listtype.dart';
+import 'package:pokedexx/model/pokev2model.dart';
 
 import '../theme/gifimage_pokemon.dart';
 
@@ -17,7 +18,7 @@ class Pokecardgrid extends StatefulWidget {
   @override
   State<Pokecardgrid> createState() => _PokecardgridState();
   final String name;
-  final List type;
+  final List<Type> type;
   final String id;
   final String img;
   final Function() onPressed;
@@ -36,12 +37,12 @@ class _PokecardgridState extends State<Pokecardgrid> {
               boxShadow: [
                 BoxShadow(
                     color: Backgroud()
-                        .getBackgroudColor(type: widget.type[0].toString()),
+                        .getBackgroudColor(type: widget.type[0].type.name),
                     blurRadius: 3,
                     spreadRadius: 1)
               ],
-              color: Backgroud()
-                  .getBackgroudType(type: widget.type[0].toString())),
+              color:
+                  Backgroud().getBackgroudType(type: widget.type[0].type.name)),
           height: MediaQuery.of(context).size.height * 0.35,
           width: MediaQuery.of(context).size.width * 0.5,
           child: Stack(
@@ -82,7 +83,7 @@ class _PokecardgridState extends State<Pokecardgrid> {
                       children: [
                         Column(
                             children: widget.type
-                                .map((e) => Listtype(pokemon: e))
+                                .map((e) => Listtype(pokemon: e.type.name))
                                 .toList())
                       ],
                     ),
@@ -102,7 +103,7 @@ class _PokecardgridState extends State<Pokecardgrid> {
                 ),
               ),
               Positioned(
-                left: 18,
+                left: 12,
                 top: 70,
                 child: widget.img == ''
                     ? Image.asset(

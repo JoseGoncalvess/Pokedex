@@ -30,7 +30,7 @@ class _PagepokemonState extends State<Pagepokemon> {
 
   getpoke() {
     setState(() {
-      loading = false;
+      loading = !loading;
       log(loading.toString());
     });
     PokemonServices()
@@ -40,15 +40,14 @@ class _PagepokemonState extends State<Pagepokemon> {
                 pokemonv2 = value.pokemon;
                 // tipos = value.types;
                 msg = value.erro;
+                setState(() {
+                  loading = true;
+                });
               }),
               log(pokemonv2.length.toString())
             })
         .catchError((onError) {
       msg = onError.toString();
-    });
-
-    setState(() {
-      loading = true;
     });
   }
 
@@ -64,9 +63,10 @@ class _PagepokemonState extends State<Pagepokemon> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: Colors.white,
-        title: GestureDetector(
+        title: InkWell(
           onTap: () {
             Navigator.pop(context);
           },
@@ -120,29 +120,13 @@ class _PagepokemonState extends State<Pagepokemon> {
                       crossAxisCount: 2,
                       crossAxisSpacing: 5,
                       mainAxisSpacing: 5,
-                      children: allPoker
+                      children: pokemonv2
                           .map((e) => Pokecardgrid(
-                                name: e.name,
-                                type: e.type,
+                                name: e.name!,
+                                type: e.types!,
                                 id: e.id.toString(),
-                                img: e.img,
-                                onPressed: () {
-                                  // log(allPoker[e.id - 1].id.toString());
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetailsPage(
-                                            nextEvolution: allPoker[e.id - 1]
-                                                .nextEvolution as List,
-                                            prevEvolution: allPoker[e.id - 1]
-                                                .prevEvolution as List,
-                                            height: allPoker[e.id - 1].height,
-                                            width: allPoker[e.id - 1].weight,
-                                            img: allPoker[e.id - 1].img,
-                                            id: allPoker[e.id - 1].id,
-                                            name: allPoker[e.id - 1].name,
-                                            types: allPoker[e.id - 1].type,
-                                            candy: allPoker[e.id - 1].candy,
-                                          )));
-                                },
+                                img: e.name!,
+                                onPressed: () {},
                               ))
                           .toList(),
                     ),
@@ -154,18 +138,15 @@ class _PagepokemonState extends State<Pagepokemon> {
                 children: <Widget>[
                   Expanded(
                     child: ListView.builder(
-                      itemCount: !loading ? 1 : pokemonv2.length,
+                      itemCount: pokemonv2.length,
                       itemBuilder: (BuildContext context, int index) {
                         return !loading
                             ? Container(
+                                height: MediaQuery.of(context).size.height,
+                                width: MediaQuery.of(context).size.width,
                                 child: Center(
-                                  // color: Colors.white,
-                                  // height: MediaQuery.of(context).size.height,
-                                  // width: MediaQuery.of(context).size.width,
-                                  child: Center(
-                                    child: CircularProgressIndicator(
-                                      color: Colors.red[700],
-                                    ),
+                                  child: CircularProgressIndicator(
+                                    color: Colors.red[700],
                                   ),
                                 ),
                               )
@@ -190,7 +171,7 @@ class _PagepokemonState extends State<Pagepokemon> {
                                   );
                                 },
                                 name: pokemonv2[index].name!,
-                                type: tipos,
+                                type: pokemonv2[index].types!,
                                 id: pokemonv2[index].id.toString());
                       },
                     ),
@@ -198,9 +179,7 @@ class _PagepokemonState extends State<Pagepokemon> {
                 ],
               ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        getpoke();
-      }),
+      // floatingActionButton: FloatingActionButton(onPressed: () {}),
     );
   }
 }
