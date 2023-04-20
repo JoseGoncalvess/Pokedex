@@ -25,7 +25,7 @@ class _PagepokemonState extends State<Pagepokemon> {
     Species(name: 'Flying', url: 'url')
   ];
   String msg = 'VAi aparecer aqui ';
-  bool loading = true;
+  bool loading = false;
   bool layout = true;
 
   getpoke() {
