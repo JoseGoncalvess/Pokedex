@@ -27,6 +27,7 @@ class _PagepokemonState extends State<Pagepokemon> {
   String msg = 'VAi aparecer aqui ';
   bool loading = false;
   bool layout = true;
+  int pointStart = 0;
 
   getpoke() {
     setState(() {
@@ -34,12 +35,13 @@ class _PagepokemonState extends State<Pagepokemon> {
       log(loading.toString());
     });
     PokemonServices()
-        .getpokemonforgeration(widget.geration)
+        .getpokemonforgeration(widget.geration, pointStart)
         .then((value) => {
               setState(() {
                 pokemonv2 = value.pokemon;
                 // tipos = value.types;
                 msg = value.erro;
+                pointStart = pokemonv2.length;
                 setState(() {
                   loading = true;
                 });
@@ -51,11 +53,25 @@ class _PagepokemonState extends State<Pagepokemon> {
     });
   }
 
+  getpoketime() {
+    PokemonServices()
+        .getpokemonforgeration(widget.geration, pointStart)
+        .then((value) => {
+              setState(() {
+                for (var poke in value.pokemon) {
+                  pokemonv2.add(poke);
+                  pointStart = pokemonv2.length;
+                }
+              })
+            });
+  }
+
   @override
   void initState() {
     log(loading.toString());
     getpoke();
 
+    // Future.delayed(Duration(seconds: 15)).then((value) => getpoketime());
     super.initState();
   }
 
@@ -179,7 +195,9 @@ class _PagepokemonState extends State<Pagepokemon> {
                 ],
               ),
       ),
-      // floatingActionButton: FloatingActionButton(onPressed: () {}),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        getpoketime();
+      }),
     );
   }
 }

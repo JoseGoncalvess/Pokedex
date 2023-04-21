@@ -132,16 +132,14 @@ class PokemonServices extends PokedexInterface {
     return PokemonreturnV2(
         types: [], erro: 'Erro ao buscar  pokemon v2', pokemon: pokemon);
   }
-  //
-  //
-  //
 
   @override
-  Future<PokemonreturnV2> getpokemonforgeration(List geration) async {
+  Future<PokemonreturnV2> getpokemonforgeration(
+      List geration, int pointstart) async {
     List<String> pokemonsurl = [];
     List<Pokemon> pokev2 = [];
 
-    for (var e in geration.getRange(0, 10)) {
+    for (var e in geration.getRange(pointstart, pointstart + 10)) {
       var poke = e.url;
       pokemonsurl.add(poke);
     }
@@ -154,4 +152,8 @@ class PokemonServices extends PokedexInterface {
     return PokemonreturnV2(
         pokemon: pokev2, types: [], erro: 'Não foi possivel listar pokémons');
   }
+
+  //
+  //
+  //
 }

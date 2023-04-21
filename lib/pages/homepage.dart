@@ -25,7 +25,7 @@ class _HomepageState extends State<Homepage> {
   String msg = '';
 
   getpoke() {
-    PokemonServices().getpokemonforgeration(widget.geratio).then((value) => {
+    PokemonServices().getpokemonforgeration(widget.geratio, 0).then((value) => {
           setState(() {
             allPoker = value.pokemon;
             msg = value.erro;
