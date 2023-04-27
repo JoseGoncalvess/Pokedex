@@ -30,8 +30,6 @@ class _SeachPokemonWidgetState extends State<SeachPokemonWidget> {
             onTap: () => showSearch(
                 context: context,
                 delegate: Custonseachdelegate(
-                  searchtermrd: widget.pokenames,
-                  pokemons: widget.allPoker,
                   onPressed: () {
                     log('Pegou');
                   },
@@ -57,8 +55,6 @@ class _SeachPokemonWidgetState extends State<SeachPokemonWidget> {
                       showSearch(
                           context: context,
                           delegate: Custonseachdelegate(
-                            searchtermrd: widget.pokenames,
-                            pokemons: widget.allPoker,
                             onPressed: () {
                               log('Pegou');
                             },

@@ -1,22 +1,35 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+
 import 'package:pokedexx/model/pokev2model.dart';
+import 'package:pokedexx/services/pokemon_services.dart';
+
 import '../widgets/pokemoncard.dart';
 
 class Custonseachdelegate extends SearchDelegate {
-  // final List type;
-  final List<Pokemon> pokemons;
-  final List<String> searchtermrd;
-
   String msg = '';
 
   final Function() onPressed;
   Custonseachdelegate({
-    required this.pokemons,
-    required this.searchtermrd,
     required this.onPressed,
   });
+
+  static List<Pokemon> pokemons = [];
+  static List<String> searchtermrd = [];
+  static getpokemondelegate() {
+    for (var i = 0; i < 5; i++) {
+      int number = Random().nextInt(300);
+      PokemonServices()
+          .getpokemons('https://pokeapi.co/api/v2/pokemon/$number')
+          .then((value) => {
+                pokemons.add(value.pokemon),
+                searchtermrd.add(value.pokemon.name)
+              });
+    }
+  }
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -24,6 +37,7 @@ class Custonseachdelegate extends SearchDelegate {
       IconButton(
           onPressed: () {
             query = '';
+            getpokemondelegate();
           },
           icon: const Icon(Icons.clear))
     ];
@@ -48,16 +62,15 @@ class Custonseachdelegate extends SearchDelegate {
           if (poke == pokemons[i].name!.toLowerCase()) {
             // log('$poke == ${pokemons[i].name.toLowerCase()}');
             matchQuery.add(pokemons[i]);
-            log(matchQuery.length.toString());
+            // log(matchQuery.length.toString());
           }
         } else {
           msg = 'Pokemon Não Encontrado';
         }
       }
     }
-
     return ListView.builder(
-        itemCount: matchQuery.length,
+        itemCount: matchQuery.isEmpty ? 1 : matchQuery.length,
         itemBuilder: (context, index) => Pokemoncard(
               id: matchQuery[index].id.toString(),
               name: matchQuery[index].name!,
@@ -69,6 +82,7 @@ class Custonseachdelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     List<Pokemon> matchQuerysug = [];
+    bool result2 = true;
 
     for (var i = 0; i < pokemons.length; i++) {
       for (var poke in searchtermrd) {
@@ -78,33 +92,25 @@ class Custonseachdelegate extends SearchDelegate {
           }
         } else {
           msg = 'Pokemon Não Encontrado';
+          bool result2 = false;
         }
       }
     }
 
     return ListView.builder(
-      itemCount: matchQuerysug.length,
-      itemBuilder: (context, index) => Pokemoncard(
-        id: matchQuerysug[index].id.toString(),
-        name: matchQuerysug[index].name!,
-        onPressed: () {
-          // Navigator.of(context).push(
-          //     // MaterialPageRoute(
-          //     //     builder: (context) => DetailsPage(
-          //     //           nextEvolution: pokemons[index].nextEvolution as List,
-          //     //           prevEvolution: pokemons[index].prevEvolution as List,
-          //     //           height: pokemons[index].height,
-          //     //           width: pokemons[index].weight,
-          //     //           img: pokemons[index].img,
-          //     //           id: pokemons[index].id,
-          //     //           name: pokemons[index].name,
-          //     //           types: pokemons[index].type,
-          //     //           candy: pokemons[index].candy,
-          //     //         )),
-          //     );
-        },
-        type: pokemons[index].types!,
-      ),
+      itemCount: matchQuerysug.isEmpty ? 1 : matchQuerysug.length,
+      itemBuilder: (context, index) => !result2
+          ? Container(
+              child: Center(
+                child: Text(msg),
+              ),
+            )
+          : Pokemoncard(
+              id: matchQuerysug[index].id.toString(),
+              name: matchQuerysug[index].name!,
+              onPressed: () {},
+              type: pokemons[index].types!,
+            ),
     );
   }
 

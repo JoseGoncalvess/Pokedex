@@ -25,6 +25,11 @@ class LinksBase {
     return geration;
   }
 }
+
+
+
+
+
 //geracão: 1 Kanton = 0 a 151
 //geracão: 2 Johto  = 151 a 251 = + 100
 //geracão: 3 Hoenn  = 252 a 386 = + 135

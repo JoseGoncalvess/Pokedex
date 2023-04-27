@@ -36,7 +36,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   void initState() {
-    // getpoke();
+    getpoke();
 
     super.initState();
   }
