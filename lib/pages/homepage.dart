@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/model/pokev2model.dart';
+import 'package:pokedexx/pages/page_test.dart';
 import '../core/theme/geration_poke_wisget.dart';
 import '../core/widgets/pokemon_geration_widget.dart';
 import '../core/widgets/seach_pokemon_widget.dart';
@@ -45,6 +46,11 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PageTest(pokemons: allPoker),
+            ));
         // PokemonServices().getpokemonv2('https://pokeapi.co/api/v2/pokemon/1/');
       }),
       body: Container(
@@ -87,9 +93,8 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
                     ),
-                    SeachPokemonWidget(
-                        allPoker: allPoker, pokenames: pokenames),
-                    Container(
+                    const SeachPokemonWidget(),
+                    SizedBox(
                       // color: Colors.brown,
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.67,

@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:pokedexx/core/custons/custonseachdelegate.dart';
 import 'package:pokedexx/model/gerationpomeon_model.dart';
+import '../core/custons/custonseachdelegate.dart';
 import '../core/theme/geration_poke_wisget.dart';
 import '../services/pokemon_services.dart';
 import 'homepage.dart';
@@ -22,7 +22,7 @@ class _SplashpageState extends State<Splashpage> {
 
   @override
   void initState() {
-    Custonseachdelegate.getpokemondelegate();
+    CustonseachdelegateState.getpokemondelegate();
     super.initState();
     PokemonServices().getpokegeration(1).then((value) => {
           setState(() {

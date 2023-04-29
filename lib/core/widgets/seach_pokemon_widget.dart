@@ -7,11 +7,7 @@ import '../custons/custonseachdelegate.dart';
 class SeachPokemonWidget extends StatefulWidget {
   const SeachPokemonWidget({
     super.key,
-    required this.allPoker,
-    required this.pokenames,
   });
-  final List<Pokemon> allPoker;
-  final List<String> pokenames;
 
   @override
   State<SeachPokemonWidget> createState() => _SeachPokemonWidgetState();
@@ -27,13 +23,13 @@ class _SeachPokemonWidgetState extends State<SeachPokemonWidget> {
       child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
-            onTap: () => showSearch(
-                context: context,
-                delegate: Custonseachdelegate(
-                  onPressed: () {
-                    log('Pegou');
-                  },
-                )),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Custonseachdelegate(),
+                  ));
+            },
             child: Container(
               height: MediaQuery.of(context).size.height * 0.07,
               width: MediaQuery.of(context).size.width * 0.95,
@@ -52,13 +48,6 @@ class _SeachPokemonWidgetState extends State<SeachPokemonWidget> {
                     onPressed: () {
                       // log(widget.allPoker.length.toString());
                       // log(widget.pokenames.length.toString());
-                      showSearch(
-                          context: context,
-                          delegate: Custonseachdelegate(
-                            onPressed: () {
-                              log('Pegou');
-                            },
-                          ));
                     },
                   ),
                   Flexible(

@@ -1,120 +1,148 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:developer';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:pokedexx/model/pokev2model.dart';
-import 'package:pokedexx/services/pokemon_services.dart';
-
+import '../../model/pokev2model.dart';
+import '../../services/pokemon_services.dart';
 import '../widgets/pokemoncard.dart';
+import 'cunstomlitseach.dart';
 
-class Custonseachdelegate extends SearchDelegate {
-  String msg = '';
+class Custonseachdelegate extends StatefulWidget {
+  const Custonseachdelegate({Key? key}) : super(key: key);
 
-  final Function() onPressed;
-  Custonseachdelegate({
-    required this.onPressed,
-  });
+  @override
+  State<Custonseachdelegate> createState() => CustonseachdelegateState();
+}
 
+class CustonseachdelegateState extends State<Custonseachdelegate> {
   static List<Pokemon> pokemons = [];
-  static List<String> searchtermrd = [];
   static getpokemondelegate() {
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 8; i++) {
       int number = Random().nextInt(300);
       PokemonServices()
           .getpokemons('https://pokeapi.co/api/v2/pokemon/$number')
           .then((value) => {
                 pokemons.add(value.pokemon),
-                searchtermrd.add(value.pokemon.name)
               });
     }
   }
 
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-          onPressed: () {
-            query = '';
-            getpokemondelegate();
-          },
-          icon: const Icon(Icons.clear))
-    ];
-  }
+  var customfocus = FocusNode();
+  var loading = true;
+
+  TextEditingController namecontroller = TextEditingController();
 
   @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-        onPressed: () {
-          close(context, null);
-        },
-        icon: const Icon(Icons.arrow_back_ios_new_rounded));
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    List<Pokemon> matchQuery = [];
-
-    for (var i = 0; i < pokemons.length; i++) {
-      for (var poke in searchtermrd) {
-        if (poke.toLowerCase() == query.toLowerCase()) {
-          if (poke == pokemons[i].name!.toLowerCase()) {
-            // log('$poke == ${pokemons[i].name.toLowerCase()}');
-            matchQuery.add(pokemons[i]);
-            // log(matchQuery.length.toString());
-          }
-        } else {
-          msg = 'Pokemon Não Encontrado';
-        }
-      }
-    }
-    return ListView.builder(
-        itemCount: matchQuery.isEmpty ? 1 : matchQuery.length,
-        itemBuilder: (context, index) => Pokemoncard(
-              id: matchQuery[index].id.toString(),
-              name: matchQuery[index].name!,
-              onPressed: onPressed,
-              type: pokemons[index].types!,
-            ));
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<Pokemon> matchQuerysug = [];
-    bool result2 = true;
-
-    for (var i = 0; i < pokemons.length; i++) {
-      for (var poke in searchtermrd) {
-        if (poke.toLowerCase().contains(query.toLowerCase())) {
-          if (poke == pokemons[i].name!.toLowerCase()) {
-            matchQuerysug.add(pokemons[i]);
-          }
-        } else {
-          msg = 'Pokemon Não Encontrado';
-          bool result2 = false;
-        }
-      }
-    }
-
-    return ListView.builder(
-      itemCount: matchQuerysug.isEmpty ? 1 : matchQuerysug.length,
-      itemBuilder: (context, index) => !result2
-          ? Container(
-              child: Center(
-                child: Text(msg),
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        children: [
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context, null);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        size: MediaQuery.of(context).size.height * 0.045,
+                        color: Colors.grey,
+                      )),
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(22),
+                              borderSide: BorderSide.none),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(22)),
+                          hintText: 'Qual pokemon deseja  encontrar?',
+                          hintStyle: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.02,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Nunito'),
+                          fillColor: Colors.grey.withOpacity(0.3),
+                          filled: true),
+                      focusNode: customfocus,
+                      controller: namecontroller,
+                      onSubmitted: (value) {
+                        setState(() {
+                          loading = false;
+                        });
+                      },
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        namecontroller.clear();
+                        setState(() {
+                          loading = true;
+                        });
+                      },
+                      icon: Icon(
+                        Icons.refresh_outlined,
+                        size: MediaQuery.of(context).size.height * 0.045,
+                        color: Colors.grey,
+                      ))
+                ],
               ),
-            )
-          : Pokemoncard(
-              id: matchQuerysug[index].id.toString(),
-              name: matchQuerysug[index].name!,
-              onPressed: () {},
-              type: pokemons[index].types!,
             ),
-    );
+          ),
+          Expanded(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: loading
+                  ? Cunstomlitseach(
+                      pokemons: pokemons,
+                    )
+                  : Column(children: [
+                      FutureBuilder(
+                          future: CunstomlitseachState().seachpokemon(
+                              namecontroller.text.toString().toLowerCase()),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              return SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.3,
+                                child: ListView(
+                                  children: [
+                                    Pokemoncard(
+                                      id: snapshot.data.id.toString(),
+                                      name: snapshot.data.name!,
+                                      onPressed: () {},
+                                      type: snapshot.data.types!,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else {
+                              return Expanded(
+                                child: Container(
+                                  child: const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                              );
+                            }
+                          })
+                    ]),
+            ),
+          )
+        ],
+      ),
+    ));
   }
-
-//Parametro opcional para add sugestão a barra de pesquisa
-  @override
-  String get searchFieldLabel => 'Pesquisar por...';
 }
