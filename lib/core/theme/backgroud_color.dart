@@ -14,7 +14,7 @@ class Backgroud {
     } else if (type == 'rock') {
       backgroud = const Color(0xffD4C294);
     } else if (type == 'bug') {
-      backgroud = Color.fromARGB(255, 146, 235, 126);
+      backgroud = const Color.fromARGB(255, 146, 235, 126);
     } else if (type == 'ghost') {
       backgroud = const Color(0xff8571BE);
     } else if (type == 'steel') {
@@ -26,7 +26,7 @@ class Backgroud {
     } else if (type == 'grass') {
       backgroud = const Color.fromARGB(255, 90, 195, 88);
     } else if (type == 'electric') {
-      backgroud = const Color(0xFFFFC107);
+      backgroud = const Color.fromARGB(255, 247, 182, 1);
     } else if (type == 'ice') {
       backgroud = const Color(0xFf91D8DF);
     } else if (type == 'dragon') {
@@ -37,6 +37,8 @@ class Backgroud {
       backgroud = const Color(0xFF6F6E78);
     } else if (type == 'fairy') {
       backgroud = const Color(0xFFEBA8C3);
+    } else if (type == 'fighting') {
+      backgroud = const Color(0xffCE3F69);
     }
 
     return color = backgroud;
@@ -66,7 +68,7 @@ class Backgroud {
     } else if (type == 'grass') {
       backgroud = const Color.fromARGB(255, 66, 224, 64);
     } else if (type == 'electric') {
-      backgroud = const Color.fromARGB(255, 255, 191, 0);
+      backgroud = Color.fromARGB(255, 255, 191, 0);
     } else if (type == 'ice') {
       backgroud = const Color.fromARGB(255, 108, 243, 255);
     } else if (type == 'dragon') {
@@ -77,6 +79,8 @@ class Backgroud {
       backgroud = const Color.fromARGB(255, 73, 72, 80);
     } else if (type == 'fairy') {
       backgroud = const Color.fromARGB(255, 255, 185, 213);
+    } else if (type == 'fighting') {
+      backgroud = Color.fromARGB(255, 157, 42, 48);
     }
 
     return color = backgroud;

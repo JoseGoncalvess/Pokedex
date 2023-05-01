@@ -35,6 +35,8 @@ class TraductTypePoker {
       pokemontype = 'Sombrio';
     } else if (typepoke == 'fairy') {
       pokemontype = 'Fada';
+    } else if (typepoke == 'fighting') {
+      pokemontype = 'Lutador';
     }
     return pokemontype.toUpperCase();
   }

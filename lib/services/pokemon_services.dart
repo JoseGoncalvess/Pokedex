@@ -130,7 +130,7 @@ class PokemonServices extends PokedexInterface {
     }
 
     return PokemonreturnV2(
-        types: [], erro: 'Erro ao buscar  pokemon v2', pokemon: pokemon);
+        erro: 'Erro ao buscar  pokemon v2', pokemon: pokemon);
   }
 
   @override
@@ -150,7 +150,24 @@ class PokemonServices extends PokedexInterface {
     }
 
     return PokemonreturnV2(
-        pokemon: pokev2, types: [], erro: 'Não foi possivel listar pokémons');
+        pokemon: pokev2, erro: 'Não foi possivel listar pokémons');
+  }
+
+//
+//
+  @override
+  Future<Pokemon> seachpokemon(String poke) async {
+    dynamic pokemon;
+    if (poke.isNotEmpty) {
+      final dio = Dio();
+      var response = await dio.get('https://pokeapi.co/api/v2/pokemon/$poke');
+      var p = response.data as Map<String, dynamic>;
+      if (response.statusCode == 200) {
+        var poke = Pokemon.fromJson(p);
+        pokemon = poke;
+      }
+    }
+    return pokemon;
   }
 
   //

@@ -9,6 +9,7 @@ abstract class PokedexInterface {
   Future<ReturnApiList> getpokegeration(int index);
   Future<PokemonreturnV2> getpokemons(String url);
   Future<PokemonreturnV2> getpokemonforgeration(List geration, int pointstart);
+  Future<Pokemon> seachpokemon(String poke);
 }
 
 class ReturnApiList {
@@ -26,8 +27,6 @@ class ReturnApiList {
 class PokemonreturnV2 {
   final dynamic pokemon;
   final String erro;
-  final List<Type> types;
 
-  PokemonreturnV2(
-      {required this.types, required this.pokemon, required this.erro});
+  PokemonreturnV2({required this.pokemon, required this.erro});
 }

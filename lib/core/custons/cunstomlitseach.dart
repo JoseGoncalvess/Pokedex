@@ -16,27 +16,13 @@ class Cunstomlitseach extends StatefulWidget {
 }
 
 class CunstomlitseachState extends State<Cunstomlitseach> {
-  Future seachpokemon(String name) async {
-    dynamic pokemon;
-    if (name.isNotEmpty) {
-      final dio = Dio();
-      var response = await dio.get('https://pokeapi.co/api/v2/pokemon/$name');
-      var p = response.data as Map<String, dynamic>;
-      if (response.statusCode == 200) {
-        var poke = Pokemon.fromJson(p);
-        pokemon = poke;
-      }
-    }
-    return pokemon;
-  }
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: widget.pokemons.isEmpty ? 1 : widget.pokemons.length,
       itemBuilder: (context, index) => widget.pokemons.isEmpty
           ? const Center(
-              child: Text('Erro ao carregar os pokemons'),
+              child: CircularProgressIndicator(),
             )
           : Pokemoncard(
               id: widget.pokemons[index].id.toString(),

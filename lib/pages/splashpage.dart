@@ -66,8 +66,3 @@ class _SplashpageState extends State<Splashpage> {
     );
   }
 }
-
-// @override
-// Widget build(BuildContext context) {
-//   return Text(msg); 
-// }
