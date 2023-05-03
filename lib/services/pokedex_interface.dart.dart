@@ -9,7 +9,10 @@ abstract class PokedexInterface {
   Future<ReturnApiList> getpokegeration(int index);
   Future<PokemonreturnV2> getpokemons(String url);
   Future<PokemonreturnV2> getpokemonforgeration(List geration, int pointstart);
+  Future<PokemonreturnV2> getpokemonforgerationstart(
+      List geration, int pointstart);
   Future<Pokemon> seachpokemon(String poke);
+  Future<Pokemon> completlistpokemon({required int poke});
 }
 
 class ReturnApiList {

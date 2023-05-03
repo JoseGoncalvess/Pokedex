@@ -44,7 +44,7 @@ class _SeachPokemonWidgetState extends State<SeachPokemonWidget> {
                       Icons.search_rounded,
                       size: 30,
                     ),
-                    color: Colors.grey.withOpacity(0.6),
+                    color: Colors.red.withOpacity(0.8),
                     onPressed: () {
                       // log(widget.allPoker.length.toString());
                       // log(widget.pokenames.length.toString());

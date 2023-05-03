@@ -44,7 +44,7 @@ class _PokemonGerationWidgetState extends State<PokemonGerationWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 5.0, right: 5),
+      padding: const EdgeInsets.only(left: 5.0, right: 5, bottom: 5),
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white,

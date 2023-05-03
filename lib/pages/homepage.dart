@@ -51,7 +51,6 @@ class _HomepageState extends State<Homepage> {
             MaterialPageRoute(
               builder: (context) => PageTest(pokemons: allPoker),
             ));
-        // PokemonServices().getpokemonv2('https://pokeapi.co/api/v2/pokemon/1/');
       }),
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -66,7 +65,7 @@ class _HomepageState extends State<Homepage> {
                     opacity: 0.5,
                     child: Image.asset(
                       'assets/img/pokeBall.png',
-                      color: Colors.grey,
+                      color: Colors.red.withOpacity(0.8),
                       scale: 1.7,
                     )),
               ),

@@ -132,6 +132,28 @@ class PokemonServices extends PokedexInterface {
     return PokemonreturnV2(
         erro: 'Erro ao buscar  pokemon v2', pokemon: pokemon);
   }
+  //
+  //
+
+  @override
+  Future<PokemonreturnV2> getpokemonforgerationstart(
+      List geration, int pointstart) async {
+    List<String> pokemonsurl = [];
+    List<Pokemon> pokev2 = [];
+
+    for (var e in geration.getRange(pointstart, pointstart + 15)) {
+      var poke = e.url;
+      pokemonsurl.add(poke);
+    }
+
+    for (var e in pokemonsurl) {
+      var poke = await getpokemons(e);
+      pokev2.add(poke.pokemon);
+    }
+
+    return PokemonreturnV2(
+        pokemon: pokev2, erro: 'Não foi possivel listar pokémons');
+  }
 
   @override
   Future<PokemonreturnV2> getpokemonforgeration(
@@ -139,7 +161,7 @@ class PokemonServices extends PokedexInterface {
     List<String> pokemonsurl = [];
     List<Pokemon> pokev2 = [];
 
-    for (var e in geration.getRange(pointstart, pointstart + 10)) {
+    for (var e in geration.getRange(pointstart, geration.length)) {
       var poke = e.url;
       pokemonsurl.add(poke);
     }
@@ -167,6 +189,21 @@ class PokemonServices extends PokedexInterface {
         pokemon = poke;
       }
     }
+    return pokemon;
+  }
+
+//DESUSO POR TIME
+  @override
+  Future<Pokemon> completlistpokemon({required int poke}) async {
+    dynamic pokemon;
+    final dio = Dio();
+    var response = await dio.get('https://pokeapi.co/api/v2/pokemon/$poke');
+    var p = response.data as Map<String, dynamic>;
+    if (response.statusCode == 200) {
+      var poke = Pokemon.fromJson(p);
+      pokemon = poke;
+    }
+
     return pokemon;
   }
 
