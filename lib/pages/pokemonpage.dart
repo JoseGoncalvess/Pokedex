@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/widgets/pokecardgrid.dart';
 import 'package:pokedexx/model/pokev2model.dart';
+import '../core/theme/set_lastpoekom.dart';
 import '../core/widgets/pokemoncard.dart';
 import '../services/pokemon_services.dart';
 import 'details_page.dart';
@@ -47,8 +48,10 @@ class _PagepokemonState extends State<Pagepokemon> {
   }
 
   getpoketime() async {
-    var geratio = widget.geration.length;
-    for (var i = pokemonv2.last.id! + 1; i < geratio; i++) {
+    List geratio = widget.geration;
+    for (var i = pokemonv2.last.id! + 1;
+        i < int.parse(SetLastpoekom().getlastpoke(geratio.last.url)) + 1;
+        i++) {
       final dio = Dio();
       var response = await dio.get('https://pokeapi.co/api/v2/pokemon/$i');
       var p = response.data as Map<String, dynamic>;
