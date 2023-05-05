@@ -1,9 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/model/pokev2model.dart';
-import 'package:pokedexx/pages/page_test.dart';
 import '../core/theme/geration_poke_wisget.dart';
-import '../core/theme/set_lastpoekom.dart';
 import '../core/widgets/pokemon_geration_widget.dart';
 import '../core/widgets/seach_pokemon_widget.dart';
 import '../model/gerationpomeon_model.dart';
@@ -46,14 +44,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //       builder: (context) => PageTest(pokemons: allPoker),
-        //     ));
-      }),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Stack(

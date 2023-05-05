@@ -1,7 +1,5 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-
 import '../../model/pokev2model.dart';
 import '../../services/pokemon_services.dart';
 import '../widgets/pokemoncard.dart';
@@ -40,65 +38,69 @@ class CustonseachdelegateState extends State<Custonseachdelegate> {
       height: MediaQuery.of(context).size.height,
       child: Column(
         children: [
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 30.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context, null);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios_new_rounded,
-                        size: MediaQuery.of(context).size.height * 0.045,
-                        color: Colors.grey,
-                      )),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(22),
-                                borderSide: BorderSide.none),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(22)),
-                            hintText: 'Qual pokemon deseja  encontrar?',
-                            hintStyle: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.02,
-                                fontWeight: FontWeight.w800,
-                                fontFamily: 'Nunito'),
-                            fillColor: Colors.grey.withOpacity(0.3),
-                            filled: true),
-                        focusNode: customfocus,
-                        controller: namecontroller,
-                        onSubmitted: (value) {
-                          setState(() {
-                            loading = false;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        namecontroller.clear();
+          Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.pop(context, null);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      size: MediaQuery.of(context).size.height * 0.045,
+                      color: Colors.grey,
+                    )),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      maxLines: 1,
+                      style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: MediaQuery.of(context).size.height * 0.02,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: 'Nunito'),
+                      decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(22),
+                              borderSide: BorderSide.none),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(22)),
+                          hintText: 'Qual pokemon deseja  encontrar?',
+                          hintStyle: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.02,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Nunito'),
+                          fillColor: Colors.grey.withOpacity(0.3),
+                          filled: true),
+                      focusNode: customfocus,
+                      controller: namecontroller,
+                      onSubmitted: (value) {
                         setState(() {
-                          loading = true;
+                          loading = false;
                         });
                       },
-                      icon: Icon(
-                        Icons.refresh_outlined,
-                        size: MediaQuery.of(context).size.height * 0.045,
-                        color: Colors.grey,
-                      ))
-                ],
-              ),
+                    ),
+                  ),
+                ),
+                IconButton(
+                    onPressed: () {
+                      namecontroller.clear();
+                      setState(() {
+                        loading = true;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.refresh_outlined,
+                      size: MediaQuery.of(context).size.height * 0.045,
+                      color: Colors.grey,
+                    ))
+              ],
             ),
           ),
           Expanded(
@@ -126,7 +128,7 @@ class CustonseachdelegateState extends State<Custonseachdelegate> {
                               default:
                                 if (snapshot.hasError) {
                                   return Expanded(
-                                    child: Container(
+                                    child: SizedBox(
                                         width:
                                             MediaQuery.of(context).size.width,
                                         height:

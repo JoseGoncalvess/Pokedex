@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/infopoke_widget.dart';
-import 'package:pokedexx/model/pokemodel.dart';
 import 'package:pokedexx/pages/details_page/detailstype_poker.dart';
 import '../core/helpers/clip_container.dart';
 import '../core/theme/gifimage_pokemon.dart';

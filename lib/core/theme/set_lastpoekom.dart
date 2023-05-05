@@ -1,7 +1,3 @@
-import 'dart:developer';
-
-import 'package:pokedexx/model/pokev2model.dart';
-
 class SetLastpoekom {
   getlastpoke(String pokebase) {
     String url = pokebase;

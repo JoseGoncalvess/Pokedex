@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/theme/traduct_type_poker.dart';
-import 'package:pokedexx/model/pokemodel.dart';
-import '../../services/pokemon_services.dart';
+
+import '../../model/pokev2model.dart';
 
 class TypelistDetails extends StatefulWidget {
   const TypelistDetails({
@@ -18,23 +18,6 @@ class _TypelistDetailsState extends State<TypelistDetails> {
   List<Pokemon> poketipe = [];
   bool leading = true;
   String menssage = '';
-
-  getpoke() {
-    setState(() {
-      leading = false;
-    });
-    PokemonServices().getpokemon().then((value) {
-      setState(() {
-        poketipe = value.list as List<Pokemon>;
-        menssage = value.msg;
-        setState(() {
-          leading = true;
-        });
-      });
-    }).catchError((onError) {
-      menssage = "DEU ERRO E FOI ISSO>>> $onError";
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

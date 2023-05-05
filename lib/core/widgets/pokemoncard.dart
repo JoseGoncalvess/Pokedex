@@ -130,7 +130,7 @@ class _PokemoncardState extends State<Pokemoncard> {
             Positioned(
               left: 180,
               bottom: 20,
-              child: GifimagePokemon().getimag(widget.name) == ''
+              child: GifimagePokemon().getimag(widget.name) == null
                   ? Image.asset(
                       'assets/img/pokeLoad.gif',
                       scale: 0.3,

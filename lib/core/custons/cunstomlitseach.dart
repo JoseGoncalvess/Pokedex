@@ -1,7 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/model/pokev2model.dart';
-
 import '../widgets/pokemoncard.dart';
 
 class Cunstomlitseach extends StatefulWidget {

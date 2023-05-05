@@ -5,7 +5,8 @@ import '../theme/backgroud_color.dart';
 
 class InfopokeWidget extends StatefulWidget {
   const InfopokeWidget(
-      {required this.name,
+      {super.key,
+      required this.name,
       required this.types,
       required this.width,
       required this.height});

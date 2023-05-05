@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 class Backgroud {
   getBackgroudColor({required String type}) {
-    var color;
     Color backgroud = const Color.fromARGB(255, 110, 109, 109);
     if (type == 'flying') {
       backgroud = const Color(0xff9EB1D8);
@@ -41,11 +40,10 @@ class Backgroud {
       backgroud = const Color(0xffCE3F69);
     }
 
-    return color = backgroud;
+    return backgroud;
   }
 
   getBackgroudType({required String type}) {
-    var color;
     Color backgroud = const Color.fromARGB(255, 110, 109, 109);
     if (type == 'flying') {
       backgroud = const Color.fromARGB(255, 191, 193, 196);
@@ -68,7 +66,7 @@ class Backgroud {
     } else if (type == 'grass') {
       backgroud = const Color.fromARGB(255, 66, 224, 64);
     } else if (type == 'electric') {
-      backgroud = Color.fromARGB(255, 255, 191, 0);
+      backgroud = const Color.fromARGB(255, 255, 191, 0);
     } else if (type == 'ice') {
       backgroud = const Color.fromARGB(255, 108, 243, 255);
     } else if (type == 'dragon') {
@@ -80,10 +78,10 @@ class Backgroud {
     } else if (type == 'fairy') {
       backgroud = const Color.fromARGB(255, 255, 185, 213);
     } else if (type == 'fighting') {
-      backgroud = Color.fromARGB(255, 157, 42, 48);
+      backgroud = const Color.fromARGB(255, 157, 42, 48);
     }
 
-    return color = backgroud;
+    return backgroud;
   }
 }
 

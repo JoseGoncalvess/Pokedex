@@ -6,7 +6,6 @@ import '../core/custons/custonseachdelegate.dart';
 import '../core/theme/geration_poke_wisget.dart';
 import '../services/pokemon_services.dart';
 import 'homepage.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Splashpage extends StatefulWidget {
   const Splashpage({super.key});
@@ -38,15 +37,14 @@ class _SplashpageState extends State<Splashpage> {
         });
 
     Future.delayed(const Duration(seconds: 3));
-    PokemonServices().getpokemon().then((value) => {
-          Future.delayed(const Duration(seconds: 3)).then((value) => {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => Homepage(
-                    pokegeration: list,
-                    geratio: geraton,
-                  ),
-                ))
-              })
+
+    Future.delayed(const Duration(seconds: 3)).then((value) => {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => Homepage(
+              pokegeration: list,
+              geratio: geraton,
+            ),
+          ))
         });
   }
 

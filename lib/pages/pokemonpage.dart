@@ -33,18 +33,14 @@ class _PagepokemonState extends State<Pagepokemon> {
                 // tipos = value.types;
                 msg = value.erro;
                 pointStart = pokemonv2.length;
-
-                Future.delayed(Duration(seconds: 3))
-                    .then((value) => getpoketime());
               }),
+              getpoketime(),
               log(pokemonv2.length.toString()),
               setState(() {
                 loading = true;
               })
             })
-        .catchError((onError) {
-      msg = onError.toString();
-    });
+        .catchError((onError) => msg = onError.toString());
   }
 
   getpoketime() async {
@@ -203,9 +199,9 @@ class _PagepokemonState extends State<Pagepokemon> {
                 ],
               ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        getpoketime();
-      }),
+      // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   getpoketime();
+      // }),
     );
   }
 }

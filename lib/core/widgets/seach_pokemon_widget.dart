@@ -1,7 +1,4 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:pokedexx/model/pokev2model.dart';
-import 'package:pokedexx/model/pokev2model.dart';
 import '../custons/custonseachdelegate.dart';
 
 class SeachPokemonWidget extends StatefulWidget {
@@ -46,8 +43,11 @@ class _SeachPokemonWidgetState extends State<SeachPokemonWidget> {
                     ),
                     color: Colors.red.withOpacity(0.8),
                     onPressed: () {
-                      // log(widget.allPoker.length.toString());
-                      // log(widget.pokenames.length.toString());
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Custonseachdelegate(),
+                          ));
                     },
                   ),
                   Flexible(

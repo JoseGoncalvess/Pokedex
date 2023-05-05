@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokedexx/model/pokev2model.dart';
 import 'dart:developer';
-
 import 'package:pokedexx/services/pokemon_services.dart';
-
 import '../../pages/pokemonpage.dart';
 
 class PokemonGerationWidget extends StatefulWidget {
@@ -87,20 +84,20 @@ class _PokemonGerationWidgetState extends State<PokemonGerationWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Região: ',
+                'REGIÃO: ',
                 style: TextStyle(
                     fontFamily: 'Nunito',
                     fontWeight: FontWeight.w800,
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withOpacity(0.8),
                     fontSize: MediaQuery.of(context).size.height * 0.02),
               ),
               Text(
-                widget.region,
+                widget.region.toUpperCase(),
                 style: TextStyle(
                     fontFamily: 'Nunito',
                     fontWeight: FontWeight.w800,
                     color: Colors.grey[700],
-                    fontSize: MediaQuery.of(context).size.height * 0.02),
+                    fontSize: MediaQuery.of(context).size.height * 0.018),
               ),
             ],
           )
