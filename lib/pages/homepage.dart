@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/model/pokev2model.dart';
+import 'package:pokedexx/pages/page.dart';
 import '../core/theme/geration_poke_wisget.dart';
 import '../core/widgets/pokemon_geration_widget.dart';
 import '../core/widgets/seach_pokemon_widget.dart';
@@ -110,6 +111,13 @@ class _HomepageState extends State<Homepage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const PAgetest(),
+            ));
+      }),
     );
   }
 }

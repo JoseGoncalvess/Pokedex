@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:pokedexx/model/evolutionmodel.dart';
 import 'package:pokedexx/model/pokev2model.dart';
@@ -5,6 +7,7 @@ import 'package:pokedexx/model/spaw_pokemon.dart';
 import 'package:pokedexx/services/pokedex_interface.dart.dart';
 import '../core/theme/links_base.dart';
 import '../model/gerationpomeon_model.dart';
+import '../model/poke_evolution.dart';
 
 class PokemonServices extends PokedexInterface {
 //
@@ -56,23 +59,37 @@ class PokemonServices extends PokedexInterface {
   @override
   Future<ReturnApiList> gettypepokeevolution(int id) async {
     final dio = Dio();
-    List<EvolutionDetail> evoluction = [];
+    List<PokeEvolution> evolutions = [];
     String evolut = 'https://pokeapi.co/api/v2/evolution-chain/$id/';
     var response = await dio.get(evolut);
 
     if (response.statusCode == 200) {
-      var corpo = response.data['chain']['evolves_to'];
+      var corpo = response.data as Map<String, dynamic>;
+      var c = Chain.fromJson(corpo['chain']);
 
-      for (var element in corpo) {
-        for (var e in element['evolution_details']) {
-          var item = EvolutionDetail.fromJson(e);
-          evoluction.add(item);
-        }
-      }
+      //TESTES DE INFOMRAÇÃO
+//=================================================================================
+      // log(corpo.toString());
+      log(c.speciess!.name.toString()); //priemira
+      log(c.evolvesTo![0].speciess!.name.toString()); //segunda eolution
+      log(c.evolvesTo![0].evolvesTo![0].speciess!.name
+          .toString()); //primeira evolution
+      log('o pokemon é ${c.speciess!.name.toString()} e o minimo pra evoluir é${c.evolvesTo![0].evolutionDetails![0].minLevel}');
+      log('o 2  pokemon é ${c.evolvesTo![0].speciess!.name} e o minimo pra evoluir é${c.evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel}');
+      log('o 3  pokemon é ${c.evolvesTo![0].evolvesTo![0].speciess!.name} e o minimo pra evoluir é${c.evolvesTo![0].evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel}');
+
+//============================================================================
+      evolutions.add(PokeEvolution(
+          minLevel: c.evolvesTo![0].evolutionDetails![0].minLevel.toString(),
+          pokename: c.speciess!.name.toString()));
+
+      evolutions.add(PokeEvolution(
+          minLevel: c.evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel
+              .toString(),
+          pokename: c.evolvesTo![0].speciess!.name.toString()));
     }
 
-    return ReturnApiList(
-        list: evoluction, msg: 'erro ao buscar detalhes de evolução');
+    return ReturnApiList(list: evolutions, msg: 'Erro ao Buscar Evoluções');
   }
 
   @override

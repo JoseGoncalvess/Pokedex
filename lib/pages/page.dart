@@ -10,10 +10,10 @@ class PAgetest extends StatefulWidget {
 }
 
 class PAgetestState extends State<PAgetest> {
-  List<EvolutionDetail> list = [];
+  List<EvolutionDetail> list = [EvolutionDetail(minHappiness: 0)];
   String msg = '';
   getpoke() {
-    PokemonServices().gettypepokeevolution(24).then((value) {
+    PokemonServices().gettypepokeevolution(1).then((value) {
       setState(() {
         list = value.list as List<EvolutionDetail>;
       });
@@ -38,7 +38,14 @@ class PAgetestState extends State<PAgetest> {
         title: const Text(''),
       ),
       body: Center(
-        child: Text(list[0].minLevel.toString()),
+        child: GestureDetector(
+            onTap: () => getpoke(),
+            child: Container(
+                color: Colors.amber,
+                alignment: Alignment.center,
+                height: 100,
+                width: 300,
+                child: Text('ok'))),
       ),
     );
   }
