@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pokedexx/core/theme/traduct_type_poker.dart';
+import 'package:pokedexx/model/pokev2model.dart';
 
 import '../theme/backgroud_color.dart';
+import '../theme/traduct_type_poker.dart';
 
 class InfopokeWidget extends StatefulWidget {
   const InfopokeWidget(
@@ -11,7 +12,7 @@ class InfopokeWidget extends StatefulWidget {
       required this.width,
       required this.height});
   final String name;
-  final List<String> types;
+  final List<Type> types;
   final String width;
   final String height;
 
@@ -35,7 +36,9 @@ class _InfopokeWidgetState extends State<InfopokeWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(TraductTypePoker().traducttype(typepoke: widget.types[0]),
+                Text(
+                    TraductTypePoker().traducttype(
+                        typepoke: widget.types[0].type.name.toString()),
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.04,
                         fontWeight: FontWeight.w900,
@@ -63,14 +66,14 @@ class _InfopokeWidgetState extends State<InfopokeWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(widget.height,
+                Text('${widget.height} m',
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.04,
                         fontWeight: FontWeight.w900,
                         color: Backgroud()
                             .getBackgroudType(type: widget.types[0].toString()),
                         fontFamily: 'Nunito')),
-                Text('altura'.toUpperCase(),
+                Text('Altura'.toUpperCase(),
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.03,
                         fontWeight: FontWeight.w900,
@@ -91,7 +94,7 @@ class _InfopokeWidgetState extends State<InfopokeWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(widget.width,
+                Text('${widget.width} Kg',
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.04,
                         fontWeight: FontWeight.w900,

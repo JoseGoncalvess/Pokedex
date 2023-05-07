@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:pokedexx/model/pokev2model.dart';
 import '../theme/backgroud_color.dart';
 
 class SecundariinfopokeWidget extends StatefulWidget {
@@ -8,7 +8,7 @@ class SecundariinfopokeWidget extends StatefulWidget {
       required this.type,
       required this.candy,
       required this.localization});
-  final List<String> type;
+  final List<Type> type;
   final String candy;
   final String localization;
 
@@ -38,7 +38,7 @@ class _SecundariinfopokeWidgetState extends State<SecundariinfopokeWidget> {
                             fontSize: MediaQuery.of(context).size.width * 0.05,
                             fontWeight: FontWeight.w900,
                             color: Backgroud().getBackgroudType(
-                                type: widget.type[0].toString()),
+                                type: widget.type[0].type.name.toString()),
                             fontFamily: 'Nunito')),
                   ),
                   Text('Doce'.toUpperCase(),

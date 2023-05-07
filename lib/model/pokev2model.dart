@@ -4,10 +4,14 @@
 
 import 'dart:convert';
 
-PokemonV2 pokemonV2FromJson(String str) => PokemonV2.fromJson(json.decode(str));
+//TRANSFORMAÇÕES
+PokeV2outherinfo pokemonV2FromJson(String str) =>
+    PokeV2outherinfo.fromJson(json.decode(str));
 
-String pokemonV2ToJson(PokemonV2 data) => json.encode(data.toJson());
+String pokemonV2ToJson(PokeV2outherinfo data) => json.encode(data.toJson());
 
+//===================================================
+//MODELO POKEMON
 class Pokemon {
   Pokemon({this.id, this.name, this.sprites, this.types});
 
@@ -36,16 +40,12 @@ class Pokemon {
       };
 }
 
-class PokemonV2 {
-  PokemonV2({
+class PokeV2outherinfo {
+  PokeV2outherinfo({
     this.abilities,
     this.baseExperience,
     this.height,
     this.id,
-    this.name,
-    this.sprites,
-    this.stats,
-    this.types,
     this.weight,
   });
 
@@ -53,13 +53,10 @@ class PokemonV2 {
   int? baseExperience;
   int? height;
   int? id;
-  String? name;
-  Sprites? sprites;
-  List<Stat>? stats;
-  List<Type>? types;
   int? weight;
 
-  factory PokemonV2.fromJson(Map<String, dynamic> json) => PokemonV2(
+  factory PokeV2outherinfo.fromJson(Map<String, dynamic> json) =>
+      PokeV2outherinfo(
         abilities: json["abilities"] == null
             ? []
             : List<Ability>.from(
@@ -67,15 +64,6 @@ class PokemonV2 {
         baseExperience: json["base_experience"],
         height: json["height"],
         id: json["id"],
-        name: json["name"] == null ? 'Nome Nulo' : json["name"],
-        sprites:
-            json["sprites"] == null ? null : Sprites.fromJson(json["sprites"]),
-        stats: json["stats"] == null
-            ? []
-            : List<Stat>.from(json["stats"]!.map((x) => Stat.fromJson(x))),
-        types: json["types"] == null
-            ? []
-            : List<Type>.from(json["types"]!.map((x) => Type.fromJson(x))),
         weight: json["weight"],
       );
 
@@ -86,14 +74,6 @@ class PokemonV2 {
         "base_experience": baseExperience,
         "height": height,
         "id": id,
-        "name": name,
-        "sprites": sprites?.toJson(),
-        "stats": stats == null
-            ? []
-            : List<dynamic>.from(stats!.map((x) => x.toJson())),
-        "types": types == null
-            ? []
-            : List<dynamic>.from(types!.map((x) => x.toJson())),
         "weight": weight,
       };
 }

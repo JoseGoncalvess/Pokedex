@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/infopoke_widget.dart';
@@ -8,46 +11,40 @@ import '../core/theme/localepokemon.dart';
 import '../core/widgets/evolution_pokemon_widget.dart';
 import '../core/widgets/poke_stats.dart';
 import '../core/widgets/secundari_infopoke_widget.dart';
+import '../model/poke_evolution.dart';
 import '../model/pokev2model.dart';
 import '../model/spaw_pokemon.dart';
 import '../services/pokemon_services.dart';
 
 class DetailsPage extends StatefulWidget {
+  final String name;
+  final List<Type> types;
+  final int id;
+  final String candy;
+
   const DetailsPage({
     Key? key,
     required this.name,
     required this.types,
     required this.id,
-    required this.img,
-    required this.width,
-    required this.height,
     required this.candy,
-    required this.nextEvolution,
-    required this.prevEvolution,
   }) : super(key: key);
-
-  final String name;
-  final List<String> types;
-  final int id;
-  final String img;
-  final String width;
-  final String height;
-  final String candy;
-  final List nextEvolution;
-  final List prevEvolution;
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  String weight = '';
+  String height = '';
   List<Stat> pokemonstat = [];
   String erroMensseger = '';
   bool leading = true;
-  List<dynamic> evolutions = [];
+  List<PokeEvolution> evolutions = [];
   List<LocationArea> localization = [];
   String msg = '';
 
+//retorna todas a infomrações sobre pokemons
   getpokeinfo({required int index}) {
     PokemonServices().gettypepokemoninfo(index).then((value) {
       setState(() {
@@ -60,6 +57,16 @@ class _DetailsPageState extends State<DetailsPage> {
     });
   }
 
+  outhernfopoke({required String i}) {
+    PokemonServices().outhernfopoke(index: i).then((value) => {
+          setState(() {
+            weight = (value.weight! / 10).toString();
+            height = (value.height! / 10).toString();
+          })
+        });
+  }
+
+//retorna local do pokemon
   getlocalpoke(id) {
     PokemonServices().gettypepokelocalizatio(id).then((value) {
       setState(() {
@@ -82,8 +89,8 @@ class _DetailsPageState extends State<DetailsPage> {
 
   @override
   void initState() {
+    outhernfopoke(i: widget.id.toString());
     getpokeinfo(index: widget.id);
-    validatelist(widget.nextEvolution, widget.prevEvolution);
     getlocalpoke(widget.id);
     transition();
 
@@ -94,21 +101,6 @@ class _DetailsPageState extends State<DetailsPage> {
 //
 //
 
-  validatelist(
-    List next,
-    List prev,
-  ) {
-    if (prev.isEmpty) {
-      setState(() {
-        evolutions = next;
-      });
-    } else {
-      setState(() {
-        evolutions = prev;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return leading
@@ -117,7 +109,7 @@ class _DetailsPageState extends State<DetailsPage> {
             child: Center(
                 child: CircularProgressIndicator(
               color: Backgroud()
-                  .getBackgroudType(type: widget.types[0].toString()),
+                  .getBackgroudType(type: widget.types[0].type.name.toString()),
             )),
           )
         : Scaffold(
@@ -134,8 +126,8 @@ class _DetailsPageState extends State<DetailsPage> {
                     height: MediaQuery.of(context).size.height * 0.46,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                      color: Backgroud()
-                          .getBackgroudType(type: widget.types[0].toString()),
+                      color: Backgroud().getBackgroudType(
+                          type: widget.types[0].type.name.toString()),
                     ),
                   ),
                 ),
@@ -153,6 +145,15 @@ class _DetailsPageState extends State<DetailsPage> {
                                 },
                                 icon: const Icon(
                                   Icons.arrow_back_ios_new_rounded,
+                                  color: Colors.white,
+                                  size: 30,
+                                )),
+                            IconButton(
+                                onPressed: () {
+                                  outhernfopoke(i: widget.id.toString());
+                                },
+                                icon: const Icon(
+                                  Icons.bug_report,
                                   color: Colors.white,
                                   size: 30,
                                 )),
@@ -211,7 +212,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: widget.types
-                                    .map((e) => TypelistDetails(pokemon: e))
+                                    .map((e) =>
+                                        TypelistDetails(pokemon: e.type.name))
                                     .toList(),
                               ),
                             ),
@@ -226,10 +228,10 @@ class _DetailsPageState extends State<DetailsPage> {
                                     child: Column(
                                       children: [
                                         InfopokeWidget(
-                                          height: widget.height,
+                                          height: height,
                                           name: widget.name,
                                           types: widget.types,
-                                          width: widget.width,
+                                          width: weight,
                                         ),
                                         SecundariinfopokeWidget(
                                           candy: widget.candy,
@@ -260,7 +262,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                               fontWeight: FontWeight.w900,
                                               color: Backgroud()
                                                   .getBackgroudType(
-                                                      type: widget.types[0]),
+                                                      type: widget
+                                                          .types[0].type.name),
                                               fontFamily: 'Nunito')),
                                       Expanded(
                                         child: ListView.builder(

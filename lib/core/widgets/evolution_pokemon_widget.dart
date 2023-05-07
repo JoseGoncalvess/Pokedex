@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:pokedexx/model/pokev2model.dart';
 import '../theme/backgroud_color.dart';
 import '../theme/gifimage_pokemon.dart';
 
@@ -10,7 +10,7 @@ class EvolutionPokemonWidget extends StatefulWidget {
       required this.id,
       required this.evolutions});
 
-  final List<String> types;
+  final List<Type> types;
   final List<dynamic> evolutions;
   final int id;
 
@@ -31,7 +31,8 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.width * 0.06,
                 fontWeight: FontWeight.w900,
-                color: Backgroud().getBackgroudType(type: widget.types[0]),
+                color: Backgroud().getBackgroudType(
+                    type: widget.types[0].type.name.toString()),
                 fontFamily: 'Nunito'),
           ),
           Expanded(

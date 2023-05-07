@@ -13,7 +13,7 @@ class PAgetestState extends State<PAgetest> {
   List<EvolutionDetail> list = [EvolutionDetail(minHappiness: 0)];
   String msg = '';
   getpoke() {
-    PokemonServices().gettypepokeevolution(1).then((value) {
+    PokemonServices().gettypepokeevolution(3).then((value) {
       setState(() {
         list = value.list as List<EvolutionDetail>;
       });

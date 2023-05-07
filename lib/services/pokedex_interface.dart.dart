@@ -12,6 +12,7 @@ abstract class PokedexInterface {
       List geration, int pointstart);
   Future<Pokemon> seachpokemon(String poke);
   Future<Pokemon> completlistpokemon({required int poke});
+  Future<PokeV2outherinfo> outhernfopoke({required String index});
 }
 
 class ReturnApiList {

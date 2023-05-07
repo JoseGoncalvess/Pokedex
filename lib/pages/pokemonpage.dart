@@ -172,21 +172,14 @@ class _PagepokemonState extends State<Pagepokemon> {
                               )
                             : Pokemoncard(
                                 onPressed: () {
-                                  log('VAI CARAI ${allPoker[index].id}');
+                                  log('VAI CARAI ${pokemonv2[index].id}');
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                         builder: (context) => DetailsPage(
-                                              nextEvolution: allPoker[index]
-                                                  .nextEvolution as List,
-                                              prevEvolution: allPoker[index]
-                                                  .prevEvolution as List,
-                                              height: allPoker[index].height,
-                                              width: allPoker[index].weight,
-                                              img: allPoker[index].img,
-                                              id: allPoker[index].id,
-                                              name: allPoker[index].name,
-                                              types: allPoker[index].type,
-                                              candy: allPoker[index].candy,
+                                              id: pokemonv2[index].id!,
+                                              name: pokemonv2[index].name!,
+                                              types: pokemonv2[index].types!,
+                                              candy: 'cady',
                                             )),
                                   );
                                 },

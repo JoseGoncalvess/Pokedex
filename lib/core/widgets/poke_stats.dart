@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
+import 'package:pokedexx/model/pokev2model.dart';
 
 class PokeStats extends StatefulWidget {
   const PokeStats({
@@ -10,7 +11,7 @@ class PokeStats extends StatefulWidget {
     required this.statsPower,
   }) : super(key: key);
 
-  final List types;
+  final List<Type> types;
   final String nameStats;
   final int statsPower;
 
@@ -45,7 +46,8 @@ class _PokeStatsState extends State<PokeStats> {
                     color: Colors.grey[400]),
               )),
           Container(
-            color: Backgroud().getBackgroudType(type: widget.types[0]),
+            color:
+                Backgroud().getBackgroudType(type: widget.types[0].type.name),
             width: MediaQuery.of(context).size.width * 0.004,
             height: MediaQuery.of(context).size.height * 0.06,
           ),
@@ -71,7 +73,8 @@ class _PokeStatsState extends State<PokeStats> {
                   BoxDecoration(borderRadius: BorderRadius.circular(12)),
               child: LinearProgressIndicator(
                   backgroundColor: const Color.fromARGB(155, 150, 148, 148),
-                  color: Backgroud().getBackgroudType(type: widget.types[0]),
+                  color: Backgroud()
+                      .getBackgroudType(type: widget.types[0].type.name),
                   value: widget.statsPower / 100),
             ),
           )

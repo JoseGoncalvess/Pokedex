@@ -70,23 +70,23 @@ class PokemonServices extends PokedexInterface {
       //TESTES DE INFOMRAÇÃO
 //=================================================================================
       // log(corpo.toString());
-      log(c.speciess!.name.toString()); //priemira
-      log(c.evolvesTo![0].speciess!.name.toString()); //segunda eolution
-      log(c.evolvesTo![0].evolvesTo![0].speciess!.name
-          .toString()); //primeira evolution
-      log('o pokemon é ${c.speciess!.name.toString()} e o minimo pra evoluir é${c.evolvesTo![0].evolutionDetails![0].minLevel}');
-      log('o 2  pokemon é ${c.evolvesTo![0].speciess!.name} e o minimo pra evoluir é${c.evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel}');
-      log('o 3  pokemon é ${c.evolvesTo![0].evolvesTo![0].speciess!.name} e o minimo pra evoluir é${c.evolvesTo![0].evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel}');
+      // log(c.speciess!.name.toString()); //priemira
+      // log(c.evolvesTo![0].speciess!.name.toString()); //segunda eolution
+      // log(c.evolvesTo![0].evolvesTo![0].speciess!.name
+      //     .toString()); //primeira evolution
+      // log('o 1 pokemon é ${c.speciess!.name.toString()} e o minimo pra evoluir é');
+      // log('o 2  pokemon é ${c.evolvesTo![0].speciess!.name} e o minimo pra evoluir é${c.evolvesTo![0].evolutionDetails![0].minLevel}');
+      // log('o 3  pokemon é ${c.evolvesTo![0].evolvesTo![0].speciess!.name} e o minimo pra evoluir é ${c.evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel}');
 
 //============================================================================
       evolutions.add(PokeEvolution(
           minLevel: c.evolvesTo![0].evolutionDetails![0].minLevel.toString(),
-          pokename: c.speciess!.name.toString()));
+          pokename: c.evolvesTo![0].speciess!.name!));
 
       evolutions.add(PokeEvolution(
           minLevel: c.evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel
               .toString(),
-          pokename: c.evolvesTo![0].speciess!.name.toString()));
+          pokename: c.evolvesTo![0].evolvesTo![0].speciess!.name!));
     }
 
     return ReturnApiList(list: evolutions, msg: 'Erro ao Buscar Evoluções');
@@ -199,6 +199,19 @@ class PokemonServices extends PokedexInterface {
     }
 
     return pokemon;
+  }
+
+  @override
+  Future<PokeV2outherinfo> outhernfopoke({required String index}) async {
+    final dio = Dio();
+    dynamic outherinfo;
+    var response = await dio.get('https://pokeapi.co/api/v2/pokemon/$index');
+    var p = response.data as Map<String, dynamic>;
+    if (response.statusCode == 200) {
+      var poke = PokeV2outherinfo.fromJson(p);
+      outherinfo = poke;
+    }
+    return outherinfo;
   }
 
   //
