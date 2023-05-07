@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/infopoke_widget.dart';
@@ -11,9 +9,9 @@ import '../core/theme/localepokemon.dart';
 import '../core/widgets/evolution_pokemon_widget.dart';
 import '../core/widgets/poke_stats.dart';
 import '../core/widgets/secundari_infopoke_widget.dart';
+import '../model/location_poke_area.dart';
 import '../model/poke_evolution.dart';
 import '../model/pokev2model.dart';
-import '../model/spaw_pokemon.dart';
 import '../services/pokemon_services.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -41,7 +39,7 @@ class _DetailsPageState extends State<DetailsPage> {
   String erroMensseger = '';
   bool leading = true;
   List<PokeEvolution> evolutions = [];
-  List<LocationArea> localization = [];
+  List<LocatioArea> localization = [];
   String msg = '';
 
 //retorna todas a infomrações sobre pokemons
@@ -70,7 +68,7 @@ class _DetailsPageState extends State<DetailsPage> {
   getlocalpoke(id) {
     PokemonServices().gettypepokelocalizatio(id).then((value) {
       setState(() {
-        localization = value.list as List<LocationArea>;
+        localization = value.list as List<LocatioArea>;
       });
     }).catchError((onError) {
       setState(() {
@@ -150,7 +148,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 )),
                             IconButton(
                                 onPressed: () {
-                                  outhernfopoke(i: widget.id.toString());
+                                  getlocalpoke(widget.id);
                                 },
                                 icon: const Icon(
                                   Icons.bug_report,

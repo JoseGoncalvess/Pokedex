@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:pokedexx/model/evolutionmodel.dart';
 import 'package:pokedexx/model/pokev2model.dart';
-import 'package:pokedexx/model/spaw_pokemon.dart';
 import 'package:pokedexx/services/pokedex_interface.dart.dart';
 import '../core/theme/links_base.dart';
 import '../model/gerationpomeon_model.dart';
+import '../model/location_poke_area.dart';
 import '../model/poke_evolution.dart';
 
 class PokemonServices extends PokedexInterface {
@@ -35,19 +35,15 @@ class PokemonServices extends PokedexInterface {
   @override
   Future<ReturnApiList> gettypepokelocalizatio(int id) async {
     final dio = Dio();
-    List<LocationArea> localization = [];
+    List<LocatioArea> localization = [];
 
-    String baseUrl = 'https://pokeapi.co/api/v2/pokemon/$id/encounters';
+    String baseUrl = 'https://pokeapi.co/api/v2/location/$id/';
     var response = await dio.get(baseUrl);
 
     if (response.statusCode == 200) {
-      var lista = response.data;
-
-      for (var element in lista) {
-        var item = LocationArea.fromJson(element['location_area']);
-
-        localization.add(item);
-      }
+      var c = response.data;
+      localization.add(LocatioArea.fromJson(c));
+      log(localization.first.name.toString());
     }
 
     return ReturnApiList(list: localization, msg: 'ops');
