@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../model/evolutionmodel.dart';
 import '../services/pokemon_services.dart';
@@ -11,22 +14,21 @@ class PAgetest extends StatefulWidget {
 
 class PAgetestState extends State<PAgetest> {
   List<EvolutionDetail> list = [EvolutionDetail(minHappiness: 0)];
+
   String msg = '';
-  getpoke() {
-    PokemonServices().gettypepokeevolution(3).then((value) {
-      setState(() {
-        list = value.list as List<EvolutionDetail>;
-      });
-    }).catchError((onError) {
-      setState(() {
-        msg = "DEU ERRO E FOI ISSO>>> $onError";
-      });
+  getpoke(String name) async {
+    final dio = Dio();
+    var response = await dio
+        .get('https://pokeapi.co/api/v2/pokemon-species/${name.toLowerCase()}');
+    var corpo = response.data as Map<String, dynamic>;
+    setState(() {
+      msg = corpo['evolution_chain']['url'].toString();
     });
   }
 
   @override
   void initState() {
-    getpoke();
+    // getpoke();
 
     super.initState();
   }
@@ -39,13 +41,16 @@ class PAgetestState extends State<PAgetest> {
       ),
       body: Center(
         child: GestureDetector(
-            onTap: () => getpoke(),
+            onTap: () {
+              PokemonServices().getpokeSpecie(pokename: 'bulbasaur');
+              // getpoke('pichu');
+            },
             child: Container(
                 color: Colors.amber,
                 alignment: Alignment.center,
                 height: 100,
                 width: 300,
-                child: Text('ok'))),
+                child: Text(msg))),
       ),
     );
   }

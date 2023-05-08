@@ -4,7 +4,8 @@ abstract class PokedexInterface {
   //metodo que pegar todos os pokemon
   Future<ReturnApiList> gettypepokemoninfo(int id);
   Future<ReturnApiList> gettypepokelocalizatio(int id);
-  Future<ReturnApiList> gettypepokeevolution(int id);
+  Future getpokeSpecie({required String pokename});
+  Future<ReturnApiList> gettypepokeevolution({required String pokename});
   Future<ReturnApiList> getpokegeration(int index);
   Future<PokemonreturnV2> getpokemons(String url);
   Future<PokemonreturnV2> getpokemonforgeration(List geration, int pointstart);

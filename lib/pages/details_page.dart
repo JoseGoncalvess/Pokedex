@@ -85,9 +85,20 @@ class _DetailsPageState extends State<DetailsPage> {
         });
   }
 
+  evolutionspoke({required int id}) {
+    PokemonServices()
+        .gettypepokeevolution(pokename: widget.name)
+        .then((value) => {
+              setState(() {
+                evolutions = value.list as List<PokeEvolution>;
+              })
+            });
+  }
+
   @override
   void initState() {
     outhernfopoke(i: widget.id.toString());
+    evolutionspoke(id: widget.id);
     getpokeinfo(index: widget.id);
     getlocalpoke(widget.id);
     transition();
@@ -148,7 +159,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 )),
                             IconButton(
                                 onPressed: () {
-                                  getlocalpoke(widget.id);
+                                  evolutionspoke(id: widget.id);
                                 },
                                 icon: const Icon(
                                   Icons.bug_report,

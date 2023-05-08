@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/model/pokev2model.dart';
+import '../../model/poke_evolution.dart';
 import '../theme/backgroud_color.dart';
 import '../theme/gifimage_pokemon.dart';
 
@@ -11,7 +12,7 @@ class EvolutionPokemonWidget extends StatefulWidget {
       required this.evolutions});
 
   final List<Type> types;
-  final List<dynamic> evolutions;
+  final List<PokeEvolution> evolutions;
   final int id;
 
   @override
@@ -56,11 +57,11 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
                               height: MediaQuery.of(context).size.height * 0.15,
                               child: Image.network(
                                 GifimagePokemon()
-                                    .getimag(widget.evolutions[index].name),
+                                    .getimag(widget.evolutions[index].pokename),
                                 fit: BoxFit.contain,
                               ),
                             ),
-                            Text(widget.evolutions[index].name,
+                            Text(widget.evolutions[index].pokename,
                                 style: TextStyle(
                                     fontSize:
                                         MediaQuery.of(context).size.width *

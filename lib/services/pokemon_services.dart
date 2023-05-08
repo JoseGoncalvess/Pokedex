@@ -52,12 +52,29 @@ class PokemonServices extends PokedexInterface {
 //
 //
 //
+//RETORNA O LINK PARA O GETEVOLUTION
   @override
-  Future<ReturnApiList> gettypepokeevolution(int id) async {
+  Future getpokeSpecie({required String pokename}) async {
     final dio = Dio();
+    String link;
+    var response = await dio.get(
+        'https://pokeapi.co/api/v2/pokemon-species/${pokename.toLowerCase()}');
+    var corpo = response.data as Map<String, dynamic>;
+    link = corpo['evolution_chain']['url'].toString();
+    log(link.toString());
+    return link;
+  }
+
+  //
+  //
+  //
+  @override
+  Future<ReturnApiList> gettypepokeevolution({required String pokename}) async {
+    final dio = Dio();
+    var menssagem = 'Erro ao Buscar Evoluções';
+    var poke = await getpokeSpecie(pokename: pokename);
     List<PokeEvolution> evolutions = [];
-    String evolut = 'https://pokeapi.co/api/v2/evolution-chain/$id/';
-    var response = await dio.get(evolut);
+    var response = await dio.get(poke.toString());
 
     if (response.statusCode == 200) {
       var corpo = response.data as Map<String, dynamic>;
@@ -75,17 +92,29 @@ class PokemonServices extends PokedexInterface {
       // log('o 3  pokemon é ${c.evolvesTo![0].evolvesTo![0].speciess!.name} e o minimo pra evoluir é ${c.evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel}');
 
 //============================================================================
-      evolutions.add(PokeEvolution(
-          minLevel: c.evolvesTo![0].evolutionDetails![0].minLevel.toString(),
-          pokename: c.evolvesTo![0].speciess!.name!));
+      if (corpo['chain']['evolves_to'] != []) {
+        //ADD PRIMEIRO POKEMON
+        evolutions.add(
+            PokeEvolution(minLevel: 'Captura', pokename: c.speciess!.name!));
 
-      evolutions.add(PokeEvolution(
-          minLevel: c.evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel
-              .toString(),
-          pokename: c.evolvesTo![0].evolvesTo![0].speciess!.name!));
+        //ADD 2 POEKEMON
+        evolutions.add(PokeEvolution(
+            minLevel: c.evolvesTo![0].evolutionDetails![0].minLevel.toString(),
+            pokename: c.evolvesTo![0].speciess!.name!));
+
+//ADD 3 ] POKEMON
+        evolutions.add(PokeEvolution(
+            minLevel: c
+                .evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel
+                .toString(),
+            pokename: c.evolvesTo![0].evolvesTo![0].speciess!.name!));
+      } else {
+        evolutions = [];
+        menssagem = 'Pokemon nõa possui evoluções';
+      }
     }
 
-    return ReturnApiList(list: evolutions, msg: 'Erro ao Buscar Evoluções');
+    return ReturnApiList(list: evolutions, msg: menssagem);
   }
 
   @override
