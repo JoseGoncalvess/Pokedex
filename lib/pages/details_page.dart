@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/infopoke_widget.dart';
@@ -31,7 +30,6 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  PageController ControllePage = PageController(initialPage: 0, keepPage: true);
   String weight = '';
   String height = '';
   List<Stat> pokemonstat = [];
@@ -218,7 +216,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                     .toList(),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height * 0.54,
                               child: PageView(

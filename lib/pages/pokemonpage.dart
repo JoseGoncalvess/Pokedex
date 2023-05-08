@@ -40,7 +40,7 @@ class _PagepokemonState extends State<Pagepokemon> {
                 loading = true;
               })
             })
-        .catchError((onError) => msg = onError.toString());
+        .catchError((onError) => msg = onError);
   }
 
   getpoketime() async {
@@ -87,23 +87,25 @@ class _PagepokemonState extends State<Pagepokemon> {
           ),
         ),
         actions: [
-          IconButton(
-              onPressed: () {
-                setState(() {
-                  layout = !layout;
-                });
-              },
-              icon: layout
-                  ? Icon(
-                      Icons.grid_view_sharp,
-                      color: Colors.grey.withOpacity(0.8),
-                      size: 30,
-                    )
-                  : Icon(
-                      Icons.list_rounded,
-                      color: Colors.grey.withOpacity(0.8),
-                      size: 30,
-                    ))
+          loading == false
+              ? const Icon(Icons.keyboard_double_arrow_down_sharp)
+              : IconButton(
+                  onPressed: () {
+                    setState(() {
+                      layout = !layout;
+                    });
+                  },
+                  icon: layout
+                      ? Icon(
+                          Icons.grid_view_sharp,
+                          color: Colors.grey.withOpacity(0.8),
+                          size: 30,
+                        )
+                      : Icon(
+                          Icons.list_rounded,
+                          color: Colors.grey.withOpacity(0.8),
+                          size: 30,
+                        ))
         ],
       ),
       body: Container(

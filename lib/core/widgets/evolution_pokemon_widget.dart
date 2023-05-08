@@ -21,10 +21,9 @@ class EvolutionPokemonWidget extends StatefulWidget {
 }
 
 class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
-  ScrollController Scrollcontolle = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.35,
       // color: Colors.red,
@@ -66,7 +65,7 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
                                 color: Colors.grey.withOpacity(0.8),
                                 fontFamily: 'Nunito'),
                           ),
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width * 0.25,
                             height: MediaQuery.of(context).size.height * 0.17,
                             child: Image.network(
