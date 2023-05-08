@@ -123,6 +123,7 @@ class CustonseachdelegateState extends State<Custonseachdelegate> {
                                   child: Center(
                                       child: CircularProgressIndicator()),
                                 );
+                                break;
 
                               default:
                                 if (snapshot.hasError) {
