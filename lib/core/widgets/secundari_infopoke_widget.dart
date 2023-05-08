@@ -4,12 +4,8 @@ import '../theme/backgroud_color.dart';
 
 class SecundariinfopokeWidget extends StatefulWidget {
   const SecundariinfopokeWidget(
-      {super.key,
-      required this.type,
-      required this.candy,
-      required this.localization});
+      {super.key, required this.type, required this.localization});
   final List<Type> type;
-  final String candy;
   final String localization;
 
   @override
@@ -24,45 +20,23 @@ class _SecundariinfopokeWidgetState extends State<SecundariinfopokeWidget> {
       width: MediaQuery.of(context).size.width,
       child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
+              width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.10,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Flexible(
-                    child: Text(widget.candy,
+                    child: Text(widget.localization,
                         style: TextStyle(
                             fontSize: MediaQuery.of(context).size.width * 0.05,
                             fontWeight: FontWeight.w900,
                             color: Backgroud().getBackgroudType(
-                                type: widget.type[0].type.name.toString()),
+                                type: widget.type[0].toString()),
                             fontFamily: 'Nunito')),
                   ),
-                  Text('Doce'.toUpperCase(),
-                      style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width * 0.03,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.grey.withOpacity(0.5),
-                          fontFamily: 'Nunito'))
-                ],
-              ),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height * 0.10,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(widget.localization,
-                      style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width * 0.05,
-                          fontWeight: FontWeight.w900,
-                          color: Backgroud().getBackgroudType(
-                              type: widget.type[0].toString()),
-                          fontFamily: 'Nunito')),
                   Text('Localização'.toUpperCase(),
                       style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width * 0.03,

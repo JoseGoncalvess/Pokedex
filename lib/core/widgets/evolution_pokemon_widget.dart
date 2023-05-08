@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/model/pokev2model.dart';
 import '../../model/poke_evolution.dart';
@@ -20,11 +21,13 @@ class EvolutionPokemonWidget extends StatefulWidget {
 }
 
 class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
+  ScrollController Scrollcontolle = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: MediaQuery.of(context).size.height * 0.35,
+      // color: Colors.red,
       child: Column(
         children: [
           Text(
@@ -40,49 +43,56 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: widget.evolutions.length,
+              dragStartBehavior: DragStartBehavior.start,
               itemBuilder: (context, index) {
                 return SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.4,
+                  width: MediaQuery.of(context).size.width * 0.7,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      SizedBox(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.18,
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              child: Image.network(
-                                GifimagePokemon()
-                                    .getimag(widget.evolutions[index].pokename),
-                                fit: BoxFit.contain,
-                              ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            widget.evolutions[index].minLevel == 'Ovo'
+                                ? 'Nesce de Ovo'
+                                : 'Lv. min: ${widget.evolutions[index].minLevel.toUpperCase()}',
+                            style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.04,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.grey.withOpacity(0.8),
+                                fontFamily: 'Nunito'),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.25,
+                            height: MediaQuery.of(context).size.height * 0.17,
+                            child: Image.network(
+                              GifimagePokemon()
+                                  .getimag(widget.evolutions[index].pokename),
+                              fit: BoxFit.fill,
                             ),
-                            Text(widget.evolutions[index].pokename,
-                                style: TextStyle(
-                                    fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            0.04,
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.grey.withOpacity(0.8),
-                                    fontFamily: 'Nunito')),
-                          ],
-                        ),
+                          ),
+                          Text(
+                            widget.evolutions[index].pokename.toUpperCase(),
+                            style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.05,
+                                fontWeight: FontWeight.w900,
+                                color: Backgroud().getBackgroudType(
+                                    type: widget.types[0].type.name.toString()),
+                                fontFamily: 'Nunito'),
+                          )
+                        ],
                       ),
-                      // Icon(
-                      //   Icons.arrow_right_alt_rounded,
-                      //   color:
-                      //       Backgroud().getBackgroudType(type: widget.types[0]),
-                      // )
                     ],
                   ),
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );

@@ -94,8 +94,8 @@ class PokemonServices extends PokedexInterface {
 //============================================================================
       if (corpo['chain']['evolves_to'] != []) {
         //ADD PRIMEIRO POKEMON
-        evolutions.add(
-            PokeEvolution(minLevel: 'Captura', pokename: c.speciess!.name!));
+        evolutions
+            .add(PokeEvolution(minLevel: 'Ovo', pokename: c.speciess!.name!));
 
         //ADD 2 POEKEMON
         evolutions.add(PokeEvolution(

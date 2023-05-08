@@ -179,7 +179,6 @@ class _PagepokemonState extends State<Pagepokemon> {
                                               id: pokemonv2[index].id!,
                                               name: pokemonv2[index].name!,
                                               types: pokemonv2[index].types!,
-                                              candy: 'cady',
                                             )),
                                   );
                                 },
