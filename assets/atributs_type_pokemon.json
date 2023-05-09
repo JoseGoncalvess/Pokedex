@@ -1,7 +1,7 @@
 {
     "steel":{
         "Vantagem":["fairy", "ice","rock"],
-        "Desvantagem":["fire","ground","fighthing"]
+        "Desvantagem":["fire","ground","fighting"]
     },
      "water":{
         "Vantagem":["fire", "ground","rock"],
@@ -16,7 +16,7 @@
             "Desvantagem":["ground"]
         },
     "fairy":{
-            "Vantagem":["dragon", "fighthing","dark"],
+            "Vantagem":["dragon", "fighting","dark"],
             "Desvantagem":["steel","poison"]
         },
     "ghost":{
@@ -29,7 +29,7 @@
     },
     "ice":{
         "Vantagem":["dragon", "grass","ground","flying"],
-        "Desvantagem":["steel","fire","fighthing","rock"]
+        "Desvantagem":["steel","fire","fighting","rock"]
     },
     "bug":{
         "Vantagem":["grass", "psychic","dark"],
@@ -41,11 +41,11 @@
     },
     "normal":{
         "Vantagem":[],
-        "Desvantagem":["fighthing"]
+        "Desvantagem":["fighting"]
     },
     "groud":{
         "Vantagem":["fire", "ice","flying","bug"],
-        "Desvantagem":["water","steel","fighthing","grass","ground"]
+        "Desvantagem":["water","steel","fighting","grass","ground"]
     },
     "grass":{
         "Vantagem":["water", "ground","rock"],
@@ -68,16 +68,16 @@
         "Desvantagem":["psychic","ground"]
     },
     "flying":{
-        "Vantagem":["bug", "fighthing","grass"],
+        "Vantagem":["bug", "fighting","grass"],
         "Desvantagem":["electric","rock","ice"]
     },
     "darck":{
         "Vantagem":["ghost", "psychic"],
-        "Desvantagem":["fairy","bug","fighthing"]
+        "Desvantagem":["fairy","bug","fighting"]
     },
     "rock":{
         "Vantagem":["fire", "ice","bug","flying"],
-        "Desvantagem":["steel","water","fighthing","grass","ground" ]
+        "Desvantagem":["steel","water","fighting","grass","ground" ]
     }
     
    

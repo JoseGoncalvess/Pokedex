@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/model/pokev2model.dart';
+import '../../../pages/details_page/details_page.dart';
 import '../pokemoncard.dart';
 
 class Cunstomlitseach extends StatefulWidget {
@@ -25,7 +26,16 @@ class CunstomlitseachState extends State<Cunstomlitseach> {
           : Pokemoncard(
               id: widget.pokemons[index].id.toString(),
               name: widget.pokemons[index].name!,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetailsPage(
+                              id: widget.pokemons[index].id!,
+                              name: widget.pokemons[index].name!,
+                              types: widget.pokemons[index].types!,
+                            )));
+              },
               type: widget.pokemons[index].types!,
             ),
     );

@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../model/pokev2model.dart';
+import '../../../pages/details_page/details_page.dart';
 import '../../../services/pokemon_services.dart';
 import '../pokemoncard.dart';
 import 'cunstomlitseach.dart';
@@ -186,8 +187,21 @@ class CustonseachdelegateState extends State<Custonseachdelegate> {
                                       Pokemoncard(
                                         id: snapshot.data!.id.toString(),
                                         name: snapshot.data!.name!,
-                                        onPressed: () {},
                                         type: snapshot.data!.types!,
+                                        onPressed: () {
+                                          print('opa');
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DetailsPage(
+                                                        id: snapshot.data!.id!,
+                                                        name: snapshot
+                                                            .data!.name!,
+                                                        types: snapshot
+                                                            .data!.types!,
+                                                      )));
+                                        },
                                       ),
                                     ],
                                   ),

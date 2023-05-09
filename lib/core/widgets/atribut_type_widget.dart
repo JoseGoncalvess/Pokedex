@@ -26,13 +26,13 @@ class AtributTypeWidget extends StatelessWidget {
                   image: DecorationImage(
                       fit: BoxFit.contain,
                       image: AssetImage(
-                        'assets/img/icons/$typename.png',
+                        'assets/img/icons/${typename.toLowerCase()}.png',
                       ))),
             ),
           ),
           Flexible(
             child: Text(
-              TraductTypePoker().traducttype(typepoke: typename),
+              TraductTypePoker().traducttype(typepoke: typename.toLowerCase()),
               style: TextStyle(
                   fontSize: MediaQuery.of(context).size.width * 0.06,
                   fontWeight: FontWeight.w900,
