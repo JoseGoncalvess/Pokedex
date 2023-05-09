@@ -40,8 +40,8 @@ class PAgetestState extends State<PAgetest> {
       body: Center(
         child: GestureDetector(
             onTap: () {
-              PokemonServices().getpokeSpecie(pokename: 'bulbasaur');
-              // getpoke('pichu');
+              PokemonServices().getpokeSpecie(pokename: 'spearow');
+              // getpoke('spearow');
             },
             child: Container(
                 color: Colors.amber,

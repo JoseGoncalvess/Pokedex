@@ -140,9 +140,10 @@ class _PokemoncardState extends State<Pokemoncard> {
                       width: MediaQuery.of(context).size.width * 0.45,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(
-                                GifimagePokemon().getimag(widget.name),
-                                scale: 0.55)),
+                          image: NetworkImage(
+                              GifimagePokemon().getimag(widget.name),
+                              scale: 0.55),
+                        ),
                       ),
                     ),
             ),

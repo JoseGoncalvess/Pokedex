@@ -91,8 +91,14 @@ class PokemonServices extends PokedexInterface {
       // log('o 2  pokemon é ${c.evolvesTo![0].speciess!.name} e o minimo pra evoluir é${c.evolvesTo![0].evolutionDetails![0].minLevel}');
       // log('o 3  pokemon é ${c.evolvesTo![0].evolvesTo![0].speciess!.name} e o minimo pra evoluir é ${c.evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel}');
 
+//VERIFICAÇÃO DE DISPONIBILIDADE DAS EVOLUÇÕES
+      log('a PRIMEIRA EVELUÇÃO ESTA VAZIA ${c.evolvesTo!.isEmpty.toString()}');
+      log('a TERCEIRA EVOLUÇÃO ESTA FAZIA ${c.evolvesTo![0].evolvesTo!.isEmpty.toString()}');
 //============================================================================
-      if (corpo['chain']['evolves_to'] != []) {
+      if (c.evolvesTo!.isEmpty) {
+        evolutions = [];
+        menssagem = 'Pokemon nõa possui evoluções';
+      } else {
         //ADD PRIMEIRO POKEMON
         evolutions
             .add(PokeEvolution(minLevel: 'Ovo', pokename: c.speciess!.name!));
@@ -102,15 +108,14 @@ class PokemonServices extends PokedexInterface {
             minLevel: c.evolvesTo![0].evolutionDetails![0].minLevel.toString(),
             pokename: c.evolvesTo![0].speciess!.name!));
 
-//ADD 3 ] POKEMON
-        evolutions.add(PokeEvolution(
-            minLevel: c
-                .evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel
-                .toString(),
-            pokename: c.evolvesTo![0].evolvesTo![0].speciess!.name!));
-      } else {
-        evolutions = [];
-        menssagem = 'Pokemon nõa possui evoluções';
+        //ADD 3 ] POKEMON
+        if (c.evolvesTo![0].evolvesTo!.isNotEmpty) {
+          evolutions.add(PokeEvolution(
+              minLevel: c
+                  .evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel
+                  .toString(),
+              pokename: c.evolvesTo![0].evolvesTo![0].speciess!.name!));
+        }
       }
     }
 
