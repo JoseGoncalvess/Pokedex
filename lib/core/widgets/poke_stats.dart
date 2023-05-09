@@ -23,8 +23,7 @@ class _PokeStatsState extends State<PokeStats> {
   @override
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.05,
       child: Row(
@@ -35,7 +34,6 @@ class _PokeStatsState extends State<PokeStats> {
             width: MediaQuery.of(context).size.width * 0.01,
           ),
           Container(
-              color: Colors.red,
               alignment: Alignment.centerLeft,
               height: MediaQuery.of(context).size.height * 0.06,
               width: MediaQuery.of(context).size.width * 0.2,

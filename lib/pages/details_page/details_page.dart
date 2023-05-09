@@ -5,6 +5,7 @@ import 'package:pokedexx/pages/details_page/detailstype_poker.dart';
 import '../../core/helpers/clip_container.dart';
 import '../../core/theme/gifimage_pokemon.dart';
 import '../../core/theme/localepokemon.dart';
+import '../../core/widgets/atribut_type_widget.dart';
 import '../../core/widgets/evolution_pokemon_widget.dart';
 import '../../core/widgets/poke_stats.dart';
 import '../../core/widgets/secundari_infopoke_widget.dart';
@@ -306,7 +307,9 @@ class _DetailsPageState extends State<DetailsPage> {
                                           ),
                                           Row(
                                             children: widget.types
-                                                .map((e) => Text(e.type.name))
+                                                .map((e) => AtributTypeWidget(
+                                                      typename: e.type.name,
+                                                    ))
                                                 .toList(),
                                           ),
                                           Text(
@@ -326,7 +329,9 @@ class _DetailsPageState extends State<DetailsPage> {
                                           ),
                                           Row(
                                             children: widget.types
-                                                .map((e) => Text(e.type.name))
+                                                .map((e) => AtributTypeWidget(
+                                                      typename: e.type.name,
+                                                    ))
                                                 .toList(),
                                           ),
                                           Container(

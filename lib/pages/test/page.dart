@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../core/theme/backgroud_color.dart';
 import '../../core/widgets/poke_stats.dart';
 import '../../model/atributi_type_model.dart';
 import '../../model/evolutionmodel.dart';
@@ -35,21 +36,25 @@ class PAgetestState extends State<PAgetest> {
       appBar: AppBar(
         title: const Text(''),
       ),
-      body: GestureDetector(
-          onTap: () {
-            // PokemonServices().getpokeSpecie(pokename: 'spearow');
-            getpoke(type: 'water');
-          },
-          child: Container(
-              color: Colors.amber,
-              alignment: Alignment.center,
-              height: 100,
-              width: 300,
-              child: Column(
-                children: [
-                  Text(msg),
-                ],
-              ))),
+      body: Column(
+        children: [
+          GestureDetector(
+              onTap: () {
+                // PokemonServices().getpokeSpecie(pokename: 'spearow');
+                getpoke(type: 'water');
+              },
+              child: Container(
+                  color: Colors.amber,
+                  alignment: Alignment.center,
+                  height: 100,
+                  width: 300,
+                  child: Column(
+                    children: [
+                      Text(msg),
+                    ],
+                  ))),
+        ],
+      ),
     );
   }
 }
