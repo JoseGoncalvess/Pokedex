@@ -1,75 +1,83 @@
 {
     "steel":{
-        "Vantagem":["Fada", "Gelo","Pedra"],
-        "Desvantagem":["Fogo","Terra","Lutador"]
+        "Vantagem":["fairy", "ice","rock"],
+        "Desvantagem":["fire","ground","fighthing"]
     },
      "water":{
-        "Vantagem":["Fogo", "Terra","Pedra"],
-        "Desvantagem":["Elétrico","Planta"]
+        "Vantagem":["fire", "ground","rock"],
+        "Desvantagem":["electric","grass"]
     },
     "dragon":{
-        "Vantagem":["Dragão" ],
-        "Desvantagem":["Dragão","Fada","Gelo"]
+        "Vantagem":["dragon" ],
+        "Desvantagem":["dragon","fairy","ice"]
         },
     "electric":{
-            "Vantagem":["Água", "Voador"],
-            "Desvantagem":["Terra"]
+            "Vantagem":["water", "flying"],
+            "Desvantagem":["ground"]
         },
     "fairy":{
-            "Vantagem":["Dragão", "Lutador","Sombrio"],
-            "Desvantagem":["Metal","Veneno"]
+            "Vantagem":["dragon", "fighthing","dark"],
+            "Desvantagem":["steel","poison"]
         },
     "ghost":{
-            "Vantagem":["Fantasma", "Psíquico"],
-            "Desvantagem":["Fantasma","Sombrio"]
+            "Vantagem":["ghost", "psychic"],
+            "Desvantagem":["ghost","dark"]
         },
     "fire":{
-        "Vantagem":["Metal", "Gelo","Planta","Inseto"],
-        "Desvantagem":["Água","Pedra","Terra"]
+        "Vantagem":["steel", "ice","grass","bug"],
+        "Desvantagem":["water","rock","ground"]
     },
     "ice":{
-        "Vantagem":["Dragão", "Planta","Terra","Voador"],
-        "Desvantagem":["Metal","Fogo","Lutador","Pedra"]
+        "Vantagem":["dragon", "grass","ground","flying"],
+        "Desvantagem":["steel","fire","fighthing","rock"]
     },
     "bug":{
-        "Vantagem":["Planta", "Psíquico","Sombrio"],
-        "Desvantagem":["Fogo","Pedra","Voador"]
+        "Vantagem":["grass", "psychic","dark"],
+        "Desvantagem":["fire","rock","flying"]
     },
     "fighting":{
-        "Vantagem":["Metal", "Gelo","Normal","Pedra","Sombrio"],
-        "Desvantagem":["Fada","Psíquico","Voador"]
+        "Vantagem":["steel", "ice","Normal","rock","dark"],
+        "Desvantagem":["fairy","psychic","flying"]
     },
     "normal":{
         "Vantagem":[],
-        "Desvantagem":["Lutador"]
+        "Desvantagem":["fighthing"]
     },
     "groud":{
-        "Vantagem":["Fogo", "Gelo","Voador","Inseto"],
-        "Desvantagem":["Água","Metal","Lutador","Planta","Terra"]
+        "Vantagem":["fire", "ice","flying","bug"],
+        "Desvantagem":["water","steel","fighthing","grass","ground"]
     },
     "grass":{
-        "Vantagem":["Água", "Terra","Pedra"],
-        "Desvantagem":["Gelo","Fogo","Inseto","Sombrio","Voador"]
+        "Vantagem":["water", "ground","rock"],
+        "Desvantagem":["ice","fire","bug","dark","flying"]
     },
     "psychic":{
-        "Vantagem":["Fogo","Sombrio"],
-        "Desvantagem":["Inseto","Sombrio","Fantasma"]
+        "Vantagem":["fire","dark"],
+        "Desvantagem":["bug","dark","ghost"]
     },
     "dark":{
-        "Vantagem":["Fantasma", "Psíquico"],
-        "Desvantagem":["Fada","Fantasma","Sombrio"]
+        "Vantagem":["ghost", "psychic"],
+        "Desvantagem":["fairy","ghost","dark"]
     },
     "ground":{
-        "Vantagem":["Metal", "Elétrico","Fogo","Pedra","Fantasma"],
-        "Desvantagem":["Água","Gelo","Planta"]
+        "Vantagem":["steel", "electric","fire","rock","ghost"],
+        "Desvantagem":["water","ice","grass"]
     },
     "poison":{
-        "Vantagem":["Fada","Planta"],
-        "Desvantagem":["Psíquico","Terra"]
+        "Vantagem":["fairy","grass"],
+        "Desvantagem":["psychic","ground"]
     },
     "flying":{
-        "Vantagem":["Inseto", "Lutador","Planta"],
-        "Desvantagem":["Elétrico","Pedra","Gelo"]
+        "Vantagem":["bug", "fighthing","grass"],
+        "Desvantagem":["electric","rock","ice"]
+    },
+    "darck":{
+        "Vantagem":["ghost", "psychic"],
+        "Desvantagem":["fairy","bug","fighthing"]
+    },
+    "rock":{
+        "Vantagem":["fire", "ice","bug","flying"],
+        "Desvantagem":["steel","water","fighthing","grass","ground" ]
     }
     
    

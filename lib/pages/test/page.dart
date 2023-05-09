@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../core/theme/backgroud_color.dart';
+import '../../core/widgets/atribut_type_widget.dart';
 import '../../core/widgets/poke_stats.dart';
 import '../../model/atributi_type_model.dart';
 import '../../model/evolutionmodel.dart';
@@ -53,6 +54,9 @@ class PAgetestState extends State<PAgetest> {
                       Text(msg),
                     ],
                   ))),
+          AtributTypeWidget(
+            typename: 'ghost',
+          )
         ],
       ),
     );

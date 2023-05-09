@@ -228,7 +228,7 @@ class PokemonServices extends PokedexInterface {
     var p = response.data as Map<String, dynamic>;
     if (response.statusCode == 200) {
       var poke = Pokemon.fromJson(p);
-      pokemon = poke;
+      pokemon = poke as List<AtributsType>;
     }
 
     return pokemon;
@@ -248,13 +248,13 @@ class PokemonServices extends PokedexInterface {
   }
 
   @override
-  Future getartributs({required String type}) async {
-    List<dynamic> atributos = [];
+  Future<AtributsType> getartributs({required String type}) async {
+    var atributos;
     final String jsonfile =
         await rootBundle.loadString('assets/atributs_type_pokemon.json');
     final Map map = jsonDecode(jsonfile) as Map<String, dynamic>;
     final response = AtributsType.fromJson(map[type]);
-    atributos.add(response);
+    atributos = response;
 
     return atributos;
   }

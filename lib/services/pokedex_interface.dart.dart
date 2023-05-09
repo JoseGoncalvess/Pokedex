@@ -1,3 +1,5 @@
+import 'package:pokedexx/model/atributi_type_model.dart';
+
 import '../model/pokev2model.dart';
 
 abstract class PokedexInterface {
@@ -14,7 +16,7 @@ abstract class PokedexInterface {
   Future<Pokemon> seachpokemon(String poke);
   Future<Pokemon> completlistpokemon({required int poke});
   Future<PokeV2outherinfo> outhernfopoke({required String index});
-  Future getartributs({required String type});
+  Future<AtributsType> getartributs({required String type});
 }
 
 class ReturnApiList {

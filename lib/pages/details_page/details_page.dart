@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/infopoke_widget.dart';
+import 'package:pokedexx/model/atributi_type_model.dart';
 import 'package:pokedexx/pages/details_page/detailstype_poker.dart';
 import '../../core/helpers/clip_container.dart';
 import '../../core/theme/gifimage_pokemon.dart';
@@ -38,6 +39,9 @@ class _DetailsPageState extends State<DetailsPage> {
   bool leading = true;
   List<PokeEvolution> evolutions = [];
   List<LocatioArea> localization = [];
+  List<AtributsType> atributo = [];
+  List<String> vantagem = [];
+  List<String> desvantagem = [];
   String msg = '';
 
 //retorna todas a infomrações sobre pokemons
@@ -51,6 +55,17 @@ class _DetailsPageState extends State<DetailsPage> {
         erroMensseger = 'Deu erro aqui $onError';
       });
     });
+  }
+
+  getatributos({required String typename}) {
+    PokemonServices().getartributs(type: typename).then(
+          (value) => {
+            setState(() {
+              vantagem = value.vantagem!;
+              desvantagem = value.desvantagem!;
+            })
+          },
+        );
   }
 
   outhernfopoke({required String i}) {
@@ -100,6 +115,7 @@ class _DetailsPageState extends State<DetailsPage> {
     getpokeinfo(index: widget.id);
     getlocalpoke(widget.id);
     transition();
+    getatributos(typename: widget.types[0].type.name);
 
     super.initState();
   }
@@ -305,12 +321,22 @@ class _DetailsPageState extends State<DetailsPage> {
                                                             .toString()),
                                                 fontFamily: 'Nunito'),
                                           ),
-                                          Row(
-                                            children: widget.types
-                                                .map((e) => AtributTypeWidget(
-                                                      typename: e.type.name,
-                                                    ))
-                                                .toList(),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.06,
+                                            child: ListView.builder(
+                                              scrollDirection: Axis.horizontal,
+                                              itemCount: vantagem.length,
+                                              itemBuilder: (context, index) =>
+                                                  AtributTypeWidget(
+                                                      typename:
+                                                          vantagem[index]),
+                                            ),
                                           ),
                                           Text(
                                             'Desvantagem',
@@ -327,13 +353,6 @@ class _DetailsPageState extends State<DetailsPage> {
                                                             .toString()),
                                                 fontFamily: 'Nunito'),
                                           ),
-                                          Row(
-                                            children: widget.types
-                                                .map((e) => AtributTypeWidget(
-                                                      typename: e.type.name,
-                                                    ))
-                                                .toList(),
-                                          ),
                                           Container(
                                             width: MediaQuery.of(context)
                                                 .size
@@ -341,39 +360,16 @@ class _DetailsPageState extends State<DetailsPage> {
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .height *
-                                                0.2,
-                                            color: Colors.amber,
+                                                0.06,
+                                            child: ListView.builder(
+                                              scrollDirection: Axis.horizontal,
+                                              itemCount: desvantagem.length,
+                                              itemBuilder: (context, index) =>
+                                                  AtributTypeWidget(
+                                                      typename:
+                                                          desvantagem[index]),
+                                            ),
                                           ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.2,
-                                            color: Colors.orange,
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.2,
-                                            color: Colors.blue,
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.2,
-                                            color: Colors.red,
-                                          )
                                         ],
                                       ),
                                     )
