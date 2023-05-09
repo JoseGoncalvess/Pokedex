@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:pokedexx/model/gerationpomeon_model.dart';
-import '../core/custons/custonseachdelegate.dart';
+import 'package:pokedexx/model/geration_pokemon_model.dart';
+import '../core/widgets/custons/custonseachdelegate.dart';
 import '../core/theme/geration_poke_wisget.dart';
 import '../services/pokemon_services.dart';
 import 'homepage.dart';

@@ -6,7 +6,7 @@ import 'package:pokedexx/model/pokev2model.dart';
 import '../core/theme/set_lastpoekom.dart';
 import '../core/widgets/pokemoncard.dart';
 import '../services/pokemon_services.dart';
-import 'details_page.dart';
+import 'details_page/details_page.dart';
 
 class Pagepokemon extends StatefulWidget {
   const Pagepokemon({super.key, required this.geration});

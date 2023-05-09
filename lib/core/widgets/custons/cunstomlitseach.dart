@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/model/pokev2model.dart';
-import '../widgets/pokemoncard.dart';
+import '../pokemoncard.dart';
 
 class Cunstomlitseach extends StatefulWidget {
   const Cunstomlitseach({

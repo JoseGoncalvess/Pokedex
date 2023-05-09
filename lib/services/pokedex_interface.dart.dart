@@ -14,6 +14,7 @@ abstract class PokedexInterface {
   Future<Pokemon> seachpokemon(String poke);
   Future<Pokemon> completlistpokemon({required int poke});
   Future<PokeV2outherinfo> outhernfopoke({required String index});
+  Future getartributs({required String type});
 }
 
 class ReturnApiList {

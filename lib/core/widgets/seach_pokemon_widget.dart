@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../custons/custonseachdelegate.dart';
+import 'custons/custonseachdelegate.dart';
 
 class SeachPokemonWidget extends StatefulWidget {
   const SeachPokemonWidget({

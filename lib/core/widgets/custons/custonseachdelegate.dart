@@ -1,8 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import '../../model/pokev2model.dart';
-import '../../services/pokemon_services.dart';
-import '../widgets/pokemoncard.dart';
+import '../../../model/pokev2model.dart';
+import '../../../services/pokemon_services.dart';
+import '../pokemoncard.dart';
 import 'cunstomlitseach.dart';
 
 class Custonseachdelegate extends StatefulWidget {

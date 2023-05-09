@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/infopoke_widget.dart';
 import 'package:pokedexx/pages/details_page/detailstype_poker.dart';
-import '../core/helpers/clip_container.dart';
-import '../core/theme/gifimage_pokemon.dart';
-import '../core/theme/localepokemon.dart';
-import '../core/widgets/evolution_pokemon_widget.dart';
-import '../core/widgets/poke_stats.dart';
-import '../core/widgets/secundari_infopoke_widget.dart';
-import '../model/location_poke_area.dart';
-import '../model/poke_evolution.dart';
-import '../model/pokev2model.dart';
-import '../services/pokemon_services.dart';
+import '../../core/helpers/clip_container.dart';
+import '../../core/theme/gifimage_pokemon.dart';
+import '../../core/theme/localepokemon.dart';
+import '../../core/widgets/evolution_pokemon_widget.dart';
+import '../../core/widgets/poke_stats.dart';
+import '../../core/widgets/secundari_infopoke_widget.dart';
+import '../../model/location_poke_area.dart';
+import '../../model/poke_evolution.dart';
+import '../../model/pokev2model.dart';
+import '../../services/pokemon_services.dart';
 
 class DetailsPage extends StatefulWidget {
   final String name;
@@ -248,7 +248,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.vertical,
                                       child: Column(
                                         children: [
                                           Text(
@@ -266,22 +267,108 @@ class _DetailsPageState extends State<DetailsPage> {
                                                             .toString()),
                                                 fontFamily: 'Nunito'),
                                           ),
-                                          Expanded(
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.332,
                                             child: ListView.builder(
-                                                itemCount: pokemonstat.length,
-                                                itemBuilder: (context, index) {
-                                                  return PokeStats(
+                                              itemCount: pokemonstat.length,
+                                              itemBuilder: (context, index) =>
+                                                  PokeStats(
                                                       types: widget.types,
                                                       nameStats:
                                                           pokemonstat[index]
                                                               .stat!
-                                                              .name
-                                                              .toString(),
+                                                              .name,
                                                       statsPower:
                                                           pokemonstat[index]
-                                                              .baseStat!);
-                                                }),
+                                                              .baseStat!),
+                                            ),
                                           ),
+                                          Text(
+                                            'Vantagem',
+                                            style: TextStyle(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.06,
+                                                fontWeight: FontWeight.w900,
+                                                color: Backgroud()
+                                                    .getBackgroudType(
+                                                        type: widget
+                                                            .types[0].type.name
+                                                            .toString()),
+                                                fontFamily: 'Nunito'),
+                                          ),
+                                          Row(
+                                            children: widget.types
+                                                .map((e) => Text(e.type.name))
+                                                .toList(),
+                                          ),
+                                          Text(
+                                            'Desvantagem',
+                                            style: TextStyle(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.06,
+                                                fontWeight: FontWeight.w900,
+                                                color: Backgroud()
+                                                    .getBackgroudType(
+                                                        type: widget
+                                                            .types[0].type.name
+                                                            .toString()),
+                                                fontFamily: 'Nunito'),
+                                          ),
+                                          Row(
+                                            children: widget.types
+                                                .map((e) => Text(e.type.name))
+                                                .toList(),
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.2,
+                                            color: Colors.amber,
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.2,
+                                            color: Colors.orange,
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.2,
+                                            color: Colors.blue,
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.2,
+                                            color: Colors.red,
+                                          )
                                         ],
                                       ),
                                     )

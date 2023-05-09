@@ -1,0 +1,76 @@
+{
+    "steel":{
+        "Vantagem":["Fada", "Gelo","Pedra"],
+        "Desvantagem":["Fogo","Terra","Lutador"]
+    },
+     "water":{
+        "Vantagem":["Fogo", "Terra","Pedra"],
+        "Desvantagem":["Elétrico","Planta"]
+    },
+    "dragon":{
+        "Vantagem":["Dragão" ],
+        "Desvantagem":["Dragão","Fada","Gelo"]
+        },
+    "electric":{
+            "Vantagem":["Água", "Voador"],
+            "Desvantagem":["Terra"]
+        },
+    "fairy":{
+            "Vantagem":["Dragão", "Lutador","Sombrio"],
+            "Desvantagem":["Metal","Veneno"]
+        },
+    "ghost":{
+            "Vantagem":["Fantasma", "Psíquico"],
+            "Desvantagem":["Fantasma","Sombrio"]
+        },
+    "fire":{
+        "Vantagem":["Metal", "Gelo","Planta","Inseto"],
+        "Desvantagem":["Água","Pedra","Terra"]
+    },
+    "ice":{
+        "Vantagem":["Dragão", "Planta","Terra","Voador"],
+        "Desvantagem":["Metal","Fogo","Lutador","Pedra"]
+    },
+    "bug":{
+        "Vantagem":["Planta", "Psíquico","Sombrio"],
+        "Desvantagem":["Fogo","Pedra","Voador"]
+    },
+    "fighting":{
+        "Vantagem":["Metal", "Gelo","Normal","Pedra","Sombrio"],
+        "Desvantagem":["Fada","Psíquico","Voador"]
+    },
+    "normal":{
+        "Vantagem":[],
+        "Desvantagem":["Lutador"]
+    },
+    "groud":{
+        "Vantagem":["Fogo", "Gelo","Voador","Inseto"],
+        "Desvantagem":["Água","Metal","Lutador","Planta","Terra"]
+    },
+    "grass":{
+        "Vantagem":["Água", "Terra","Pedra"],
+        "Desvantagem":["Gelo","Fogo","Inseto","Sombrio","Voador"]
+    },
+    "psychic":{
+        "Vantagem":["Fogo","Sombrio"],
+        "Desvantagem":["Inseto","Sombrio","Fantasma"]
+    },
+    "dark":{
+        "Vantagem":["Fantasma", "Psíquico"],
+        "Desvantagem":["Fada","Fantasma","Sombrio"]
+    },
+    "ground":{
+        "Vantagem":["Metal", "Elétrico","Fogo","Pedra","Fantasma"],
+        "Desvantagem":["Água","Gelo","Planta"]
+    },
+    "poison":{
+        "Vantagem":["Fada","Planta"],
+        "Desvantagem":["Psíquico","Terra"]
+    },
+    "flying":{
+        "Vantagem":["Inseto", "Lutador","Planta"],
+        "Desvantagem":["Elétrico","Pedra","Gelo"]
+    }
+    
+   
+}

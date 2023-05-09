@@ -1,11 +1,14 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
 import 'package:pokedexx/model/evolutionmodel.dart';
 import 'package:pokedexx/model/pokev2model.dart';
 import 'package:pokedexx/services/pokedex_interface.dart.dart';
 import '../core/theme/links_base.dart';
-import '../model/gerationpomeon_model.dart';
+import '../model/atributi_type_model.dart';
+import '../model/geration_pokemon_model.dart';
 import '../model/location_poke_area.dart';
 import '../model/poke_evolution.dart';
 
@@ -242,6 +245,18 @@ class PokemonServices extends PokedexInterface {
       outherinfo = poke;
     }
     return outherinfo;
+  }
+
+  @override
+  Future getartributs({required String type}) async {
+    List<dynamic> atributos = [];
+    final String jsonfile =
+        await rootBundle.loadString('assets/atributs_type_pokemon.json');
+    final Map map = jsonDecode(jsonfile) as Map<String, dynamic>;
+    final response = AtributsType.fromJson(map[type]);
+    atributos.add(response);
+
+    return atributos;
   }
 
   //

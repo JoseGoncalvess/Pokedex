@@ -1,11 +1,11 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/model/pokev2model.dart';
-import 'package:pokedexx/pages/page.dart';
+import 'package:pokedexx/pages/test/page.dart';
 import '../core/theme/geration_poke_wisget.dart';
 import '../core/widgets/pokemon_geration_widget.dart';
 import '../core/widgets/seach_pokemon_widget.dart';
-import '../model/gerationpomeon_model.dart';
+import '../model/geration_pokemon_model.dart';
 import '../services/pokemon_services.dart';
 
 class Homepage extends StatefulWidget {
