@@ -114,9 +114,12 @@ class PokemonServices extends PokedexInterface {
         //ADD 3 ] POKEMON
         if (c.evolvesTo![0].evolvesTo!.isNotEmpty) {
           evolutions.add(PokeEvolution(
-              minLevel: c
-                  .evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel
-                  .toString(),
+              minLevel: c.evolvesTo![0].evolvesTo![0].evolutionDetails![0]
+                          .minLevel ==
+                      null
+                  ? '??'
+                  : c.evolvesTo![0].evolvesTo![0].evolutionDetails![0].minLevel
+                      .toString(),
               pokename: c.evolvesTo![0].evolvesTo![0].speciess!.name!));
         }
       }

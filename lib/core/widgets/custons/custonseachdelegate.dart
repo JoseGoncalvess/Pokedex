@@ -82,6 +82,9 @@ class CustonseachdelegateState extends State<Custonseachdelegate> {
                       focusNode: customfocus,
                       controller: namecontroller,
                       onSubmitted: (value) {
+                        if (value.contains('#')) {
+                          namecontroller.text = value.replaceAll('#', '');
+                        }
                         setState(() {
                           loading = false;
                         });

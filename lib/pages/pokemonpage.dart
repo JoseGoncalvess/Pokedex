@@ -111,34 +111,32 @@ class _PagepokemonState extends State<Pagepokemon> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(color: Colors.white
-            // image: DecorationImage(
-            //     image: const AssetImage(
-            //       'assets/img/BK.jpg',
-            //     ),
-            //     colorFilter: ColorFilter.mode(
-            //         Color.fromARGB(255, 255, 255, 255).withOpacity(0.1),
-            //         BlendMode.modulate),
-            //     fit: BoxFit.cover),
-            ),
+        decoration: const BoxDecoration(color: Colors.white),
         child: !layout
             ? Column(
                 children: [
                   Expanded(
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 5,
-                      mainAxisSpacing: 5,
-                      children: pokemonv2
-                          .map((e) => Pokecardgrid(
-                                name: e.name!,
-                                type: e.types!,
-                                id: e.id.toString(),
-                                img: e.name!,
-                                onPressed: () {},
-                              ))
-                          .toList(),
-                    ),
+                    child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2),
+                        itemCount: pokemonv2.length,
+                        itemBuilder: (context, index) => Pokecardgrid(
+                              id: pokemonv2[index].id.toString(),
+                              img: pokemonv2[index].name!,
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => DetailsPage(
+                                            id: pokemonv2[index].id!,
+                                            name: pokemonv2[index].name!,
+                                            types: pokemonv2[index].types!,
+                                          )),
+                                );
+                              },
+                              type: pokemonv2[index].types!,
+                              name: pokemonv2[index].name!,
+                            )),
                   )
                 ],
               )
@@ -193,9 +191,6 @@ class _PagepokemonState extends State<Pagepokemon> {
                 ],
               ),
       ),
-      // floatingActionButton: FloatingActionButton(onPressed: () {
-      //   getpoketime();
-      // }),
     );
   }
 }

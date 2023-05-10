@@ -46,7 +46,7 @@ class _PokemoncardState extends State<Pokemoncard> {
                                   //  widget.type[0]['type'].name
                                   ),
                               borderRadius: BorderRadius.circular(10)),
-                          height: MediaQuery.of(context).size.height * 0.22,
+                          height: MediaQuery.of(context).size.height * 0.20,
                           width: MediaQuery.of(context).size.width * 0.90,
                         ),
                         Positioned(
@@ -66,7 +66,7 @@ class _PokemoncardState extends State<Pokemoncard> {
                         Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10)),
-                          height: MediaQuery.of(context).size.height * 0.20,
+                          height: MediaQuery.of(context).size.height * 0.22,
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -128,21 +128,21 @@ class _PokemoncardState extends State<Pokemoncard> {
               ),
             ),
             Positioned(
-              left: 180,
-              bottom: 20,
+              left: 175,
+              bottom: 28,
               child: GifimagePokemon().getimag(widget.name) == null
                   ? Image.asset(
                       'assets/img/pokeLoad.gif',
                       scale: 0.3,
                     )
                   : Container(
-                      height: MediaQuery.of(context).size.height * 0.26,
+                      height: MediaQuery.of(context).size.height * 0.22,
                       width: MediaQuery.of(context).size.width * 0.45,
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
                               GifimagePokemon().getimag(widget.name),
-                              scale: 0.55),
+                              scale: 0.7),
                         ),
                       ),
                     ),
