@@ -14,6 +14,7 @@ import '../../model/location_poke_area.dart';
 import '../../model/poke_evolution.dart';
 import '../../model/pokev2model.dart';
 import '../../services/pokemon_services.dart';
+import 'details_poke_widget.dart';
 
 class DetailsPage extends StatefulWidget {
   final String name;
@@ -233,148 +234,18 @@ class _DetailsPageState extends State<DetailsPage> {
                                     .toList(),
                               ),
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.54,
-                              child: PageView(
-                                  scrollDirection: Axis.horizontal,
-                                  children: [
-                                    SizedBox(
-                                      child: Column(
-                                        children: [
-                                          InfopokeWidget(
-                                            height: height,
-                                            name: widget.name,
-                                            types: widget.types,
-                                            width: weight,
-                                          ),
-                                          SecundariinfopokeWidget(
-                                            type: widget.types,
-                                            localization: localization.isEmpty
-                                                ? 'Evolução'
-                                                : Localepokemon().localpokemon(
-                                                    city: localization[0]
-                                                        .name
-                                                        .toString()),
-                                          ),
-                                          EvolutionPokemonWidget(
-                                            evolutions: evolutions,
-                                            id: widget.id,
-                                            types: widget.types,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SingleChildScrollView(
-                                      scrollDirection: Axis.vertical,
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            'Poke Status',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.06,
-                                                fontWeight: FontWeight.w900,
-                                                color: Backgroud()
-                                                    .getBackgroudType(
-                                                        type: widget
-                                                            .types[0].type.name
-                                                            .toString()),
-                                                fontFamily: 'Nunito'),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.332,
-                                            child: ListView.builder(
-                                              itemCount: pokemonstat.length,
-                                              itemBuilder: (context, index) =>
-                                                  PokeStats(
-                                                      types: widget.types,
-                                                      nameStats:
-                                                          pokemonstat[index]
-                                                              .stat!
-                                                              .name,
-                                                      statsPower:
-                                                          pokemonstat[index]
-                                                              .baseStat!),
-                                            ),
-                                          ),
-                                          Text(
-                                            'Vantagem',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.06,
-                                                fontWeight: FontWeight.w900,
-                                                color: Backgroud()
-                                                    .getBackgroudType(
-                                                        type: widget
-                                                            .types[0].type.name
-                                                            .toString()),
-                                                fontFamily: 'Nunito'),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.06,
-                                            child: ListView.builder(
-                                              scrollDirection: Axis.horizontal,
-                                              itemCount: vantagem.length,
-                                              itemBuilder: (context, index) =>
-                                                  AtributTypeWidget(
-                                                      typename:
-                                                          vantagem[index]),
-                                            ),
-                                          ),
-                                          Text(
-                                            'Desvantagem',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.06,
-                                                fontWeight: FontWeight.w900,
-                                                color: Backgroud()
-                                                    .getBackgroudType(
-                                                        type: widget
-                                                            .types[0].type.name
-                                                            .toString()),
-                                                fontFamily: 'Nunito'),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.06,
-                                            child: ListView.builder(
-                                              scrollDirection: Axis.horizontal,
-                                              itemCount: desvantagem.length,
-                                              itemBuilder: (context, index) =>
-                                                  AtributTypeWidget(
-                                                      typename:
-                                                          desvantagem[index]),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ]),
-                            )
+                            DetailsPokeWidget(
+                              desvantagem: desvantagem,
+                              evolutions: evolutions,
+                              height: height,
+                              weight: weight,
+                              id: widget.id,
+                              localization: localization,
+                              name: widget.name,
+                              pokemonstat: pokemonstat,
+                              types: widget.types,
+                              vantagem: vantagem,
+                            ),
                           ],
                         ),
                       ),

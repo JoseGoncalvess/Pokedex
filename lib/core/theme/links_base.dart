@@ -16,11 +16,11 @@ class LinksBase {
     } else if (index == 5) {
       geration = 'https://pokeapi.co/api/v2/pokemon?offset=494&limit=155';
     } else if (index == 6) {
-      geration = 'https://pokeapi.co/api/v2/pokemon?offset=650&limit=71';
+      geration = 'https://pokeapi.co/api/v2/pokemon?offset=649&limit=71';
     } else if (index == 7) {
-      geration = 'https://pokeapi.co/api/v2/pokemon?offset=722&limit=87';
+      geration = 'https://pokeapi.co/api/v2/pokemon?offset=721&limit=87';
     } else if (index == 8) {
-      geration = 'https://pokeapi.co/api/v2/pokemon?offset=810&limit=87';
+      geration = 'https://pokeapi.co/api/v2/pokemon?offset=809&limit=87';
     }
     return geration;
   }
