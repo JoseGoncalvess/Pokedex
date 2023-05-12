@@ -5,6 +5,7 @@ import '../../../pages/details_page/details_page.dart';
 import '../../../services/pokemon_services.dart';
 import '../pokemoncard.dart';
 import 'cunstomlitseach.dart';
+import 'error_search_poke_widget.dart';
 
 class Custonseachdelegate extends StatefulWidget {
   const Custonseachdelegate({Key? key}) : super(key: key);
@@ -59,6 +60,7 @@ class CustonseachdelegateState extends State<Custonseachdelegate> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       maxLines: 1,
+                      keyboardType: TextInputType.text,
                       style: TextStyle(
                           color: Colors.black54,
                           fontSize: MediaQuery.of(context).size.height * 0.02,
@@ -125,90 +127,50 @@ class CustonseachdelegateState extends State<Custonseachdelegate> {
                               case ConnectionState.waiting:
                                 return const Expanded(
                                   child: Center(
-                                      child: CircularProgressIndicator()),
+                                      child: CircularProgressIndicator(
+                                    color: Colors.red,
+                                  )),
                                 );
                                 break;
 
                               default:
                                 if (snapshot.hasError) {
-                                  return Expanded(
-                                    child: SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height:
-                                            MediaQuery.of(context).size.height,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              width: 100,
-                                              height: 100,
-                                              decoration: const BoxDecoration(
-                                                  image: DecorationImage(
-                                                      fit: BoxFit.cover,
-                                                      image: AssetImage(
-                                                          'assets/img/pokeLoad.gif'))),
-                                            ),
-                                            Text(
-                                              'Pokémon não Encontrado',
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .height *
-                                                          0.03,
-                                                  fontWeight: FontWeight.w800,
-                                                  fontFamily: 'Nunito'),
-                                            ),
-                                            Text(
-                                              'Tente procurar pela #',
-                                              style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .height *
-                                                          0.022,
-                                                  fontWeight: FontWeight.w800,
-                                                  fontFamily: 'Nunito'),
-                                            )
-                                          ],
-                                        )),
-                                  );
+                                  return const ErrorSearchPokeWidget();
                                   print(
                                       'Esse aqui é o erro => ${snapshot.error.toString()}');
                                 }
                                 return SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.3,
-                                  child: ListView(
-                                    children: [
-                                      Pokemoncard(
-                                        id: snapshot.data!.id.toString(),
-                                        name: snapshot.data!.name!,
-                                        type: snapshot.data!.types!,
-                                        onPressed: () {
-                                          print('opa');
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      DetailsPage(
-                                                        id: snapshot.data!.id!,
-                                                        name: snapshot
-                                                            .data!.name!,
-                                                        types: snapshot
-                                                            .data!.types!,
-                                                      )));
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                );
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.3,
+                                    child: snapshot.data == null
+                                        ? const ErrorSearchPokeWidget()
+                                        : ListView(
+                                            children: [
+                                              Pokemoncard(
+                                                id: snapshot.data!.id
+                                                    .toString(),
+                                                name: snapshot.data!.name!,
+                                                type: snapshot.data!.types!,
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              DetailsPage(
+                                                                id: snapshot
+                                                                    .data!.id!,
+                                                                name: snapshot
+                                                                    .data!
+                                                                    .name!,
+                                                                types: snapshot
+                                                                    .data!
+                                                                    .types!,
+                                                              )));
+                                                },
+                                              ),
+                                            ],
+                                          ));
                             }
                           })
                     ]),

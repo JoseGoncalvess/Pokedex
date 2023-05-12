@@ -66,7 +66,7 @@ class _PokeStatsState extends State<PokeStats> {
             width: MediaQuery.of(context).size.width * 0.08,
           ),
           Flexible(
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
               height: 8,
               child: LinearProgressIndicator(

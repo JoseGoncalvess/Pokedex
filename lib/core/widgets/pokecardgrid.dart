@@ -25,6 +25,18 @@ class Pokecardgrid extends StatefulWidget {
 }
 
 class _PokecardgridState extends State<Pokecardgrid> {
+  bool loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 5)).then((value) => {
+          setState(() {
+            loading = false;
+          })
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -103,24 +115,24 @@ class _PokecardgridState extends State<Pokecardgrid> {
                 ),
               ),
               Positioned(
-                left: 12,
-                top: 70,
-                child: widget.img == ''
-                    ? Image.asset(
-                        'assets/img/pokeLoad.gif',
-                        scale: 0.5,
-                      )
-                    : Container(
-                        width: MediaQuery.of(context).size.width * 0.29,
-                        height: MediaQuery.of(context).size.height * 0.13,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.contain,
-                                image: NetworkImage(
-                                  GifimagePokemon().getimag(widget.name),
-                                ))),
-                      ),
-              ),
+                  left: 12,
+                  top: 70,
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.13,
+                    width: MediaQuery.of(context).size.width * 0.29,
+                    child: Image.network(
+                      GifimagePokemon().getimag(widget.name),
+                      loadingBuilder: (context, child, loadingProgress) {
+                        return loadingProgress == null
+                            ? child
+                            : Image.asset(
+                                'assets/img/pokeLoad.gif',
+                                scale: 0.3,
+                              );
+                      },
+                      scale: 0.6,
+                    ),
+                  )),
             ],
           ),
         ),

@@ -80,7 +80,7 @@ class DetailsPokeWidget extends StatelessWidget {
                         .getBackgroudType(type: types[0].type.name.toString()),
                     fontFamily: 'Nunito'),
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.332,
                 child: ListView.builder(
@@ -100,9 +100,9 @@ class DetailsPokeWidget extends StatelessWidget {
                         .getBackgroudType(type: types[0].type.name.toString()),
                     fontFamily: 'Nunito'),
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.06,
+                height: MediaQuery.of(context).size.height * 0.07,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: vantagem.length,
@@ -119,9 +119,9 @@ class DetailsPokeWidget extends StatelessWidget {
                         .getBackgroudType(type: types[0].type.name.toString()),
                     fontFamily: 'Nunito'),
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.06,
+                height: MediaQuery.of(context).size.height * 0.07,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: desvantagem.length,
