@@ -3,54 +3,54 @@ import 'package:flutter/material.dart';
 
 class Backgroud {
   getBackgroudColor({required String type}) {
-    Color backgroud = const Color.fromARGB(255, 110, 109, 109);
+    Color backgroud = const Color.fromARGB(206, 78, 75, 75);
     if (type == 'flying') {
-      backgroud = const Color(0xff9EB1D8);
+      backgroud = const Color.fromARGB(200, 191, 193, 196);
     } else if (type == 'poison') {
-      backgroud = const Color(0xffC36E97);
-    } else if (type == 'groud') {
-      backgroud = const Color(0xFFF78551);
+      backgroud = Color.fromARGB(146, 218, 83, 148);
+    } else if (type == 'ground') {
+      backgroud = backgroud = Color.fromARGB(199, 237, 144, 37);
     } else if (type == 'rock') {
-      backgroud = const Color(0xffD4C294);
+      backgroud = const Color.fromARGB(200, 196, 172, 112);
     } else if (type == 'bug') {
-      backgroud = const Color.fromARGB(255, 146, 235, 126);
+      backgroud = const Color.fromARGB(200, 118, 216, 97).withAlpha(180);
     } else if (type == 'ghost') {
-      backgroud = const Color(0xff8571BE);
+      backgroud = const Color.fromARGB(181, 96, 66, 179);
     } else if (type == 'steel') {
-      backgroud = const Color(0xff4C91B2);
+      backgroud = const Color.fromARGB(200, 175, 226, 250);
     } else if (type == 'fire') {
-      backgroud = const Color(0xfffd6b6d);
+      backgroud = const Color.fromARGB(217, 241, 98, 3);
     } else if (type == 'water') {
-      backgroud = const Color(0xff58ABF6);
+      backgroud = const Color.fromARGB(174, 18, 138, 243);
     } else if (type == 'grass') {
-      backgroud = const Color.fromARGB(255, 90, 195, 88);
+      backgroud = const Color.fromARGB(214, 46, 181, 44);
     } else if (type == 'electric') {
-      backgroud = const Color.fromARGB(255, 247, 182, 1);
+      backgroud = const Color.fromARGB(180, 255, 191, 0);
     } else if (type == 'ice') {
-      backgroud = const Color(0xFf91D8DF);
+      backgroud = const Color.fromARGB(190, 33, 206, 221).withAlpha(121);
     } else if (type == 'dragon') {
-      backgroud = const Color(0xFF7383B9);
+      backgroud = const Color.fromARGB(200, 77, 96, 158).withAlpha(160);
     } else if (type == 'psychic') {
-      backgroud = const Color(0xFF785ecc);
+      backgroud = const Color.fromARGB(192, 124, 93, 227);
     } else if (type == 'dark') {
-      backgroud = const Color(0xFF6F6E78);
+      backgroud = const Color.fromARGB(199, 33, 32, 36).withAlpha(169);
     } else if (type == 'fairy') {
-      backgroud = const Color(0xFFEBA8C3);
+      backgroud = const Color.fromARGB(181, 227, 154, 183);
     } else if (type == 'fighting') {
-      backgroud = const Color(0xffCE3F69);
+      backgroud = const Color.fromARGB(199, 155, 37, 43);
     }
 
     return backgroud;
   }
 
   getBackgroudType({required String type}) {
-    Color backgroud = const Color.fromARGB(255, 110, 109, 109);
+    Color backgroud = const Color.fromARGB(255, 95, 90, 90);
     if (type == 'flying') {
       backgroud = const Color.fromARGB(255, 191, 193, 196);
     } else if (type == 'poison') {
       backgroud = const Color.fromARGB(255, 230, 101, 163);
-    } else if (type == 'groud') {
-      backgroud = backgroud = const Color.fromARGB(255, 245, 118, 60);
+    } else if (type == 'ground') {
+      backgroud = backgroud = const Color.fromARGB(255, 231, 130, 23);
     } else if (type == 'rock') {
       backgroud = const Color.fromARGB(255, 196, 172, 112);
     } else if (type == 'bug') {
@@ -60,7 +60,7 @@ class Backgroud {
     } else if (type == 'steel') {
       backgroud = const Color.fromARGB(255, 175, 226, 250);
     } else if (type == 'fire') {
-      backgroud = const Color.fromARGB(255, 235, 55, 58);
+      backgroud = const Color.fromARGB(250, 255, 104, 3);
     } else if (type == 'water') {
       backgroud = const Color.fromARGB(255, 18, 138, 243);
     } else if (type == 'grass') {

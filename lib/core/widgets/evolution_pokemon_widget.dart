@@ -34,7 +34,7 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.width * 0.06,
                 fontWeight: FontWeight.w900,
-                color: Backgroud().getBackgroudType(
+                color: Backgroud().getBackgroudColor(
                     type: widget.types[0].type.name.toString()),
                 fontFamily: 'Nunito'),
           ),
@@ -98,11 +98,20 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.25,
                                   height:
-                                      MediaQuery.of(context).size.height * 0.17,
+                                      MediaQuery.of(context).size.height * 0.10,
                                   child: Image.network(
                                     GifimagePokemon().getimag(
                                         widget.evolutions[index].pokename),
-                                    fit: BoxFit.fill,
+                                    loadingBuilder:
+                                        (context, child, loadingProgress) {
+                                      return loadingProgress == null
+                                          ? child
+                                          : Image.asset(
+                                              'assets/img/pokeLoad.gif',
+                                              scale: 0.9,
+                                            );
+                                    },
+                                    scale: 0.6,
                                   ),
                                 ),
                                 Text(
@@ -113,7 +122,7 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
                                           MediaQuery.of(context).size.width *
                                               0.05,
                                       fontWeight: FontWeight.w900,
-                                      color: Backgroud().getBackgroudType(
+                                      color: Backgroud().getBackgroudColor(
                                           type: widget.types[0].type.name
                                               .toString()),
                                       fontFamily: 'Nunito'),

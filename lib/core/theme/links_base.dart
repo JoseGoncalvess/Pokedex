@@ -10,7 +10,7 @@ class LinksBase {
     } else if (index == 2) {
       geration = 'https://pokeapi.co/api/v2/pokemon?offset=151&limit=100';
     } else if (index == 3) {
-      geration = 'https://pokeapi.co/api/v2/pokemon?offset=252&limit=135';
+      geration = 'https://pokeapi.co/api/v2/pokemon?offset=251&limit=135';
     } else if (index == 4) {
       geration = 'https://pokeapi.co/api/v2/pokemon?offset=386&limit=106';
     } else if (index == 5) {

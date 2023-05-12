@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pokedexx/core/widgets/custons/tab_atrybuty_widget.dart';
 
 import '../../core/theme/backgroud_color.dart';
 import '../../core/theme/localepokemon.dart';
-import '../../core/widgets/atribut_type_widget.dart';
 import '../../core/widgets/evolution_pokemon_widget.dart';
 import '../../core/widgets/infopoke_widget.dart';
 import '../../core/widgets/poke_stats.dart';
@@ -11,7 +11,7 @@ import '../../model/location_poke_area.dart';
 import '../../model/poke_evolution.dart';
 import '../../model/pokev2model.dart';
 
-class DetailsPokeWidget extends StatelessWidget {
+class DetailsPokeWidget extends StatefulWidget {
   final List<Type> types;
   final List<String> vantagem;
   final List<String> desvantagem;
@@ -38,6 +38,12 @@ class DetailsPokeWidget extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<DetailsPokeWidget> createState() => _DetailsPokeWidgetState();
+}
+
+class _DetailsPokeWidgetState extends State<DetailsPokeWidget>
+    with SingleTickerProviderStateMixin {
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
@@ -47,90 +53,54 @@ class DetailsPokeWidget extends StatelessWidget {
           child: Column(
             children: [
               InfopokeWidget(
-                height: height,
-                name: name,
-                types: types,
-                width: weight,
+                height: widget.height,
+                name: widget.name,
+                types: widget.types,
+                width: widget.weight,
               ),
               SecundariinfopokeWidget(
-                type: types,
-                localization: localization.isEmpty
+                type: widget.types,
+                localization: widget.localization.isEmpty
                     ? 'Evolução'
-                    : Localepokemon()
-                        .localpokemon(city: localization[0].name.toString()),
+                    : Localepokemon().localpokemon(
+                        city: widget.localization[0].name.toString()),
               ),
               EvolutionPokemonWidget(
-                evolutions: evolutions,
-                id: id,
-                types: types,
+                evolutions: widget.evolutions,
+                id: widget.id,
+                types: widget.types,
               ),
             ],
           ),
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              Text(
-                'Poke Status',
-                style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width * 0.06,
-                    fontWeight: FontWeight.w900,
-                    color: Backgroud()
-                        .getBackgroudType(type: types[0].type.name.toString()),
-                    fontFamily: 'Nunito'),
+        Column(
+          children: [
+            Text(
+              'Poke Status',
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.height * 0.03,
+                  fontWeight: FontWeight.w900,
+                  color: Backgroud().getBackgroudColor(
+                      type: widget.types[0].type.name.toString()),
+                  fontFamily: 'Nunito'),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.29,
+              child: ListView.builder(
+                itemCount: widget.pokemonstat.length,
+                itemBuilder: (context, index) => PokeStats(
+                    types: widget.types,
+                    nameStats: widget.pokemonstat[index].stat!.name,
+                    statsPower: widget.pokemonstat[index].baseStat!),
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.332,
-                child: ListView.builder(
-                  itemCount: pokemonstat.length,
-                  itemBuilder: (context, index) => PokeStats(
-                      types: types,
-                      nameStats: pokemonstat[index].stat!.name,
-                      statsPower: pokemonstat[index].baseStat!),
-                ),
-              ),
-              Text(
-                'Vantagem',
-                style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width * 0.06,
-                    fontWeight: FontWeight.w900,
-                    color: Backgroud()
-                        .getBackgroudType(type: types[0].type.name.toString()),
-                    fontFamily: 'Nunito'),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.07,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: vantagem.length,
-                  itemBuilder: (context, index) =>
-                      AtributTypeWidget(typename: vantagem[index]),
-                ),
-              ),
-              Text(
-                'Desvantagem',
-                style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width * 0.06,
-                    fontWeight: FontWeight.w900,
-                    color: Backgroud()
-                        .getBackgroudType(type: types[0].type.name.toString()),
-                    fontFamily: 'Nunito'),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.07,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: desvantagem.length,
-                  itemBuilder: (context, index) =>
-                      AtributTypeWidget(typename: desvantagem[index]),
-                ),
-              ),
-            ],
-          ),
+            ),
+            TabAtrybutyWidget(
+              desvantagem: widget.desvantagem,
+              types: widget.types,
+              vantagem: widget.vantagem,
+            )
+          ],
         )
       ]),
     );

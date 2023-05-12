@@ -29,13 +29,21 @@ class ErrorSearchPokeWidget extends StatelessWidget {
                     fontFamily: 'Nunito'),
               ),
               Text(
-                'Verifique se o nome está Correto ou Tsente procurar pela #',
+                'Verifique se o Nome está Correto',
                 style: TextStyle(
                     color: Colors.grey,
                     fontSize: MediaQuery.of(context).size.height * 0.022,
                     fontWeight: FontWeight.w800,
                     fontFamily: 'Nunito'),
-              )
+              ),
+              Text(
+                ' ou Tsente procurar pela #',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: MediaQuery.of(context).size.height * 0.022,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: 'Nunito'),
+              ),
             ],
           )),
     );

@@ -131,13 +131,12 @@ class CustonseachdelegateState extends State<Custonseachdelegate> {
                                     color: Colors.red,
                                   )),
                                 );
-                                break;
 
                               default:
                                 if (snapshot.hasError) {
-                                  return const ErrorSearchPokeWidget();
                                   print(
                                       'Esse aqui é o erro => ${snapshot.error.toString()}');
+                                  return const ErrorSearchPokeWidget();
                                 }
                                 return SizedBox(
                                     width: MediaQuery.of(context).size.width,

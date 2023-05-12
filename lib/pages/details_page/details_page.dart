@@ -144,8 +144,8 @@ class _DetailsPageState extends State<DetailsPage> {
                     height: MediaQuery.of(context).size.height * 0.46,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                      color: Backgroud().getBackgroudType(
-                          type: widget.types[0].type.name.toString()),
+                      color: Backgroud()
+                          .getBackgroudColor(type: widget.types[0].type.name),
                     ),
                   ),
                 ),

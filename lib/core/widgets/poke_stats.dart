@@ -23,9 +23,9 @@ class _PokeStatsState extends State<PokeStats> {
   @override
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.05,
+      height: MediaQuery.of(context).size.height * 0.045,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -35,7 +35,7 @@ class _PokeStatsState extends State<PokeStats> {
           ),
           Container(
               alignment: Alignment.centerLeft,
-              height: MediaQuery.of(context).size.height * 0.06,
+              height: MediaQuery.of(context).size.height * 0.05,
               width: MediaQuery.of(context).size.width * 0.2,
               child: Text(
                 widget.nameStats.toUpperCase(),
@@ -72,7 +72,7 @@ class _PokeStatsState extends State<PokeStats> {
               child: LinearProgressIndicator(
                   backgroundColor: const Color.fromARGB(155, 150, 148, 148),
                   color: Backgroud()
-                      .getBackgroudType(type: widget.types[0].type.name),
+                      .getBackgroudColor(type: widget.types[0].type.name),
                   value: widget.statsPower / 100),
             ),
           )

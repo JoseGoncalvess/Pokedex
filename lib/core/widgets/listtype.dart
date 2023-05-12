@@ -35,8 +35,10 @@ class _ListtypeState extends State<Listtype> {
         width: MediaQuery.of(context).size.width * 0.17,
         height: MediaQuery.of(context).size.height * 0.02,
         decoration: BoxDecoration(
-            color: Backgroud()
-                .getBackgroudColor(type: widget.pokemon.toLowerCase()),
+            color: Colors.white.withOpacity(0.9),
+
+            //  Backgroud()
+            //     .getBackgroudColor(type: widget.pokemon.toLowerCase()),
             borderRadius: BorderRadius.circular(3)),
         child: Padding(
             padding: const EdgeInsets.only(left: 1.0),
@@ -46,7 +48,8 @@ class _ListtypeState extends State<Listtype> {
               style: TextStyle(
                   fontSize: MediaQuery.of(context).size.width * 0.025,
                   fontWeight: FontWeight.w900,
-                  color: Colors.white,
+                  color: Backgroud()
+                      .getBackgroudColor(type: widget.pokemon.toLowerCase()),
                   fontFamily: 'Nunito'),
             )),
       ),
