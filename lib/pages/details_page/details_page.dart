@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/model/atributi_type_model.dart';
-import 'package:pokedexx/pages/details_page/detailstype_poker.dart';
 import '../../core/helpers/clip_container.dart';
 import '../../core/theme/gifimage_pokemon.dart';
+import '../../core/widgets/custons/tabs/info_tab_poke_widget.dart';
 import '../../model/location_poke_area.dart';
 import '../../model/poke_evolution.dart';
 import '../../model/pokev2model.dart';
 import '../../services/pokemon_services.dart';
-import 'details_poke_widget.dart';
 
 class DetailsPage extends StatefulWidget {
   final String name;
@@ -209,39 +208,25 @@ class _DetailsPageState extends State<DetailsPage> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.25,
                     ),
-                    SizedBox(
+                    Container(
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.59,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.05,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: widget.types
-                                    .map((e) =>
-                                        TypelistDetails(pokemon: e.type.name))
-                                    .toList(),
-                              ),
-                            ),
-                            DetailsPokeWidget(
-                              desvantagem: desvantagem,
-                              evolutions: evolutions,
-                              height: height,
-                              weight: weight,
-                              id: widget.id,
-                              localization: localization,
-                              name: widget.name,
-                              pokemonstat: pokemonstat,
-                              types: widget.types,
-                              vantagem: vantagem,
-                            ),
-                          ],
-                        ),
+                      height: MediaQuery.of(context).size.height * 0.5902,
+                      child: Column(
+                        children: [
+                          InfoTabPokeWidget(
+                            atributo: atributo,
+                            desvantagem: desvantagem,
+                            evolutions: evolutions,
+                            height: height,
+                            weight: weight,
+                            id: widget.id,
+                            localization: localization,
+                            name: widget.name,
+                            pokemonstat: pokemonstat,
+                            vantagem: vantagem,
+                            types: widget.types,
+                          )
+                        ],
                       ),
                     )
                   ],
@@ -273,11 +258,12 @@ class _DetailsPageState extends State<DetailsPage> {
                 Positioned(
                   right: 10,
                   left: 10,
-                  top: 50,
+                  top: 75,
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 0.4,
+                    height: MediaQuery.of(context).size.height * 0.3,
                     width: MediaQuery.of(context).size.width * 0.3,
                     decoration: BoxDecoration(
+                        // color: Colors.pink,
                         image: DecorationImage(
                             image: NetworkImage(
                                 GifimagePokemon().getimag(widget.name)),

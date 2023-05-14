@@ -58,7 +58,7 @@ class Backgroud {
     } else if (type == 'ghost') {
       backgroud = const Color.fromARGB(255, 96, 66, 179);
     } else if (type == 'steel') {
-      backgroud = const Color.fromARGB(255, 175, 226, 250);
+      backgroud = Color.fromARGB(255, 175, 200, 212);
     } else if (type == 'fire') {
       backgroud = const Color.fromARGB(250, 255, 104, 3);
     } else if (type == 'water') {

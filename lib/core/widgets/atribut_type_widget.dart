@@ -19,7 +19,7 @@ class AtributTypeWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(25)),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),

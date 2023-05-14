@@ -25,7 +25,7 @@ class _PokeStatsState extends State<PokeStats> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.045,
+      height: MediaQuery.of(context).size.height * 0.04,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,

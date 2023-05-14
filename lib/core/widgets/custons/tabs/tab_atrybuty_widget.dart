@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/model/pokev2model.dart';
-import '../atribut_type_widget.dart';
+import '../../atribut_type_widget.dart';
 
 class TabAtrybutyWidget extends StatefulWidget {
   final List<Type> types;
@@ -21,21 +21,45 @@ class TabAtrybutyWidget extends StatefulWidget {
 
 class _TabAtrybutyWidgetState extends State<TabAtrybutyWidget>
     with SingleTickerProviderStateMixin {
+  late TabController _tabcontroller;
+  @override
+  void initState() {
+    _tabcontroller = TabController(length: 2, vsync: this);
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _tabcontroller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TabController _tabcontroller = TabController(length: 2, vsync: this);
-    return Container(
+    // final TabController _tabcontroller = TabController(length: 2, vsync: this);
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.20,
+      height: MediaQuery.of(context).size.height * 0.2,
       child: Column(
         children: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.09,
+            height: MediaQuery.of(context).size.height * 0.1,
             child: TabBar(
+                unselectedLabelColor: Colors.grey,
+                indicatorColor: Backgroud().getBackgroudColor(
+                    type: widget.types[0].type.name.toString()),
+                labelColor: Backgroud().getBackgroudColor(
+                    type: widget.types[0].type.name.toString()),
+                labelStyle: TextStyle(
+                    fontSize: MediaQuery.of(context).size.height * 0.03,
+                    fontWeight: FontWeight.w900,
+                    color: Backgroud().getBackgroudColor(
+                        type: widget.types[0].type.name.toString()),
+                    fontFamily: 'Nunito'),
                 controller: _tabcontroller,
-                labelColor: Backgroud()
-                    .getBackgroudColor(type: widget.types[0].type.name),
                 tabs: const [
                   Tab(
                     text: 'Vantagem',
@@ -45,7 +69,7 @@ class _TabAtrybutyWidgetState extends State<TabAtrybutyWidget>
                   )
                 ]),
           ),
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.1,
             child: TabBarView(controller: _tabcontroller, children: [

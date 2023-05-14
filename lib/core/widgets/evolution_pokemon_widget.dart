@@ -25,7 +25,7 @@ class _EvolutionPokemonWidgetState extends State<EvolutionPokemonWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.35,
+      height: MediaQuery.of(context).size.height * 0.3,
       // color: Colors.red,
       child: Column(
         children: [
