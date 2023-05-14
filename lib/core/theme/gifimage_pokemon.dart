@@ -31,9 +31,11 @@ class GifimagePokemon {
     } else if (name == 'lycanroc-midday') {
       name = 'lycanroc';
     } else if (name == 'type-null') {
-      name = 'type';
+      name = 'type.null';
     } else if (name == 'mr-mime') {
       name = 'mr.mime';
+    } else if (name == 'mime-jr') {
+      name = 'mime_jr';
     }
 
     return 'https://projectpokemon.org/images/normal-sprite/${name.toLowerCase()}.gif';

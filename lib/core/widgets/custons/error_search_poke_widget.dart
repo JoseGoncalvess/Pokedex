@@ -37,7 +37,7 @@ class ErrorSearchPokeWidget extends StatelessWidget {
                     fontFamily: 'Nunito'),
               ),
               Text(
-                ' ou Tsente procurar pela #',
+                ' ou Tente procurar pela #',
                 style: TextStyle(
                     color: Colors.grey,
                     fontSize: MediaQuery.of(context).size.height * 0.022,

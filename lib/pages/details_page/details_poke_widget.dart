@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/widgets/custons/tabs/tab_atrybuty_widget.dart';
-import '../../core/theme/localepokemon.dart';
-import '../../core/widgets/evolution_pokemon_widget.dart';
-import '../../core/widgets/infopoke_widget.dart';
 import '../../core/widgets/poke_stats.dart';
-import '../../core/widgets/secundari_infopoke_widget.dart';
 import '../../model/location_poke_area.dart';
 import '../../model/poke_evolution.dart';
 import '../../model/pokev2model.dart';

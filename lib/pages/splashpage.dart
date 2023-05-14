@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedexx/model/geration_pokemon_model.dart';
 import '../core/widgets/custons/custonseachdelegate.dart';
