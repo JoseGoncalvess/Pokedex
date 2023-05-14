@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+
 import 'package:pokedexx/model/pokev2model.dart';
 import '../core/theme/geration_poke_wisget.dart';
 import '../core/widgets/pokemon_geration_widget.dart';
