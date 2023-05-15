@@ -24,7 +24,7 @@ Em um mundo repleto de criaturinhas fantásticas, você não vai querer perder n
 
 
 ## Video Demo
-<video src="https://youtube.com/shorts/fmzEToDx2b0?feature=share"></video>
+<img src="(https://github.com/JoseGoncalvess/Pokedex/blob/main/assets/img/screenshots/Gif.mp4"/>
 # Instalação
 ### [PT-BR]
 - Adicione [Flutter](https://flutter.dev/docs/get-started/install) à sua máquina.
