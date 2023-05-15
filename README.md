@@ -9,7 +9,8 @@
 Em um mundo repleto de criaturinhas fantásticas, você não vai querer perder nenhum detalhe quando se deparar com as mais diversas criaturinhas durante sua jornada Pokémon. Sua fiel companheira será **Poke Flutter**, acredite ela vai te ajudar bastante!
 ## PokeFlutter  Preview
 
-<img src="./assets/img/screenshots/Splash.jpeg" height='280'/>
+<div   width: 100%; height: 280px; display: inline;>
+        <img src="./assets/img/screenshots/Splash.jpeg" height='280'/>
 <img src="./assets/img/screenshots/Home.png" height='280'/>
 <img src="./assets/img/screenshots/PokeSugstion.jpeg" height='280'/>
 <img src="./assets/img/screenshots/seachPokemom.png" height='280'/>
@@ -17,12 +18,13 @@ Em um mundo repleto de criaturinhas fantásticas, você não vai querer perder n
 <img src="./assets/img/screenshots/PokePageGrid.jpeg" height='280'/>
 <img src="./assets/img/screenshots/InfoPoke.jpeg" height='280'/>
 <img src="./assets/img/screenshots/StatusPoke.jpeg" height='280'/>
+</div>
 
 
 
 
 ## Video Demo
-<video src="https://drive.google.com/file/d/1KzxL--eDdbFIgSyhQjuRePiCdi7EpQfZ/view?usp=share_link" height='280' width="480"></video>
+<video src="https://youtube.com/shorts/fmzEToDx2b0?feature=share"></video>
 # Instalação
 ### [PT-BR]
 - Adicione [Flutter](https://flutter.dev/docs/get-started/install) à sua máquina.
@@ -70,3 +72,7 @@ Em um mundo repleto de criaturinhas fantásticas, você não vai querer perder n
 
 ## **Inspiração Designer**
 Projeto baseado em Designer encontrado facilmente na internet:
+
+## Improtante
+Todo o código disponível sob o MIT .Consulte [LICENÇA](https://opensource.org/license/mit/).
+[![License](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/license/mit/)
