@@ -120,17 +120,20 @@ class _PokecardgridState extends State<Pokecardgrid> {
                   child: SizedBox(
                     height: MediaQuery.of(context).size.height * 0.13,
                     width: MediaQuery.of(context).size.width * 0.29,
-                    child: Image.network(
-                      GifimagePokemon().getimag(widget.name),
-                      loadingBuilder: (context, child, loadingProgress) {
-                        return loadingProgress == null
-                            ? child
-                            : Image.asset(
-                                'assets/img/pokeLoad.gif',
-                                scale: 0.3,
-                              );
-                      },
-                      scale: 0.6,
+                    child: InkWell(
+                      onTap: widget.onPressed,
+                      child: Image.network(
+                        GifimagePokemon().getimag(widget.name),
+                        loadingBuilder: (context, child, loadingProgress) {
+                          return loadingProgress == null
+                              ? child
+                              : Image.asset(
+                                  'assets/img/pokeLoad.gif',
+                                  scale: 0.3,
+                                );
+                        },
+                        scale: 0.6,
+                      ),
                     ),
                   )),
             ],

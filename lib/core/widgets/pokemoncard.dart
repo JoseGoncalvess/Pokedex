@@ -1,6 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:pokedexx/core/theme/backgroud_color.dart';
 import 'package:pokedexx/core/widgets/listtype.dart';
@@ -26,18 +24,6 @@ class Pokemoncard extends StatefulWidget {
 }
 
 class _PokemoncardState extends State<Pokemoncard> {
-  bool loading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 5)).then((value) => {
-          setState(() {
-            loading = false;
-          })
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -147,17 +133,20 @@ class _PokemoncardState extends State<Pokemoncard> {
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.22,
                   width: MediaQuery.of(context).size.width * 0.45,
-                  child: Image.network(
-                    GifimagePokemon().getimag(widget.name),
-                    loadingBuilder: (context, child, loadingProgress) {
-                      return loadingProgress == null
-                          ? child
-                          : Image.asset(
-                              'assets/img/pokeLoad.gif',
-                              scale: 0.3,
-                            );
-                    },
-                    scale: 0.6,
+                  child: InkWell(
+                    onTap: widget.onPressed,
+                    child: Image.network(
+                      GifimagePokemon().getimag(widget.name),
+                      loadingBuilder: (context, child, loadingProgress) {
+                        return loadingProgress == null
+                            ? child
+                            : Image.asset(
+                                'assets/img/pokeLoad.gif',
+                                scale: 0.3,
+                              );
+                      },
+                      scale: 0.6,
+                    ),
                   ),
                 )),
           ],

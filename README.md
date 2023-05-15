@@ -1,14 +1,28 @@
 
 # Poke Flutter
-***Introdução***
+[![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-blue.svg)](https://github.com/Solido/awesome-flutter) [![License](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/license/mit/)
+
+
+---
+## **Introdução**
 
 Em um mundo repleto de criaturinhas fantásticas, você não vai querer perder nenhum detalhe quando se deparar com as mais diversas criaturinhas durante sua jornada Pokémon. Sua fiel companheira será **Poke Flutter**, acredite ela vai te ajudar bastante!
 ## PokeFlutter  Preview
-![Home](image.jpg)
-![Home](image.jpg)
+
+<img src="./assets/img/screenshots/Splash.jpeg" height='280'/>
+<img src="./assets/img/screenshots/Home.png" height='280'/>
+<img src="./assets/img/screenshots/PokeSugstion.jpeg" height='280'/>
+<img src="./assets/img/screenshots/seachPokemom.png" height='280'/>
+<img src="./assets/img/screenshots/PokPageList.jpeg" height='280'/>
+<img src="./assets/img/screenshots/PokePageGrid.jpeg" height='280'/>
+<img src="./assets/img/screenshots/InfoPoke.jpeg" height='280'/>
+<img src="./assets/img/screenshots/StatusPoke.jpeg" height='280'/>
+
+
+
 
 ## Video Demo
-![Appdemo](image.jpg)
+<video src="https://drive.google.com/file/d/1KzxL--eDdbFIgSyhQjuRePiCdi7EpQfZ/view?usp=share_link" height='280' width="480"></video>
 # Instalação
 ### [PT-BR]
 - Adicione [Flutter](https://flutter.dev/docs/get-started/install) à sua máquina.
@@ -22,20 +36,20 @@ Em um mundo repleto de criaturinhas fantásticas, você não vai querer perder n
 
 - Run `flutter run` to build and run the debug app on your emulator/phone
 
-# Todas as Funções
-- [x] **Home:**
+# **Todas as Funções:**
+- ## [x]  **Home:**
 
 -- Acesso aos Pokémons Por Geração.
 
 -- Acesso aos Pokémons Através de Pesquisa.
 
-- [x] **Pesquisa:**
+- ## [x] **Pesquisa:**
 
 -- Listagem de Pokémons Aleatórios.
 
 -- Barra de Pesquisa(**Nome**, **ID**).
 
-- [x] **Pokedex:**
+- ## [x] **Pokedex:**
 
 -- Listagem de Pokémons  referente a Geração.
 
@@ -44,7 +58,7 @@ Em um mundo repleto de criaturinhas fantásticas, você não vai querer perder n
 -- Acesso a Detalhes do Pokémon.
 
 
-- [x] **Pokedex Info:**
+- ## [x] **Pokedex Info:**
 
 -- Informações Basicas.
 
@@ -54,5 +68,5 @@ Em um mundo repleto de criaturinhas fantásticas, você não vai querer perder n
 
 -- Typos  (**Vantagem**, **Desvantagem**)
 
-## Inspiração Designer
+## **Inspiração Designer**
 Projeto baseado em Designer encontrado facilmente na internet:
