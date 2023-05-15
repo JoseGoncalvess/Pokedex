@@ -10,7 +10,7 @@ Em um mundo repleto de criaturinhas fantásticas, você não vai querer perder n
 ## PokeFlutter  Preview
 
 <div   width: 100%; height: 280px; display: inline;>
-        <img src="./assets/img/screenshots/Splash.jpeg" height='280'/>
+<img src="./assets/img/screenshots/Splash.jpeg" height='280'/>
 <img src="./assets/img/screenshots/Home.png" height='280'/>
 <img src="./assets/img/screenshots/PokeSugstion.jpeg" height='280'/>
 <img src="./assets/img/screenshots/seachPokemom.png" height='280'/>
@@ -20,11 +20,6 @@ Em um mundo repleto de criaturinhas fantásticas, você não vai querer perder n
 <img src="./assets/img/screenshots/StatusPoke.jpeg" height='280'/>
 </div>
 
-
-
-
-## Video Demo
-<img src="(https://github.com/JoseGoncalvess/Pokedex/blob/main/assets/img/screenshots/Gif.mp4"/>
 # Instalação
 ### [PT-BR]
 - Adicione [Flutter](https://flutter.dev/docs/get-started/install) à sua máquina.
